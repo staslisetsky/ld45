@@ -1,0 +1,1656 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.cpp",
+			"settings":
+			{
+				"buffer_size": 60,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "//"
+			}
+		},
+		{
+			"file": "main.html",
+			"settings":
+			{
+				"buffer_size": 489,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "# Copyright (c) 1993-2009 Microsoft Corp.\n#\n# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.\n#\n# This file contains the mappings of IP addresses to host names. Each\n# entry should be kept on an individual line. The IP address should\n# be placed in the first column followed by the corresponding host name.\n# The IP address and the host name should be separated by at least one\n# space.\n#\n# Additionally, comments (such as these) may be inserted on individual\n# lines or following the machine name denoted by a '#' symbol.\n#\n# For example:\n#\n#      102.54.94.97     rhino.acme.com          # source server\n#       38.25.63.10     x.acme.com              # x client host\n\n# localhost name resolution is handled within DNS itself.\n#\t127.0.0.1       localhost\n#\t::1             localhost\n127.0.0.1       printware.local\n127.0.0.1       ld45.local\n127.0.0.1       blog.local\n",
+			"file": "/C/Windows/System32/drivers/etc/hosts",
+			"file_size": 885,
+			"file_write_time": 131992070536117839,
+			"settings":
+			{
+				"buffer_size": 889,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "build.bat",
+			"settings":
+			{
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "build_wasm.bat",
+			"settings":
+			{
+				"buffer_size": 513,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/P/Ls/ld44 - bacterial/bactorial_wasm_loader.js",
+			"settings":
+			{
+				"buffer_size": 1899,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/ls_clang.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/ls_clang.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"up",
+				"Convert Case: Upper Case"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"tabl",
+				"Set Syntax: Batch File"
+			],
+			[
+				"reve",
+				"Permute Lines: Reverse"
+			],
+			[
+				"srever",
+				"Permute Lines: Reverse"
+			],
+			[
+				"settin",
+				"Preferences: Settings"
+			],
+			[
+				"key bi",
+				"Preferences: Key Bindings"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"tospa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 165.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/P/Ls/ld45"
+	],
+	"file_history":
+	[
+		"/P/Ls/ld44 - bacterial/build/main_custom.html",
+		"/P/Ls/ld44 - bacterial/build/main.html",
+		"/P/Ls/ld44 - bacterial/build_wasm.bat",
+		"/P/Ls/graphene/_build/windows_graphene.i",
+		"/P/Ls/graphene/build.bat",
+		"/P/Ls/graphene/_build/symbols.txt",
+		"/P/Ls/limbo/ls_string.h",
+		"/P/ls/graphene/source/graphene_render.h",
+		"/P/ls/graphene/source/win32_cascade.cpp",
+		"/P/Ls/graphene/source/ls_string.h",
+		"/P/Ls/graphene/data/UI/ui_test.pks",
+		"/P/Ls/znalka/ls_lib/ls_fcgi_win.h",
+		"/P/Ls/znalka/ls_lib/ls_string_2.h",
+		"/P/Ls/znalka/main.cpp",
+		"/P/Ls/znalka/alloc.cpp",
+		"/P/Ls/znalka/buchse.cpp",
+		"/P/Ls/znalka/data/posts/1 Pooks UI System 1 - Intro.html",
+		"/P/Ls/znalka/ls_lib/ls_string.h",
+		"/P/Ls/znalka/win_main.cpp",
+		"/P/Ls/znalka/data/rendered_templates.h",
+		"/P/Ls/znalka/include/shell.c",
+		"/P/Ls/znalka/include/meow_hash_x64_aesni.h",
+		"/P/third party/meow_hash/meow_example.cpp",
+		"/P/Ls/znalka/ls_lib/ls_fcgi.h",
+		"/P/Ls/znalka/notes.txt",
+		"/P/Ls/znalka/ls_lib/ls_containers.h",
+		"/P/Ls/znalka/data/templates/main.nos",
+		"/P/Ls/znalka/data/posts/1 pooks-ui-system.html",
+		"/P/Ls/znalka/ls_lib/ls_math.h",
+		"/P/Ls/znalka/build.bat",
+		"/P/Ls/znalka/data/index.html",
+		"/C/Users/stas/Documents/We can hate the web all we want, but the fact that",
+		"/D/Programs/nginx-1.15.10/conf/fastcgi.conf",
+		"/D/Programs/nginx-1.15.10/conf/fastcgi_params",
+		"/P/Ls/znalka/ls_fcgi.h",
+		"/C/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.20.27508/include/vector",
+		"/P/Ls/znalka/ls_string_2.h",
+		"/P/Ls/znalka/template_maker.cpp",
+		"/P/Ls/znalka/data/templates/post.nos",
+		"/P/Ls/znalka/data/templates/404.nos",
+		"/P/Ls/znalka/ls/ls_meta.cpp",
+		"/P/Ls/znalka/data/ui.html",
+		"/P/Ls/znalka/data/templates/admin.nos",
+		"/P/Ls/znalka/data/assets/style.css",
+		"/P/Ls/znalka/build.sh",
+		"/P/Ls/znalka/ls_string.h",
+		"/P/Ls/znalka/include/sqlite3.c",
+		"/C/Program Files (x86)/Windows Kits/10/include/10.0.17763.0/um/winnt.h",
+		"/C/Program Files (x86)/Windows Kits/10/include/10.0.17763.0/shared/ws2def.h",
+		"/C/Program Files (x86)/Windows Kits/10/include/10.0.17763.0/um/winsock.h",
+		"/P/Ls/znalka/todo.txt",
+		"/P/Ls/znalka/data/index - Copy.html",
+		"/home/stas/Downloads/anjuta-3.18.2/1.tmp",
+		"/P/Ls/znalka/app.h",
+		"/P/Ls/znalka/ls_lib/ls_time.h",
+		"/P/Ls/znalka/data/error_pages/502.html",
+		"/P/Ls/znalka/data/error_pages/503.html",
+		"/P/Ls/znalka/data/error_pages/504.html",
+		"/P/Ls/znalka/data/error_pages/5xx.html",
+		"/P/Ls/znalka/data/error_pages/404.html",
+		"/P/Ls/znalka/data/nginx.conf",
+		"/P/Ls/znalka/ls_lib/ls_lib.h",
+		"/P/Ls/znalka/data/posts/1 Pooks_1.html",
+		"/P/Ls/znalka/data/assets/admin_chart.js",
+		"/C/Users/stas/AppData/Roaming/Sublime Text 3/Packages/User/ls.sublime-build",
+		"/C/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/shared/winerror.h",
+		"/P/third party/stb/stb.h",
+		"/P/Ls/znalka/data/5xx.html",
+		"/P/Ls/znalka/data/posts/2 Buchse intro.html",
+		"/D/Programs/nginx-1.15.10/conf/nginx.conf",
+		"/D/Programs/nginx-1.15.10/logs/access.log",
+		"/P/third party/doom_3_bfg/neo/renderer/AutoRender.cpp",
+		"/P/third party/handmade/code/handmade_box.cpp",
+		"/P/Ls/znalka/ls_lib/ls_parser.h",
+		"/P/Ls/znalka/data/admin.html",
+		"/C/Program Files (x86)/Windows Kits/10/include/10.0.17763.0/um/minwinbase.h",
+		"/D/Programs/nginx-1.15.10/logs/error.log",
+		"/P/Ls/znalka/ls_lib.h",
+		"/P/Ls/znalka/ls_ssh.h",
+		"/P/Ls/znalka/data/404.html",
+		"/P/Ls/znalka/LICENSE",
+		"/P/Ls/znalka/data/posts/3 - Test.html",
+		"/P/Ls/znalka/buchse.h",
+		"/P/Ls/lang/test.jrat",
+		"/P/Ls/znalka/ls_fcgi_win.h",
+		"/P/Ls/cascade/source/cascade_math.cpp",
+		"/P/Ls/lang/main.ls",
+		"/P/Ls/znalka/build_remote.bat",
+		"/P/writing/Торт 5",
+		"/P/Ls/server/win32_server.cpp",
+		"/P/Ls/znalka/ls_time.h",
+		"/home/stas/.config/sublime-text-3/Packages/User/ls_clang.sublime-build",
+		"/P/Ls/znalka/data/templates/page.nos",
+		"/P/Ls/znalka/data/templates/showoff.nos",
+		"/P/Ls/znalka/cascade_ls_string.h",
+		"/P/Ls/znalka/app.cpp",
+		"/P/Ls/znalka/mimic.cpp",
+		"/home/stas/projects/znalka/template_generator.pro.user",
+		"/home/stas/projects/znalka/server/linux_server.cpp",
+		"/home/stas/projects/znalka/server/build.bat",
+		"/home/stas/projects/znalka/ls/ls_meta.cpp",
+		"/home/stas/projects/znalka/template_maker.cpp",
+		"/home/stas/projects/znalka/ls_string.h",
+		"/home/stas/projects/znalka/app.h",
+		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/cascade/source/ls_string.h",
+		"/home/stas/Downloads/GeoLite2-Country_20190129/GeoLite2-Country.mmdb",
+		"/home/stas/projects/znalka/data/posts/1 Making a better blog platform.html",
+		"/home/stas/projects/znalka/data/index - Copy.html",
+		"/P/printware/orders.log",
+		"/P/Ls/znalka/data/motherfuckingwebsite.com.html",
+		"/P/Ls/znalka/data/data",
+		"/P/Ls/znalka/data/style.css",
+		"/usr/include/x86_64-linux-gnu/bits/types.h",
+		"/home/stas/projects/znalka/sqlite_test.cpp",
+		"/home/stas/projects/znalka/sqlite_test.c",
+		"/usr/include/x86_64-linux-gnu/sys/socket.h",
+		"/home/stas/projects/znalka/blog.cpp",
+		"/home/stas/projects/znalka/data/rendered_templates.h",
+		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/cascade/Docs/ui_spec_demo.pks",
+		"/home/stas/projects/znalka/data/index.html",
+		"/home/stas/projects/znalka/ls/ls_serializer.h",
+		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/blog/templates/post.html",
+		"/home/stas/projects/znalka/data/templates/post.html",
+		"/home/stas/video.sh",
+		"/home/stas/projects/znalka/nginx.conf",
+		"/home/stas/projects/znalka/data/motherfuckingwebsite.com.html",
+		"/media/stas/9CBCE9D0BCE9A4CC/Users/stas/AppData/Roaming/Sublime Text 3/Packages/User/ls.sublime-build",
+		"/media/stas/9CBCE9D0BCE9A4CC/Users/stas/Dropbox/Sublime Configs/Default (Linux).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 226.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"div",
+			"flex"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 60,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"auto_name": "//",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 489,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Windows/System32/drivers/etc/hosts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 889,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								861,
+								861
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "build_wasm.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								223,
+								223
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "/P/Ls/ld44 - bacterial/bactorial_wasm_loader.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1899,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								67,
+								67
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 708.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/cascade.sublime-build",
+	"project": "ld45.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"render",
+				"source\\graphene_render.h"
+			],
+			[
+				"pook",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"pooks",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"demo",
+				"data\\UI\\demo_window.pks"
+			],
+			[
+				"ui",
+				"data\\UI\\ui.pks"
+			],
+			[
+				"bu",
+				"Docs\\bug_list.txt"
+			],
+			[
+				"picker",
+				"data\\Shaders\\ColorPicker.frag"
+			],
+			[
+				"pookss",
+				"source\\pooks_styles.h"
+			],
+			[
+				"bug",
+				"Docs\\bug_list.txt"
+			],
+			[
+				"w",
+				"source\\windows_graphene.cpp"
+			],
+			[
+				"win",
+				"source\\windows_graphene.cpp"
+			],
+			[
+				"ls_s",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"gra",
+				"source\\graphene.h"
+			],
+			[
+				"ls_str",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"g",
+				"source\\graphene.cpp"
+			],
+			[
+				"bui",
+				"P:\\Ls\\graphene\\build.bat"
+			],
+			[
+				"ls_String",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"wind",
+				"source\\windows_graphene.cpp"
+			],
+			[
+				"ls_",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"ls",
+				"source\\graphene_ls_string.cpp"
+			],
+			[
+				"app.",
+				"source\\graphene_app.cpp"
+			],
+			[
+				"grap",
+				"source\\graphene.cpp"
+			],
+			[
+				"ls_strin",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"ls_stri",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"ls_st",
+				"P:\\Ls\\limbo\\ls_string.h"
+			],
+			[
+				"text",
+				"source\\graphene_textedit.cpp"
+			],
+			[
+				"ls_string",
+				"source\\libs\\ls_string.h"
+			],
+			[
+				"ls_sparser",
+				"P:\\Ls\\limbo\\cascade_parser.cpp"
+			],
+			[
+				"dedm",
+				"data\\UI\\demo_window.pks"
+			],
+			[
+				"pooks.",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"pooks.cpp",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"ui_e",
+				"source\\graphene_ui_engine.cpp"
+			],
+			[
+				"",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"pook.s",
+				"source\\pooks.h"
+			],
+			[
+				"de",
+				"data\\UI\\demo_window.pks"
+			],
+			[
+				"toolsh",
+				"source\\editor\\tool_shape.cpp"
+			],
+			[
+				"pooks.c",
+				"source\\graphene_pooks.cpp"
+			],
+			[
+				"graphene.c",
+				"source\\graphene.cpp"
+			],
+			[
+				"ca",
+				"P:\\Ls\\limbo\\cascade_parser.cpp"
+			],
+			[
+				"graphene_lib",
+				"source\\graphene_lib.h"
+			],
+			[
+				"u",
+				"data\\UI\\ui.pks"
+			],
+			[
+				"win32",
+				"P:\\ls\\graphene\\source\\win32_cascade.cpp"
+			],
+			[
+				"pooks.h",
+				"source\\pooks.h"
+			],
+			[
+				"grapheneapp",
+				"graphene_app.cpp"
+			],
+			[
+				"ls_St",
+				"libs\\ls_string.h"
+			],
+			[
+				"graphene_ls",
+				"graphene_ls_string.cpp"
+			],
+			[
+				"graphene",
+				"graphene.cpp"
+			],
+			[
+				"memory.",
+				"graphene_memory.cpp"
+			],
+			[
+				"graphen",
+				"graphene.h"
+			],
+			[
+				"mem",
+				"graphene_memory.h"
+			],
+			[
+				"graph",
+				"graphene.h"
+			],
+			[
+				"graphe",
+				"graphene.h"
+			],
+			[
+				"b",
+				"graphene_builder.cpp"
+			],
+			[
+				"a",
+				"graphene_app.cpp"
+			],
+			[
+				"c",
+				"graphene_console.cpp"
+			],
+			[
+				"casca",
+				"win32_cascade.cpp"
+			],
+			[
+				"ls_Strin",
+				"libs\\ls_string.h"
+			],
+			[
+				"math",
+				"graphene_math.h"
+			],
+			[
+				"in",
+				"graphene_interaction.cpp"
+			],
+			[
+				"vec",
+				"graphene_vector.cpp"
+			],
+			[
+				"fcg",
+				"ls_lib\\ls_fcgi_win.h"
+			],
+			[
+				"fcgi_w",
+				"ls_lib\\ls_fcgi_win.h"
+			],
+			[
+				"buch",
+				"buchse.cpp"
+			],
+			[
+				"mallo",
+				"include\\malloc.c"
+			],
+			[
+				"buc",
+				"buchse.cpp"
+			],
+			[
+				"buchse",
+				"buchse.cpp"
+			],
+			[
+				"malloc",
+				"include\\malloc.c"
+			],
+			[
+				"mall",
+				"include\\malloc.c"
+			],
+			[
+				"bch",
+				"buchse.cpp"
+			],
+			[
+				"ls_time",
+				"ls_lib\\ls_time.h"
+			],
+			[
+				"tdo",
+				"todo.txt"
+			],
+			[
+				"fcgi",
+				"ls_lib\\ls_fcgi_win.h"
+			],
+			[
+				"poo",
+				"data\\posts\\pooks-ui-system.html"
+			],
+			[
+				"todo",
+				"todo.txt"
+			],
+			[
+				"pook-",
+				"data\\posts\\pooks-ui-system.html"
+			],
+			[
+				"buchs",
+				"buchse.cpp"
+			],
+			[
+				"po",
+				"data\\posts\\pooks-ui-system.html"
+			],
+			[
+				"main",
+				"data\\templates\\main.nos"
+			],
+			[
+				"tem",
+				"template_maker.cpp"
+			],
+			[
+				"te",
+				"data\\rendered_templates.h"
+			],
+			[
+				"no",
+				"data\\templates\\post.nos"
+			],
+			[
+				"pos",
+				"data\\posts\\pooks-ui-system.html"
+			],
+			[
+				"wn",
+				"win_buchse.cpp"
+			],
+			[
+				"post",
+				"data\\posts\\pooks-ui-system.html"
+			],
+			[
+				"adm",
+				"data\\templates\\admin.nos"
+			],
+			[
+				"string.",
+				"ls_lib\\ls_string.h"
+			],
+			[
+				"admion",
+				"data\\templates\\admin.nos"
+			],
+			[
+				"nos",
+				"data\\templates\\main.nos"
+			],
+			[
+				"post.n",
+				"data\\templates\\post.nos"
+			],
+			[
+				"post.",
+				"data\\templates\\post.nos"
+			],
+			[
+				"main.",
+				"data\\templates\\main.nos"
+			],
+			[
+				"m",
+				"data\\templates\\main.nos"
+			],
+			[
+				"string",
+				"ls_lib\\ls_string.h"
+			],
+			[
+				"mian.n",
+				"data\\templates\\main.nos"
+			],
+			[
+				"tod",
+				"todo.txt"
+			],
+			[
+				"buche",
+				"buchse.cpp"
+			],
+			[
+				"ls_fc",
+				"ls_lib\\ls_fcgi_win.h"
+			],
+			[
+				"p",
+				"data\\posts\\1 Pooks_1.html"
+			],
+			[
+				"linux",
+				"linux_buchse.cpp"
+			],
+			[
+				"win fc",
+				"ls_lib\\ls_fcgi_win.h"
+			],
+			[
+				"win_b",
+				"win_buchse.cpp"
+			],
+			[
+				"templates",
+				"data\\rendered_templates.h"
+			],
+			[
+				"templ",
+				"data\\rendered_templates.h"
+			],
+			[
+				"conta",
+				"ls_lib\\ls_containers.h"
+			],
+			[
+				"admin.",
+				"data\\templates\\admin.nos"
+			],
+			[
+				"admin",
+				"data\\assets\\admin_chart.js"
+			],
+			[
+				"ls_co",
+				"ls_lib\\ls_containers.h"
+			],
+			[
+				"am",
+				"data\\templates\\admin.nos"
+			],
+			[
+				"copy",
+				"data\\index - Copy.html"
+			],
+			[
+				"main.n",
+				"data\\templates\\main.nos"
+			],
+			[
+				"stri",
+				"ls_lib\\ls_string.h"
+			],
+			[
+				"temp",
+				"template_maker.cpp"
+			],
+			[
+				"win_",
+				"P:\\Ls\\znalka\\win_main.cpp"
+			],
+			[
+				"win_ma",
+				"P:\\Ls\\znalka\\win_main.cpp"
+			],
+			[
+				"ad",
+				"data\\assets\\admin_chart.js"
+			],
+			[
+				"admi",
+				"data\\assets\\admin_chart.js"
+			],
+			[
+				"template",
+				"template_maker.cpp"
+			],
+			[
+				"ren",
+				"data\\rendered_templates.h"
+			],
+			[
+				"admin.n",
+				"data\\templates\\admin.nos"
+			],
+			[
+				"ls_t",
+				"ls_lib\\ls_time.h"
+			],
+			[
+				"ls_tim",
+				"ls_lib\\ls_time.h"
+			],
+			[
+				"ls_ti",
+				"ls_lib\\ls_time.h"
+			],
+			[
+				"inde",
+				"data\\index.html"
+			],
+			[
+				"ls_li",
+				"ls_lib\\ls_lib.h"
+			],
+			[
+				"ls_lib",
+				"ls_lib\\ls_lib.h"
+			],
+			[
+				"5xx",
+				"data\\error_pages\\5xx.html"
+			],
+			[
+				"504",
+				"data\\error_pages\\504.html"
+			],
+			[
+				"503",
+				"data\\error_pages\\503.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "doma",
+		"selected_items":
+		[
+			[
+				"doma",
+				"PooksDoManualLayout"
+			],
+			[
+				"gui_s",
+				"gui_state"
+			],
+			[
+				"DrawGui",
+				"DrawGui"
+			],
+			[
+				"pooks_st",
+				"pooks_style"
+			],
+			[
+				"framest",
+				"GrapheneFrameStart"
+			],
+			[
+				"pooks_component",
+				"pooks_component"
+			],
+			[
+				"pooks_var",
+				"pooks_var"
+			],
+			[
+				"dotext",
+				"DoTextEdit"
+			],
+			[
+				"renderco",
+				"BeginRenderDrawCommand"
+			],
+			[
+				"parse",
+				"PooksParseStyle"
+			],
+			[
+				"pooks_St",
+				"pooks_style"
+			],
+			[
+				"PooksDoTextLayout",
+				"PooksDoTextLayout"
+			],
+			[
+				"framse",
+				"GrapheneFrameStart"
+			],
+			[
+				"graphene",
+				"GrapheneMain"
+			],
+			[
+				"finalize",
+				"PooksFinalizeLayout"
+			],
+			[
+				"gui_st",
+				"gui_state"
+			],
+			[
+				"framestar",
+				"GrapheneFrameStart"
+			],
+			[
+				"pushrec",
+				"PushRect"
+			],
+			[
+				"shader",
+				"shader_id"
+			],
+			[
+				"shader_",
+				"shader_data"
+			],
+			[
+				"render_c",
+				"render_command"
+			],
+			[
+				"finali",
+				"PooksFinalizeLayout"
+			],
+			[
+				"pushs",
+				"PushSymmetricalBezierVertices"
+			],
+			[
+				"parseor",
+				"PooksParseRelPoint"
+			],
+			[
+				"parses",
+				"PooksParseStyle"
+			],
+			[
+				"framesta",
+				"GrapheneFrameStart"
+			],
+			[
+				"grapheneini",
+				"GrapheneInit"
+			],
+			[
+				"object",
+				"object"
+			],
+			[
+				"key_",
+				"key_"
+			],
+			[
+				"Utf8Size",
+				"Utf8Size"
+			],
+			[
+				"ls_pa",
+				"ls_parser"
+			],
+			[
+				"ls_strin",
+				"ls_string"
+			],
+			[
+				"ls_par",
+				"ls_parser"
+			],
+			[
+				"ls_string",
+				"ls_string"
+			],
+			[
+				"unic",
+				"UnicodeCodepointToUtf8"
+			],
+			[
+				"fiber",
+				"MessageFiberProc"
+			],
+			[
+				"ls_str",
+				"ls_string"
+			],
+			[
+				"input",
+				"input"
+			],
+			[
+				"termin",
+				"Terminate"
+			],
+			[
+				"editabl",
+				"editable_string"
+			],
+			[
+				"readu",
+				"ReadUtf8Codepoint"
+			],
+			[
+				"dote",
+				"DoTextEdit"
+			],
+			[
+				"fina",
+				"PooksFinalizeLayout"
+			],
+			[
+				"editable",
+				"editable_string"
+			],
+			[
+				"skiput",
+				"SkipUtf8CharsN"
+			],
+			[
+				"readut",
+				"ReadUtf8Codepoint"
+			],
+			[
+				"ls_pare",
+				"ls_parser"
+			],
+			[
+				"skip",
+				"SkipUTF8CharsN"
+			],
+			[
+				"vorol",
+				"vo_role"
+			],
+			[
+				"type_",
+				"type_"
+			],
+			[
+				"graphenei",
+				"GrapheneInit"
+			],
+			[
+				"gui_",
+				"gui_state"
+			],
+			[
+				"init",
+				"GrapheneInit"
+			],
+			[
+				"addsimple",
+				"AddSimpleItem"
+			],
+			[
+				"graphen",
+				"GrapheneInit"
+			],
+			[
+				"add",
+				"Add_u32"
+			],
+			[
+				"LocateElementWithId",
+				"LocateElementWithId"
+			],
+			[
+				"ls_s",
+				"ls_static_string"
+			],
+			[
+				"parsesele",
+				"PooksParseElementSelectors"
+			],
+			[
+				"MAX_OBJECT_CLASSES",
+				"MAX_OBJECT_CLASSES"
+			],
+			[
+				"PooksParseElementSelectors",
+				"PooksParseElementSelectors"
+			],
+			[
+				"parseco",
+				"PooksParseComponentsSection"
+			],
+			[
+				"findend",
+				"FindEntryData"
+			],
+			[
+				"muta",
+				"ls_mutable_string"
+			],
+			[
+				"gra",
+				"GrapheneInit"
+			],
+			[
+				"frames",
+				"GrapheneFrameStart"
+			],
+			[
+				"ls_p",
+				"ls_parser"
+			],
+			[
+				"expla",
+				"ExpandRelativePath"
+			],
+			[
+				"ls_parse",
+				"ls_parser"
+			],
+			[
+				"ls_parser",
+				"ls_parser"
+			],
+			[
+				"frame",
+				"GrapheneFrameStart"
+			],
+			[
+				"pooks_t",
+				"pooks_text"
+			],
+			[
+				"gettok",
+				"GetToken"
+			],
+			[
+				"graphe",
+				"GrapheneInit"
+			],
+			[
+				"ls_sta",
+				"ls_static_string"
+			],
+			[
+				"ls_stri",
+				"ls_stringbuf"
+			],
+			[
+				"ls_strinb",
+				"ls_stringbuf"
+			],
+			[
+				"gethash",
+				"GetHash"
+			],
+			[
+				"ls_stt",
+				"ls_static_string"
+			],
+			[
+				"grapheni",
+				"GrapheneInit"
+			],
+			[
+				"menu_",
+				"menu_item"
+			],
+			[
+				"ls_Strin",
+				"ls_stringbuf"
+			],
+			[
+				"ls_stati",
+				"ls_static_string"
+			],
+			[
+				"stringb",
+				"ls_stringbuf"
+			],
+			[
+				"ls_stat",
+				"ls_static_string"
+			],
+			[
+				"ConvertSlashesToUnix",
+				"ConvertSlashesToUnix"
+			],
+			[
+				"render_la",
+				"render_layer"
+			],
+			[
+				"app",
+				"GrapheneApp"
+			],
+			[
+				"fitsi",
+				"FitSize"
+			],
+			[
+				"lstring",
+				"ls_stringbuf"
+			],
+			[
+				"stringbuf",
+				"ls_stringbuf"
+			],
+			[
+				"stringbu",
+				"ls_stringbuf"
+			],
+			[
+				"ls_string_a",
+				"ls_string_allocator"
+			],
+			[
+				"pool",
+				"pool"
+			],
+			[
+				"stor",
+				"storage_block"
+			],
+			[
+				"fit",
+				"FitSize"
+			],
+			[
+				"fitsize",
+				"FitSize"
+			],
+			[
+				"ls_static",
+				"ls_static_string"
+			],
+			[
+				"grap",
+				"GrapheneInit"
+			],
+			[
+				"obje",
+				"object"
+			],
+			[
+				"ls_muta",
+				"ls_mutable_string"
+			],
+			[
+				"graph",
+				"GrapheneInit"
+			],
+			[
+				"stati",
+				"ls_static_string"
+			],
+			[
+				"ls_",
+				"ls_frame_array"
+			],
+			[
+				"ls_ar",
+				"ls_array"
+			],
+			[
+				"ls_gap",
+				"ls_gap_array"
+			],
+			[
+				"ls",
+				"ls_parser"
+			],
+			[
+				"mutable",
+				"ls_mutable_string"
+			],
+			[
+				"ceil",
+				"Ceil_r32"
+			],
+			[
+				"ui_id",
+				"ui_id"
+			],
+			[
+				"buchseget",
+				"BuchseGetFileSize"
+			],
+			[
+				"strcm",
+				"strncmp"
+			],
+			[
+				"malloc",
+				"malloc_stats"
+			],
+			[
+				"malloc_stats",
+				"malloc_stats"
+			],
+			[
+				"filld",
+				"FillDb"
+			],
+			[
+				"buchsege",
+				"BuchseGetFileSize"
+			],
+			[
+				"buchsere",
+				"buchse_request"
+			],
+			[
+				"server",
+				"server"
+			],
+			[
+				"sevrer",
+				"server"
+			],
+			[
+				"cache",
+				"BuchseCacheAllPages"
+			],
+			[
+				"ls_d",
+				"ls_dynamic_array"
+			],
+			[
+				"ls_dy",
+				"ls_dynamic_array"
+			],
+			[
+				"buchse_c",
+				"buchse_context"
+			],
+			[
+				"win",
+				"WinFindFilesRecursive"
+			],
+			[
+				"findi",
+				"WinFindFilesRecursive"
+			],
+			[
+				"os_qu",
+				"os_query"
+			],
+			[
+				"hotlo",
+				"hotloader"
+			],
+			[
+				"hot",
+				"hotloader"
+			]
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 362.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
