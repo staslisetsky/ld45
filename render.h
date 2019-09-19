@@ -124,7 +124,6 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
 void
 RenderCommands(render Render)
 {
-    static u32 Frame = 0;
     m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, 1000.0f, 500.0f);
 
     glClearColor(0.73, 0.73, 0.73, 1.0f);
@@ -153,7 +152,4 @@ RenderCommands(render Render)
             glDrawArrays(GL_TRIANGLE_STRIP, Command.Offset, Command.PrimitiveCount);
         }
     }
-
-    ++Frame;
-
 }

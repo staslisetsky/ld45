@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 
 typedef char utf8;
 typedef uint8_t u8;
@@ -21,8 +22,6 @@ typedef int64_t s64;
 typedef s32 b32;
 typedef float r32;
 typedef double r64;
-
-
 
 void
 WasmConsoleLog(const char *String)
@@ -60,6 +59,7 @@ DumpGlErrors(char *Section) {
 
 #include "ls_math.h"
 #include "render.h"
+#include "platform.h"
 
 struct wasm_state {
    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE WebGLContext;
@@ -68,7 +68,7 @@ struct wasm_state {
 
 wasm_state State = {};
 render Render = {};
-
+input Input = {};
 
 void
 WasmPrintError(EMSCRIPTEN_RESULT Error)
@@ -158,8 +158,6 @@ CreateProgram(const char *V, const char *F)
    return Program;
 }
 
-
-
 void
 WasmInitOpengl()
 {
@@ -222,8 +220,34 @@ WasmInitOpengl()
 void
 WasmMainLoop()
 {
-   r32 X = (sin((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 500.0f;
-   r32 Y = (cos((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 100.0f;
+   for (u32 i=0; i<Key_Count; ++i) {
+      Input.Keys[i].WentDown = false;
+      Input.Keys[i].WentUp = false;
+      Input.Keys[i].WentDownOrRepeated = false;
+   }
+   Input.Mouse[0].WentDown = false;
+   Input.Mouse[0].WentUp = false;
+   Input.Mouse[1].WentDown = false;
+   Input.Mouse[1].WentUp = false;
+
+   // r32 X = (sin((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 500.0f;
+   // r32 Y = (cos((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 100.0f;
+
+   static r32 X = 0;
+   static r32 Y = 0;
+
+   if (Input.Keys[Key_Left].Down) {
+      X -= 1.0f;
+   }
+   if (Input.Keys[Key_Right].Down) {
+      X += 1.0f;
+   }
+   if (Input.Keys[Key_Up].Down) {
+      Y -= 1.0f;
+   }
+   if (Input.Keys[Key_Down].Down) {
+      Y += 1.0f;
+   }
 
    DrawRect(&Render, v4{1.0f,0.5f,0.5f,1.0f}, v2{X, Y}, v2{100.0f, 100.0f}, 1);
    RenderCommands(Render);
@@ -237,6 +261,45 @@ WasmMainLoop()
    ++State.Frame;
 }
 
+EM_BOOL
+WasmKeyEventCallback(s32 EventType, const EmscriptenKeyboardEvent *Event, void *UserData)
+{
+   key_ Key = Key_Null;
+   WasmConsoleLog(Event->code);
+
+   if (strcmp(Event->code, "ArrowLeft") == 0) {
+      Key = Key_Left;
+   } else if (strcmp(Event->code, "ArrowRight") == 0) {
+      Key = Key_Right;
+   } else if (strcmp(Event->code, "ArrowUp") == 0) {
+      Key = Key_Up;
+   } else if (strcmp(Event->code, "ArrowDown") == 0) {
+      Key = Key_Down;
+   } else if (strcmp(Event->code, "Space") == 0) {
+      Key = Key_Space;
+   }
+
+   if (EventType == EMSCRIPTEN_EVENT_KEYDOWN) {
+      if (Event->repeat) {
+         Input.Keys[Key].WentDownOrRepeated = true;
+      } else {
+         Input.Keys[Key].WentDown = true;
+         Input.Keys[Key].WentDownOrRepeated = true;
+      }
+
+      Input.Keys[Key].Down = true;
+   } else if (EventType == EMSCRIPTEN_EVENT_KEYUP) {
+      Input.Keys[Key].Down = false;
+      Input.Keys[Key].WentUp = true;
+   }
+
+   if (Key == Key_Null) {
+      return false;
+   }
+
+   return true;
+}
+
 int main() {
    EmscriptenWebGLContextAttributes Attributes = {};
    emscripten_webgl_init_context_attributes(&Attributes);
@@ -245,7 +308,7 @@ int main() {
    Attributes.minorVersion = 0;
    Attributes.alpha = true;
    Attributes.depth = true;
-   // Attributes.antialias = true;
+   Attributes.antialias = true;
    // Attributes.explicitSwapControl = true;
    Attributes.renderViaOffscreenBackBuffer = true;
 
@@ -260,6 +323,9 @@ int main() {
       WasmPrintError(Result);
 
       WasmInitOpengl();
+
+      Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
+      Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);
 
       WasmConsoleLog("Starting the main loop");
       emscripten_set_main_loop(WasmMainLoop, 0, 0);
