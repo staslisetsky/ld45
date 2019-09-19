@@ -48,6 +48,7 @@ input Input = {};
 //
 
 #include "opengl.cpp"
+#include "game.cpp"
 
 void
 WasmPrintError(EMSCRIPTEN_RESULT Error)
