@@ -65,7 +65,7 @@ enum key_ {
     Key_F2,
     Key_PgDown,
     Key_F1,
-    Key_Left,
+    Key_Left = DOM_VK_LEFT,
     Key_Right,
     Key_Down,
     Key_Up,
@@ -89,4 +89,9 @@ struct input {
 
     button Mouse[2];
     button Keys[Key_Count];
+};
+
+struct read_file {
+    u8 *Data;
+    u32 Size;
 };

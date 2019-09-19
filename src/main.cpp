@@ -1,14 +1,15 @@
+#include <emscripten/emscripten.h>
+#include <emscripten/key_codes.h>
+#include <emscripten/html5.h>
+
 #include <stdio.h>
 #include <stdint.h>
 #include <malloc.h>
-#include <math.h>
-#include <emscripten/emscripten.h>
-#include <emscripten/html5.h>
-#include <GLES3/gl3.h>
-#include <stdint.h>
 #include <assert.h>
 #include <math.h>
 #include <string.h>
+
+#include <GLES3/gl3.h>
 
 typedef char utf8;
 typedef uint8_t u8;
@@ -31,30 +32,30 @@ WasmConsoleLog(const char *String)
 
 void
 DumpGlErrors(char *Section) {
-    char Buf[100];
+   char Buf[100];
 
-    while (true) {
-        GLenum Error = glGetError();
-        if (Error == GL_NO_ERROR) { break; }
+   while (true) {
+      GLenum Error = glGetError();
+      if (Error == GL_NO_ERROR) { break; }
 
-        char *ErrorMessage = "";
+      char *ErrorMessage = "";
 
-        if (Error == GL_INVALID_ENUM) {
-            ErrorMessage = "Invalid Enum";
-        } else if (Error == GL_INVALID_VALUE) {
-            ErrorMessage = "Invalid Value";
-        } else if (Error == GL_INVALID_OPERATION) {
-            ErrorMessage = "Invalid Operation";
-        } else if (Error == GL_INVALID_FRAMEBUFFER_OPERATION) {
-            ErrorMessage = "Invalid Framebuffer Operation";
-        } else if (Error == GL_OUT_OF_MEMORY) {
-            ErrorMessage = "Out of Memory";
-        }
+      if (Error == GL_INVALID_ENUM) {
+         ErrorMessage = "Invalid Enum";
+      } else if (Error == GL_INVALID_VALUE) {
+         ErrorMessage = "Invalid Value";
+      } else if (Error == GL_INVALID_OPERATION) {
+         ErrorMessage = "Invalid Operation";
+      } else if (Error == GL_INVALID_FRAMEBUFFER_OPERATION) {
+         ErrorMessage = "Invalid Framebuffer Operation";
+      } else if (Error == GL_OUT_OF_MEMORY) {
+         ErrorMessage = "Out of Memory";
+      }
 
-        char Buffer[100];
-        sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
-        WasmConsoleLog(Buffer);
-    }
+      char Buffer[100];
+      sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
+      WasmConsoleLog(Buffer);
+   }
 }
 
 #include "ls_math.h"
@@ -295,30 +296,30 @@ WasmKeyEventCallback(s32 EventType, const EmscriptenKeyboardEvent *Event, void *
    key_ Key = Key_Null;
    // WasmConsoleLog(Event->code);
 
-   if (strcmp(Event->code, "ArrowLeft") == 0) {
+   if (Event->keyCode == DOM_VK_LEFT) {
       Key = Key_Left;
-   } else if (strcmp(Event->code, "ArrowRight") == 0) {
+   } else if (Event->keyCode == DOM_VK_RIGHT) {
       Key = Key_Right;
-   } else if (strcmp(Event->code, "ArrowUp") == 0) {
+   } else if (Event->keyCode == DOM_VK_UP) {
       Key = Key_Up;
-   } else if (strcmp(Event->code, "ArrowDown") == 0) {
+   } else if (Event->keyCode == DOM_VK_DOWN) {
       Key = Key_Down;
-   } else if (strcmp(Event->code, "Space") == 0) {
+   } else if (Event->keyCode == DOM_VK_SPACE) {
       Key = Key_Space;
    }
 
    if (EventType == EMSCRIPTEN_EVENT_KEYDOWN) {
       if (Event->repeat) {
-         Input.Keys[Key].WentDownOrRepeated = true;
+         Input.Keys[Event->keyCode].WentDownOrRepeated = true;
       } else {
-         Input.Keys[Key].WentDown = true;
-         Input.Keys[Key].WentDownOrRepeated = true;
+         Input.Keys[Event->keyCode].WentDown = true;
+         Input.Keys[Event->keyCode].WentDownOrRepeated = true;
       }
 
-      Input.Keys[Key].Down = true;
+      Input.Keys[Event->keyCode].Down = true;
    } else if (EventType == EMSCRIPTEN_EVENT_KEYUP) {
-      Input.Keys[Key].Down = false;
-      Input.Keys[Key].WentUp = true;
+      Input.Keys[Event->keyCode].Down = false;
+      Input.Keys[Event->keyCode].WentUp = true;
    }
 
    if (Key == Key_Null) {
@@ -326,6 +327,34 @@ WasmKeyEventCallback(s32 EventType, const EmscriptenKeyboardEvent *Event, void *
    }
 
    return true;
+}
+
+u32
+WasmGetFileSize(FILE *File)
+{
+   fseek(File, 0, SEEK_END);
+   u32 Size = ftell(File);
+   fseek(File, 0, SEEK_SET);
+
+   return Size;
+}
+
+
+bool
+WasmReadFile(char *Filename, read_file *Result)
+{
+   FILE *File = fopen(Filename, "rb");
+
+   if (File) {
+      Result->Size = WasmGetFileSize(File);
+      Result->Data = (u8 *)malloc(Result->Size);
+      fread(Result->Data, 1, Result->Size, File);
+      fclose(File);
+
+      return true;
+   }
+
+    return false;
 }
 
 int main() {
@@ -352,12 +381,18 @@ int main() {
 
       WasmInitOpengl();
 
+      FILE *File = fopen("/assets/bride1.jpg", "r");
+
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
       Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);
       emscripten_set_click_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mousedown_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mouseup_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mousemove_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
+
+      read_file Bride;
+      WasmReadFile("/assets/bride1.jpg", &Bride);
+      EM_ASM(console.log('File size: ' + $0), Bride.Size);
 
       WasmConsoleLog("Starting the main loop");
       emscripten_set_main_loop(WasmMainLoop, 0, 0);
