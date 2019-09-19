@@ -11,6 +11,9 @@
 
 #include <GLES3/gl3.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 typedef char utf8;
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -163,7 +166,9 @@ void
 WasmInitOpengl()
 {
    glGenBuffers(1, &Render.VertexArrayPlain);
+   glGenBuffers(1, &Render.VertexArrayTextured);
    glGenBuffers(1, &Render.VertexBufferPlain);
+   glGenBuffers(1, &Render.VertexBufferTextured);
 
    // Plain vertex
    glBindVertexArray(Render.VertexArrayPlain);
@@ -173,6 +178,17 @@ WasmInitOpengl()
    glEnableVertexAttribArray(1);
    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)0);
    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)12);
+
+   // Textured
+   glBindVertexArray(Render.VertexArrayTextured);
+   glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_xyzrgbauv) * 1000, NULL, GL_DYNAMIC_DRAW);
+   glEnableVertexAttribArray(0);
+   glEnableVertexAttribArray(1);
+   glEnableVertexAttribArray(2);
+   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)0);
+   glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)12);
+   glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)28);
 
    glGenBuffers(1, &Render.ViewUniformBuffer);
 
@@ -205,7 +221,44 @@ WasmInitOpengl()
    }
 )str";
 
+   const char *TexturedV = R"str(#version 300 es
+
+   in vec4 In_P;
+   in vec4 In_VertexColor;
+   in vec2 In_TexelUV;
+
+   out vec4 VertexColor;
+   out vec2 TexelUV;
+
+   layout(std140) uniform view
+   {
+       mat4 Projection;
+   } View;
+
+   void main()
+   {
+       gl_Position = View.Projection * In_P;
+       VertexColor = In_VertexColor;
+       TexelUV = In_TexelUV;
+   }
+)str";
+
+   const char *TexturedF = R"str(#version 300 es
+
+   precision mediump float;
+   uniform sampler2D TextureSample;
+   in vec4 VertexColor;
+   in vec2 TexelUV;
+   out vec4 FragmentColor;
+   void main(void)
+   {
+      FragmentColor = texture(TextureSample, TexelUV);
+      // FragmentColor = vec4(0.3, 0.7, 0.22, 1.0);
+   }
+)str";
+
    Render.PlainShader = CreateProgram(PlainV, PlainF);
+   Render.TexturedShader = CreateProgram(TexturedV, TexturedF);
    Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * 100);
    Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * 100);
    Render.Commands = (render_command *)malloc(sizeof(render_command) * 100);
@@ -250,7 +303,7 @@ WasmMainLoop()
       Y += 1.0f;
    }
 
-   DrawRect(&Render, v4{1.0f,0.5f,0.5f,1.0f}, Input.MouseP, v2{50.0f, 50.0f}, 1);
+   DrawTexturedRect(&Render, Input.MouseP, v2{200.0f, 200.0f}, v4{1.0f,0.5f,0.5f,1.0f}, Render.TestTexture, 1);
 
    RenderCommands(Render);
 
@@ -381,7 +434,40 @@ int main() {
 
       WasmInitOpengl();
 
-      FILE *File = fopen("/assets/bride1.jpg", "r");
+      {
+         // load textures
+         read_file Bride;
+         int x,y,n;
+         unsigned char *data = stbi_load("/assets/karloff.png", &x, &y, &n, 0);
+
+         EM_ASM(console.log('Image w: ' + $0 + ', h:' + $1), x, y);
+
+         GLuint Texture;
+         glGenTextures(1, &Texture);
+         glBindTexture(GL_TEXTURE_2D, Texture);
+
+         GLint ImageMode = GL_RGB;
+         GLint InternalFormat = GL_RGB8;
+
+         // if (n == 4) {
+            ImageMode = GL_RGBA;
+            InternalFormat = GL_RGBA8;
+         // } else if (n == 1) {
+         //    ImageMode = GL_RED;
+         //    InternalFormat = GL_RED;
+         // }
+
+         glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat,
+                      x, y,
+                      0, ImageMode, GL_UNSIGNED_BYTE, data);
+         DumpGlErrors("Upload texture");
+
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+         Render.TestTexture = Texture;
+      }
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
       Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);
@@ -389,10 +475,6 @@ int main() {
       emscripten_set_mousedown_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mouseup_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mousemove_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
-
-      read_file Bride;
-      WasmReadFile("/assets/bride1.jpg", &Bride);
-      EM_ASM(console.log('File size: ' + $0), Bride.Size);
 
       WasmConsoleLog("Starting the main loop");
       emscripten_set_main_loop(WasmMainLoop, 0, 0);
