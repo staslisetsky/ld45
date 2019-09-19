@@ -194,7 +194,7 @@ Module['FS_createPath']('/', 'assets', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/assets/karloff.png"}], "remote_package_size": 413464, "package_uuid": "0e9c20c6-382e-4718-8b44-90e1a28b1282"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/assets/karloff.png"}], "remote_package_size": 413464, "package_uuid": "ff7365f2-c737-4752-a1c9-1145cf97976b"});
 
 })();
 
@@ -1399,11 +1399,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 12128,
+    STACK_BASE = 10368,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5255008,
-    DYNAMIC_BASE = 5255008,
-    DYNAMICTOP_PTR = 12096;
+    STACK_MAX = 5253248,
+    DYNAMIC_BASE = 5253248,
+    DYNAMICTOP_PTR = 10336;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1888,8 +1888,8 @@ Module['asm'] = function(global, env, providedBuffer) {
   ;
   // import table
   env['table'] = wasmTable = new WebAssembly.Table({
-    'initial': 36,
-    'maximum': 36,
+    'initial': 32,
+    'maximum': 32,
     'element': 'anyfunc'
   });
   // With the wasm backend __memory_base and __table_base and only needed for
@@ -1910,7 +1910,7 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = [function($0) { console.log(UTF8ToString($0)) },
- function($0, $1) { console.log('Image w: ' + $0 + ', h:' + $1) }];
+ function($0, $1) { console.log('Loaded Image w: ' + $0 + ', h:' + $1) }];
 
 function _emscripten_asm_const_iii(code, a0, a1) {
   return ASM_CONSTS[code](a0, a1);
@@ -1923,7 +1923,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 11104;
+// STATICTOP = STATIC_BASE + 9344;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1934,7 +1934,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 12112
+var tempDoublePtr = 10352
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -6727,12 +6727,6 @@ function copyTempDouble(ptr) {
         );
     }
 
-  function _glGetError() {
-      var error = GLctx.getError() || GL.lastError;
-      GL.lastError = 0/*GL_NO_ERROR*/;
-      return error;
-    }
-
   function _glGetProgramInfoLog(program, maxLength, length, infoLog) {
       var log = GLctx.getProgramInfoLog(GL.programs[program]);
       if (log === null) log = '(unknown error)';
@@ -7010,7 +7004,6 @@ function intArrayToString(array) {
 // ASM_LIBRARY EXTERN PRIMITIVES: Int8Array,Int32Array
 
 function nullFunc_ii(x) { abortFnPtrError(x, 'ii'); }
-function nullFunc_iidiiii(x) { abortFnPtrError(x, 'iidiiii'); }
 function nullFunc_iiii(x) { abortFnPtrError(x, 'iiii'); }
 function nullFunc_iiiiii(x) { abortFnPtrError(x, 'iiiiii'); }
 function nullFunc_jiji(x) { abortFnPtrError(x, 'jiji'); }
@@ -7027,7 +7020,6 @@ var asmLibraryArg = {
   "getTempRet0": getTempRet0,
   "abortStackOverflow": abortStackOverflow,
   "nullFunc_ii": nullFunc_ii,
-  "nullFunc_iidiiii": nullFunc_iidiiii,
   "nullFunc_iiii": nullFunc_iiii,
   "nullFunc_iiiiii": nullFunc_iiiiii,
   "nullFunc_jiji": nullFunc_jiji,
@@ -7092,7 +7084,6 @@ var asmLibraryArg = {
   "_glEnableVertexAttribArray": _glEnableVertexAttribArray,
   "_glGenBuffers": _glGenBuffers,
   "_glGenTextures": _glGenTextures,
-  "_glGetError": _glGetError,
   "_glGetProgramInfoLog": _glGetProgramInfoLog,
   "_glGetProgramiv": _glGetProgramiv,
   "_glGetShaderInfoLog": _glGetShaderInfoLog,
@@ -7193,12 +7184,6 @@ var dynCall_ii = Module["dynCall_ii"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["dynCall_ii"].apply(null, arguments)
-};
-
-var dynCall_iidiiii = Module["dynCall_iidiiii"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["dynCall_iidiiii"].apply(null, arguments)
 };
 
 var dynCall_iiii = Module["dynCall_iiii"] = function() {
