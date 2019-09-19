@@ -5,7 +5,7 @@ rem set Exported="['_BactorialUpdateWorld', '_BactorialInitWorld', '_BactorialSe
 set Exported="['_main']"
 call emcc ^
     ../main.cpp -o main.js ^
-    -O2 -std=c++11 -Wno-null-dereference ^
+    -O2 -std=c++11 -Wno-null-dereference -Wno-writable-strings -Wno-format ^
     -DWASM=1 ^
     -s USE_WEBGL2=1 -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=1 -s TOTAL_MEMORY=268435456 -s ASSERTIONS=1 -s WASM=1 -s NO_EXIT_RUNTIME=1 ^
     -s EXPORTED_FUNCTIONS=%Exported% -s EXTRA_EXPORTED_RUNTIME_METHODS="['ccall', 'cwrap', 'getValue']"

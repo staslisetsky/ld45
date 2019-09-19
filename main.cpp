@@ -22,38 +22,53 @@ typedef s32 b32;
 typedef float r32;
 typedef double r64;
 
-#include "ls_math.h"
 
-struct vertex_xyzrgba {
-    v3 P;
-    v4 Color;
-};
-
-struct vertex_xyzrgbauv {
-    v3 P;
-    v4 Color;
-    v2 UV;
-};
-
-struct wasm_state {
-   EMSCRIPTEN_WEBGL_CONTEXT_HANDLE WebGLContext;
-   GLuint VertexArrayPlain;
-   GLuint VertexBufferPlain;
-
-   GLuint PlainShader;
-
-   b32 Initialized;
-
-   u32 Frame;
-};
-
-wasm_state State = {};
 
 void
 WasmConsoleLog(const char *String)
 {
    EM_ASM(console.log(UTF8ToString($0)), String);
 }
+
+void
+DumpGlErrors(char *Section) {
+    char Buf[100];
+
+    while (true) {
+        GLenum Error = glGetError();
+        if (Error == GL_NO_ERROR) { break; }
+
+        char *ErrorMessage = "";
+
+        if (Error == GL_INVALID_ENUM) {
+            ErrorMessage = "Invalid Enum";
+        } else if (Error == GL_INVALID_VALUE) {
+            ErrorMessage = "Invalid Value";
+        } else if (Error == GL_INVALID_OPERATION) {
+            ErrorMessage = "Invalid Operation";
+        } else if (Error == GL_INVALID_FRAMEBUFFER_OPERATION) {
+            ErrorMessage = "Invalid Framebuffer Operation";
+        } else if (Error == GL_OUT_OF_MEMORY) {
+            ErrorMessage = "Out of Memory";
+        }
+
+        char Buffer[100];
+        sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
+        WasmConsoleLog(Buffer);
+    }
+}
+
+#include "ls_math.h"
+#include "render.h"
+
+struct wasm_state {
+   EMSCRIPTEN_WEBGL_CONTEXT_HANDLE WebGLContext;
+   u32 Frame;
+};
+
+wasm_state State = {};
+render Render = {};
+
 
 void
 WasmPrintError(EMSCRIPTEN_RESULT Error)
@@ -139,52 +154,66 @@ CreateProgram(const char *V, const char *F)
         free(Log);
    }
 
+
    return Program;
 }
+
+
 
 void
 WasmInitOpengl()
 {
-   glGenBuffers(1, &State.VertexArrayPlain);
-   glGenBuffers(1, &State.VertexBufferPlain);
+   glGenBuffers(1, &Render.VertexArrayPlain);
+   glGenBuffers(1, &Render.VertexBufferPlain);
 
    // Plain vertex
-   glBindVertexArray(State.VertexArrayPlain);
-   glBindBuffer(GL_ARRAY_BUFFER, State.VertexBufferPlain);
-   glBufferData(GL_ARRAY_BUFFER, 1024 * 1024, NULL, GL_DYNAMIC_DRAW);
+   glBindVertexArray(Render.VertexArrayPlain);
+   glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_xyzrgba) * 1000, 0, GL_DYNAMIC_DRAW);
    glEnableVertexAttribArray(0);
    glEnableVertexAttribArray(1);
    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)0);
    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)12);
 
-   // layout(std140) uniform view\n
-   // {\n
-   //     mat4 Projection;\n
-   // } View;\n
+   glGenBuffers(1, &Render.ViewUniformBuffer);
 
-   const char *PlainV = R"str(
-   attribute vec4 In_P;
-   attribute vec4 In_VertexColor;
-   varying   vec4 VertexColor;
+   const char *PlainV = R"str(#version 300 es
+
+   in vec4 In_P;
+   in vec4 In_VertexColor;
+   out vec4 VertexColor;
+
+   layout(std140) uniform view
+   {
+       mat4 Projection;
+   } View;
 
    void main()
    {
-       gl_Position = In_P;
+       gl_Position = View.Projection * In_P;
        VertexColor = In_VertexColor;
    }
 )str";
 
-   const char *PlainF = R"str(
-precision mediump float;
-varying vec4 VertexColor;
-void main(void)
-{
-   gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-}
+   const char *PlainF = R"str(#version 300 es
+
+   precision mediump float;
+   in vec4 VertexColor;
+   out vec4 FragmentColor;
+   void main(void)
+   {
+      FragmentColor = vec4(1.0, 0.0, 0.0, 1.0);
+   }
 )str";
 
-   State.PlainShader = CreateProgram(PlainV, PlainF);
+   Render.PlainShader = CreateProgram(PlainV, PlainF);
+   Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * 100);
+   Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * 100);
+   Render.Commands = (render_command *)malloc(sizeof(render_command) * 100);
 
+   glBindBuffer(GL_ARRAY_BUFFER, Render.ViewUniformBuffer);
+   glBufferData(GL_ARRAY_BUFFER, 64, NULL, GL_DYNAMIC_DRAW);
+   glBindBufferBase(GL_UNIFORM_BUFFER, 0, Render.ViewUniformBuffer);
 
    glEnable(GL_BLEND);
    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -193,19 +222,17 @@ void main(void)
 void
 WasmMainLoop()
 {
-   r32 Red = (sin((r32)State.Frame / 100.0f) + 1.0f) / 2.0f;
-   r32 Green = (sin((r32)State.Frame / 200.0f) + 1.0f) / 2.0f;
-   r32 Blue = (cos((r32)State.Frame / 300.0f) + 1.0f) / 2.0f;
+   r32 X = (sin((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 500.0f;
+   r32 Y = (cos((r32)State.Frame / 100.0f) + 1.0f / 2.0f) * 100.0f + 100.0f;
 
-   glClearColor(Red, Green, Blue, 1.0f);
-   glClear(GL_COLOR_BUFFER_BIT);
-
-   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-   glClear(GL_DEPTH_BUFFER_BIT);
-   // WasmConsoleLog("Loop");
+   DrawRect(&Render, v4{1.0f,0.5f,0.5f,1.0f}, v2{X, Y}, v2{100.0f, 100.0f}, 1);
+   RenderCommands(Render);
 
    // swap:
    // emscripten_webgl_commit_frame();
+   Render.PlainVertexCount = 0;
+   Render.TexturedVertexCount = 0;
+   Render.CommandCount = 0;
 
    ++State.Frame;
 }
@@ -218,7 +245,7 @@ int main() {
    Attributes.minorVersion = 0;
    Attributes.alpha = true;
    Attributes.depth = true;
-   Attributes.antialias = true;
+   // Attributes.antialias = true;
    // Attributes.explicitSwapControl = true;
    Attributes.renderViaOffscreenBackBuffer = true;
 
