@@ -135,8 +135,10 @@ RenderCommands(render Render)
     glBindBuffer(GL_UNIFORM_BUFFER, Render.ViewUniformBuffer);
     glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(m4x4), (u8 *)&Projection);
 
-    glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, Render.PlainVertexCount * sizeof(vertex_xyzrgba), (void *)Render.PlainVertices);
+    if (Render.PlainVertexCount) {
+        glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, Render.PlainVertexCount * sizeof(vertex_xyzrgba), (void *)Render.PlainVertices);
+    }
 
     // glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
     // glBufferSubData(GL_ARRAY_BUFFER, 0, Render.TexturedVertexCount * sizeof(vertex_xyzrgbauv), (void *)Render.TexturedVertices);

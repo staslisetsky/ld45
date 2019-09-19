@@ -249,7 +249,8 @@ WasmMainLoop()
       Y += 1.0f;
    }
 
-   DrawRect(&Render, v4{1.0f,0.5f,0.5f,1.0f}, v2{X, Y}, v2{100.0f, 100.0f}, 1);
+   DrawRect(&Render, v4{1.0f,0.5f,0.5f,1.0f}, Input.MouseP, v2{50.0f, 50.0f}, 1);
+
    RenderCommands(Render);
 
    // swap:
@@ -262,10 +263,37 @@ WasmMainLoop()
 }
 
 EM_BOOL
+WasmKeyMouseEventCallback(s32 EventType, const EmscriptenMouseEvent *Event, void *UserData)
+{
+   u32 Button = 0;
+   if (Event->button == 2) {
+      Button = 1;
+   }
+
+   if (EventType == EMSCRIPTEN_EVENT_MOUSEDOWN) {
+      Input.Mouse[Button].WentDown = true;
+      Input.Mouse[Button].Down = true;
+      // EM_ASM(console.log('Mouse button '  + $0 + 'down'), Button);
+   } else if (EventType == EMSCRIPTEN_EVENT_MOUSEUP) {
+      Input.Mouse[Button].WentUp = true;
+      Input.Mouse[Button].Down = false;
+      // EM_ASM(console.log('Mouse button '  + $0 + 'up'), Button);
+   } else if (EventType == EMSCRIPTEN_EVENT_DBLCLICK) {
+
+   } else if (EventType == EMSCRIPTEN_EVENT_MOUSEMOVE) {
+      Input.MouseP.x = (r32)Event->targetX;
+      Input.MouseP.y = (r32)Event->targetY;
+      // EM_ASM(console.log('Mouse x: ' + $0 + ', y:' + $1), Input.MouseP.x, Input.MouseP.y);
+   }
+
+   return true;
+}
+
+EM_BOOL
 WasmKeyEventCallback(s32 EventType, const EmscriptenKeyboardEvent *Event, void *UserData)
 {
    key_ Key = Key_Null;
-   WasmConsoleLog(Event->code);
+   // WasmConsoleLog(Event->code);
 
    if (strcmp(Event->code, "ArrowLeft") == 0) {
       Key = Key_Left;
@@ -326,6 +354,10 @@ int main() {
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
       Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);
+      emscripten_set_click_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
+      emscripten_set_mousedown_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
+      emscripten_set_mouseup_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
+      emscripten_set_mousemove_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
 
       WasmConsoleLog("Starting the main loop");
       emscripten_set_main_loop(WasmMainLoop, 0, 0);
