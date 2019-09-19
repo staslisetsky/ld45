@@ -4,3 +4,6 @@ Wasm is stupid and will not work if you just open the html file in the browser. 
 
 The latest working vewrsion is always available here:
 [staslisetsky.github.io/ld45](https://staslisetsky.github.io/ld45/)
+
+This game uses stb_image, stb_rect_pack, and stb_vorbis libraries from the stb collection.
+https://github.com/nothings/stb
