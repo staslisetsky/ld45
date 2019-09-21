@@ -197,7 +197,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414802, "filename": "/data/sdf/A.png"}, {"start": 414802, "audio": 0, "end": 415579, "filename": "/data/shaders/Glyph.frag"}, {"start": 415579, "audio": 0, "end": 415954, "filename": "/data/shaders/Glyph.vert"}, {"start": 415954, "audio": 0, "end": 418533, "filename": "/data/shaders/Gradient.frag"}, {"start": 418533, "audio": 0, "end": 418861, "filename": "/data/shaders/Gradient.vert"}, {"start": 418861, "audio": 0, "end": 419661, "filename": "/data/shaders/Plain.frag"}, {"start": 419661, "audio": 0, "end": 419955, "filename": "/data/shaders/Plain.vert"}, {"start": 419955, "audio": 0, "end": 421782, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 421782, "audio": 0, "end": 422169, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 422169, "package_uuid": "e2196ff1-583b-4e3b-8036-b2bdfc9abe54"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414802, "filename": "/data/sdf/A.png"}, {"start": 414802, "audio": 0, "end": 415579, "filename": "/data/shaders/Glyph.frag"}, {"start": 415579, "audio": 0, "end": 415954, "filename": "/data/shaders/Glyph.vert"}, {"start": 415954, "audio": 0, "end": 418533, "filename": "/data/shaders/Gradient.frag"}, {"start": 418533, "audio": 0, "end": 418861, "filename": "/data/shaders/Gradient.vert"}, {"start": 418861, "audio": 0, "end": 419661, "filename": "/data/shaders/Plain.frag"}, {"start": 419661, "audio": 0, "end": 419955, "filename": "/data/shaders/Plain.vert"}, {"start": 419955, "audio": 0, "end": 421782, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 421782, "audio": 0, "end": 422169, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 422169, "package_uuid": "90359b35-e9e3-4eff-9b2b-0b8038ddee38"});
 
 })();
 
@@ -1402,11 +1402,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 12768,
+    STACK_BASE = 12752,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5255648,
-    DYNAMIC_BASE = 5255648,
-    DYNAMICTOP_PTR = 12736;
+    STACK_MAX = 5255632,
+    DYNAMIC_BASE = 5255632,
+    DYNAMICTOP_PTR = 12720;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1921,7 +1921,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 11744;
+// STATICTOP = STATIC_BASE + 11728;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1932,7 +1932,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 12752
+var tempDoublePtr = 12736
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much

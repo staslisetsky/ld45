@@ -94,7 +94,8 @@ AddRenderCommand(render *Render, draw_mode_ Mode, u32 Offset, u32 PrimitiveCount
         render_command *LastCommand = Render->Commands + Render->CommandCount - 1;
 
         if (LastCommand->Data.Shader != Data.Shader ||
-            LastCommand->Data.Texture != Data.Texture)
+            LastCommand->Data.Texture != Data.Texture ||
+            (LastCommand->Data.QuadDim.x != Data.QuadDim.x || LastCommand->Data.QuadDim.y != Data.QuadDim.y))
         {
             Command = Render->Commands + Render->CommandCount;
             Command->PrimitiveCount = PrimitiveCount;

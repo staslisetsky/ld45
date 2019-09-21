@@ -232,7 +232,6 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
-
         {
             image Image = {};
             Image.Data = stbi_load("sdf/A.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);

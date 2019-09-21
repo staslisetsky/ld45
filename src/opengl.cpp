@@ -224,7 +224,7 @@ InitOpengl()
         sigDist *= dot(msdfUnit, 0.5/fwidth(TexelUV));
         float opacity = clamp(sigDist + 0.5, 0.0, 1.0);
         //color = mix(bgColor, fgColor, opacity);
-        FragmentColor = vec4(1.0, 0.0, 0.0, 1.0) * opacity;
+        FragmentColor = VertexColor * opacity;
 
         //FragmentColor = texture(TextureSample, TexelUV);
     }
