@@ -7,3 +7,6 @@ The latest working vewrsion is always available here:
 
 This game uses stb_image, stb_rect_pack, and stb_vorbis libraries from the stb collection.
 https://github.com/nothings/stb
+
+For text rendering I use Viktor Chlumský's SDF technique.
+https://github.com/Chlumsky/msdfgen
