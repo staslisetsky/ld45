@@ -54,6 +54,7 @@ CreateShader(const char *String, GLuint Type)
   glGetShaderInfoLog(Shader, Length, 0, Log);
       // WasmConsoleLog("Shader compilation failed");
       // WasmConsoleLog(Log);
+  // Assert(false);
   free(Log);
 }
 
@@ -98,21 +99,13 @@ InitOpengl()
 
     // Plain vertex
     glBindVertexArray(Render.VertexArrayPlain);
-    DumpGlErrors("Bind buffers");
     glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-    DumpGlErrors("Bind buffers");
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_xyzrgba) * 1000, 0, GL_DYNAMIC_DRAW);
-    DumpGlErrors("Bind buffers");
     glEnableVertexAttribArray(0);
-    DumpGlErrors("Bind buffers");
     glEnableVertexAttribArray(1);
-    DumpGlErrors("Bind buffers");
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)0);
-    DumpGlErrors("Bind buffers");
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)12);
-    DumpGlErrors("Bind buffers");
 
-    DumpGlErrors("Bind buffers");
        // Textured
     glBindVertexArray(Render.VertexArrayTextured);
     glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
@@ -124,84 +117,144 @@ InitOpengl()
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)12);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)28);
 
-    DumpGlErrors("Bind buffers");
     glGenBuffers(1, &Render.ViewUniformBuffer);
 
     const char *PlainV = R"str(#version 300 es
+    in vec4 In_P;
+    in vec4 In_VertexColor;
+    out vec4 VertexColor;
 
- in vec4 In_P;
- in vec4 In_VertexColor;
- out vec4 VertexColor;
+    layout(std140) uniform view
+    {
+        mat4 Projection;
+    } View;
 
- layout(std140) uniform view
- {
-     mat4 Projection;
- } View;
+    void main()
+    {
+        gl_Position = View.Projection * In_P;
+        VertexColor = In_VertexColor;
+    }
 
- void main()
- {
-     gl_Position = View.Projection * In_P;
-     VertexColor = In_VertexColor;
- }
- )str";
+    )str";
 
- const char *PlainF = R"str(#version 300 es
+    const char *PlainF = R"str(#version 300 es
+    precision mediump float;
+    in vec4 VertexColor;
+    out vec4 FragmentColor;
+    void main(void)
+    {
+        FragmentColor = vec4(1.0, 0.0, 0.0, 1.0);
+    }
+    )str";
 
- precision mediump float;
- in vec4 VertexColor;
- out vec4 FragmentColor;
- void main(void)
- {
-  FragmentColor = vec4(1.0, 0.0, 0.0, 1.0);
-}
-)str";
+    const char *TexturedV = R"str(#version 300 es
 
-const char *TexturedV = R"str(#version 300 es
+    in vec4 In_P;
+    in vec4 In_VertexColor;
+    in vec2 In_TexelUV;
 
-in vec4 In_P;
-in vec4 In_VertexColor;
-in vec2 In_TexelUV;
+    out vec4 VertexColor;
+    out vec2 TexelUV;
 
-out vec4 VertexColor;
-out vec2 TexelUV;
+    layout(std140) uniform view
+    {
+        mat4 Projection;
+    } View;
 
-layout(std140) uniform view
-{
- mat4 Projection;
-} View;
+    void main()
+    {
+        gl_Position = View.Projection * In_P;
+        VertexColor = In_VertexColor;
+        TexelUV = In_TexelUV;
+    }
+    )str";
 
-void main()
-{
- gl_Position = View.Projection * In_P;
- VertexColor = In_VertexColor;
- TexelUV = In_TexelUV;
-}
-)str";
+    const char *TexturedF = R"str(#version 300 es
+    precision mediump float;
+    uniform sampler2D TextureSample;
+    in vec4 VertexColor;
+    in vec2 TexelUV;
+    out vec4 FragmentColor;
+    void main(void)
+    {
+        FragmentColor = texture(TextureSample, TexelUV);
+        // FragmentColor = vec4(0.3, 0.7, 0.22, 1.0);
+    }
+    )str";
 
-const char *TexturedF = R"str(#version 300 es
+    const char *SDFV = R"str(#version 300 es
+    in vec4 In_P;
+    in vec4 In_VertexColor;
+    in vec2 In_TexelUV;
 
-precision mediump float;
-uniform sampler2D TextureSample;
-in vec4 VertexColor;
-in vec2 TexelUV;
-out vec4 FragmentColor;
-void main(void)
-{
-  FragmentColor = texture(TextureSample, TexelUV);
-      // FragmentColor = vec4(0.3, 0.7, 0.22, 1.0);
-}
-)str";
+    out vec4 VertexColor;
+    out vec2 TexelUV;
+
+    layout(std140) uniform view
+    {
+        mat4 Projection;
+    } View;
+
+    void main()
+    {
+        gl_Position = View.Projection * In_P;
+        VertexColor = In_VertexColor;
+        TexelUV = In_TexelUV;
+    }
+    )str";
+
+    const char *SDFF = R"str(#version 300 es
+    precision mediump float;
+    uniform sampler2D TextureSample;
+    uniform vec2 QuadDim;
+
+    in vec4 VertexColor;
+    in vec2 TexelUV;
+    out vec4 FragmentColor;
+
+    float median(float r, float g, float b) {
+        return max(min(r, g), min(max(r, g), b));
+    }
+
+    void main() {
+        vec2 msdfUnit = QuadDim / vec2(textureSize(TextureSample, 0));
+        vec3 SampleColor = texture(TextureSample, TexelUV).rgb;
+
+        float sigDist = median(SampleColor.r, SampleColor.g, SampleColor.b) - 0.5;
+        sigDist *= dot(msdfUnit, 0.5/fwidth(TexelUV));
+        float opacity = clamp(sigDist + 0.5, 0.0, 1.0);
+        //color = mix(bgColor, fgColor, opacity);
+        FragmentColor = vec4(1.0, 0.0, 0.0, 1.0) * opacity;
+
+        //FragmentColor = texture(TextureSample, TexelUV);
+    }
+    )str";
 
     Render.PlainShader = CreateProgram(PlainV, PlainF);
     Render.TexturedShader = CreateProgram(TexturedV, TexturedF);
+    Render.SDFShader = CreateProgram(SDFV, SDFF);
+
     Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * 100);
     Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * 100);
+
     Render.Commands = (render_command *)malloc(sizeof(render_command) * 100);
 
     DumpGlErrors("Bind buffers");
     glBindBuffer(GL_ARRAY_BUFFER, Render.ViewUniformBuffer);
     glBufferData(GL_ARRAY_BUFFER, 64, NULL, GL_DYNAMIC_DRAW);
     glBindBufferBase(GL_UNIFORM_BUFFER, 0, Render.ViewUniformBuffer);
+
+    GLuint Index = 0;
+    Index = glGetUniformBlockIndex(Render.PlainShader, "view");
+    glUniformBlockBinding(Render.PlainShader, Index, 0);
+
+    Index = glGetUniformBlockIndex(Render.TexturedShader, "view");
+    glUniformBlockBinding(Render.TexturedShader, Index, 0);
+
+    Index = glGetUniformBlockIndex(Render.SDFShader, "view");
+    glUniformBlockBinding(Render.SDFShader, Index, 0);
+
+    Render.QuadDimUniform = glGetUniformLocation(Render.SDFShader, "QuadDim");
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -243,7 +296,7 @@ return Texture;
 void
 OpenglRender(render Render)
 {
-    m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, 1000.0f, 500.0f);
+    m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y);
 
     glClearColor(0.73, 0.73, 0.73, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -277,6 +330,13 @@ OpenglRender(render Render)
             glBindVertexArray(Render.VertexArrayTextured);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
             glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
+            // EM_ASM(console.log($0), Command.Data.Texture);
+        } else if (Command.Data.Shader == Render.SDFShader) {
+            glUniform2f(Render.QuadDimUniform, (r32)Command.Data.QuadDim.x, (r32)Command.Data.QuadDim.y);
+            glBindVertexArray(Render.VertexArrayTextured);
+            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
+            glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
+
             // EM_ASM(console.log($0), Command.Data.Texture);
         }
 

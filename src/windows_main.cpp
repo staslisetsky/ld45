@@ -232,6 +232,13 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
+
+        {
+            image Image = {};
+            Image.Data = stbi_load("sdf/A.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
+            Render.TestTexture = OpenglUploadTexture(Image);
+        }
+
         while (GlobalRunning) {
             Input.dWheel = 0;
 
@@ -262,8 +269,9 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
 
             ProcessMessages();
 
-            // Graphene.ScreenSize = GetWindowSize(Window);
             Game(0.016f);
+
+            Render.Screen = GetWindowSize(Window);
             OpenglRender(Render);
             SwapBuffers(DeviceContext);
 

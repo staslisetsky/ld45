@@ -120,6 +120,7 @@ Module.expectedDataFileDownloads++;
     }
 Module['FS_createPath']('/', 'data', true, true);
 Module['FS_createPath']('/data', 'images', true, true);
+Module['FS_createPath']('/data', 'sdf', true, true);
 Module['FS_createPath']('/data', 'shaders', true, true);
 
     function DataRequest(start, end, audio) {
@@ -196,7 +197,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414241, "filename": "/data/shaders/Glyph.frag"}, {"start": 414241, "audio": 0, "end": 414616, "filename": "/data/shaders/Glyph.vert"}, {"start": 414616, "audio": 0, "end": 417195, "filename": "/data/shaders/Gradient.frag"}, {"start": 417195, "audio": 0, "end": 417523, "filename": "/data/shaders/Gradient.vert"}, {"start": 417523, "audio": 0, "end": 418323, "filename": "/data/shaders/Plain.frag"}, {"start": 418323, "audio": 0, "end": 418617, "filename": "/data/shaders/Plain.vert"}, {"start": 418617, "audio": 0, "end": 420444, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 420444, "audio": 0, "end": 420831, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 420831, "package_uuid": "be769433-577c-4612-932c-f2393831a15f"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414802, "filename": "/data/sdf/A.png"}, {"start": 414802, "audio": 0, "end": 415579, "filename": "/data/shaders/Glyph.frag"}, {"start": 415579, "audio": 0, "end": 415954, "filename": "/data/shaders/Glyph.vert"}, {"start": 415954, "audio": 0, "end": 418533, "filename": "/data/shaders/Gradient.frag"}, {"start": 418533, "audio": 0, "end": 418861, "filename": "/data/shaders/Gradient.vert"}, {"start": 418861, "audio": 0, "end": 419661, "filename": "/data/shaders/Plain.frag"}, {"start": 419661, "audio": 0, "end": 419955, "filename": "/data/shaders/Plain.vert"}, {"start": 419955, "audio": 0, "end": 421782, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 421782, "audio": 0, "end": 422169, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 422169, "package_uuid": "e2196ff1-583b-4e3b-8036-b2bdfc9abe54"});
 
 })();
 
@@ -1401,11 +1402,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 11424,
+    STACK_BASE = 12768,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5254304,
-    DYNAMIC_BASE = 5254304,
-    DYNAMICTOP_PTR = 11392;
+    STACK_MAX = 5255648,
+    DYNAMIC_BASE = 5255648,
+    DYNAMICTOP_PTR = 12736;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1911,12 +1912,7 @@ var tempI64;
 
 // === Body ===
 
-var ASM_CONSTS = [function($0) { console.log(UTF8ToString($0)) },
- function($0, $1) { console.log('Loaded Image w: ' + $0 + ', h:' + $1) }];
-
-function _emscripten_asm_const_iii(code, a0, a1) {
-  return ASM_CONSTS[code](a0, a1);
-}
+var ASM_CONSTS = [function($0) { console.log(UTF8ToString($0)) }];
 
 function _emscripten_asm_const_ii(code, a0) {
   return ASM_CONSTS[code](a0);
@@ -1925,7 +1921,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 10400;
+// STATICTOP = STATIC_BASE + 11744;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1936,7 +1932,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 11408
+var tempDoublePtr = 12752
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -6826,6 +6822,29 @@ function copyTempDouble(ptr) {
       }
     }
 
+  function _glGetUniformBlockIndex(program, uniformBlockName) {
+      return GLctx['getUniformBlockIndex'](GL.programs[program], UTF8ToString(uniformBlockName));
+    }
+
+  function _glGetUniformLocation(program, name) {
+      name = UTF8ToString(name);
+  
+      var arrayIndex = 0;
+      // If user passed an array accessor "[index]", parse the array index off the accessor.
+      if (name[name.length - 1] == ']') {
+        var leftBrace = name.lastIndexOf('[');
+        arrayIndex = name[leftBrace+1] != ']' ? parseInt(name.slice(leftBrace + 1)) : 0; // "index]", parseInt will ignore the ']' at the end; but treat "foo[]" as "foo[0]"
+        name = name.slice(0, leftBrace);
+      }
+  
+      var uniformInfo = GL.programInfos[program] && GL.programInfos[program].uniforms[name]; // returns pair [ dimension_of_uniform_array, uniform_location ]
+      if (uniformInfo && arrayIndex >= 0 && arrayIndex < uniformInfo[0]) { // Check if user asked for an out-of-bounds element, i.e. for 'vec4 colors[3];' user could ask for 'colors[10]' which should return -1.
+        return uniformInfo[1] + arrayIndex;
+      } else {
+        return -1;
+      }
+    }
+
   function _glLinkProgram(program) {
       GLctx.linkProgram(GL.programs[program]);
       GL.populateUniformTable(program);
@@ -6933,6 +6952,16 @@ function copyTempDouble(ptr) {
     }
 
   function _glTexParameteri(x0, x1, x2) { GLctx['texParameteri'](x0, x1, x2) }
+
+  function _glUniform2f(location, v0, v1) {
+      GLctx.uniform2f(GL.uniforms[location], v0, v1);
+    }
+
+  function _glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding) {
+      program = GL.programs[program];
+  
+      GLctx['uniformBlockBinding'](program, uniformBlockIndex, uniformBlockBinding);
+    }
 
   function _glUseProgram(program) {
       GLctx.useProgram(GL.programs[program]);
@@ -7063,7 +7092,6 @@ var asmLibraryArg = {
   "__registerKeyEventCallback": __registerKeyEventCallback,
   "__registerMouseEventCallback": __registerMouseEventCallback,
   "_emscripten_asm_const_ii": _emscripten_asm_const_ii,
-  "_emscripten_asm_const_iii": _emscripten_asm_const_iii,
   "_emscripten_get_heap_size": _emscripten_get_heap_size,
   "_emscripten_get_now": _emscripten_get_now,
   "_emscripten_memcpy_big": _emscripten_memcpy_big,
@@ -7105,10 +7133,14 @@ var asmLibraryArg = {
   "_glGetProgramiv": _glGetProgramiv,
   "_glGetShaderInfoLog": _glGetShaderInfoLog,
   "_glGetShaderiv": _glGetShaderiv,
+  "_glGetUniformBlockIndex": _glGetUniformBlockIndex,
+  "_glGetUniformLocation": _glGetUniformLocation,
   "_glLinkProgram": _glLinkProgram,
   "_glShaderSource": _glShaderSource,
   "_glTexImage2D": _glTexImage2D,
   "_glTexParameteri": _glTexParameteri,
+  "_glUniform2f": _glUniform2f,
+  "_glUniformBlockBinding": _glUniformBlockBinding,
   "_glUseProgram": _glUseProgram,
   "_glVertexAttribPointer": _glVertexAttribPointer,
   "abortOnCannotGrowMemory": abortOnCannotGrowMemory,

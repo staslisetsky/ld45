@@ -95,11 +95,14 @@ WasmMainLoop()
       Input.Keys[i].WentUp = false;
       Input.Keys[i].WentDownOrRepeated = false;
    }
+
    Input.Mouse[0].WentDown = false;
    Input.Mouse[0].WentUp = false;
    Input.Mouse[1].WentDown = false;
    Input.Mouse[1].WentUp = false;
 
+   Render.Screen.x = 1000;
+   Render.Screen.y = 500;
    Game(0.16f);
    OpenglRender(Render);
 
@@ -221,11 +224,17 @@ int main() {
       InitOpengl();
 
       {
-         image Image;
-         Image.Data = stbi_load("/assets/karloff.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
-         EM_ASM(console.log('Loaded Image w: ' + $0 + ', h:' + $1), Image.Width, Image.Height);
+         image Image = {};
+         Image.Data = stbi_load("/data/sdf/A.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
          Render.TestTexture = OpenglUploadTexture(Image);
       }
+
+      // {
+      //    image Image;
+      //    Image.Data = stbi_load("/assets/karloff.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
+      //    EM_ASM(console.log('Loaded Image w: ' + $0 + ', h:' + $1), Image.Width, Image.Height);
+      //    Render.TestTexture = OpenglUploadTexture(Image);
+      // // }
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
       Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);

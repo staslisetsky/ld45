@@ -7,6 +7,7 @@ enum draw_mode_ {
 struct command_data {
     GLuint Shader;
     GLuint Texture;
+    v2i QuadDim;
 };
 
 struct render_command {
@@ -28,6 +29,8 @@ struct vertex_xyzrgbauv {
 };
 
 struct render {
+    v2i Screen;
+
     GLuint VertexArrayPlain;
     GLuint VertexArrayTextured;
     GLuint VertexBufferPlain;
@@ -37,6 +40,9 @@ struct render {
     GLuint PlainShader;
     GLuint TexturedShader;
     GLuint GlyphShader;
+    GLuint SDFShader;
+
+    GLuint QuadDimUniform;
 
     GLuint TestTexture;
 
@@ -146,6 +152,35 @@ DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
     command_data Data = {};
     Data.Shader = Render->TexturedShader;
     Data.Texture = Render->TestTexture;
+    AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
+    Render->TexturedVertexCount += 4;
+}
+
+void
+DrawGlyph(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
+{
+    vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
+
+    Vertices[0].P = v3{P.x, P.y, (r32)Z};
+    Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
+    Vertices[2].P = v3{P.x, P.y + Dim.y, (r32)Z};
+    Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, (r32)Z};
+
+    Vertices[0].Color = Color;
+    Vertices[1].Color = Color;
+    Vertices[2].Color = Color;
+    Vertices[3].Color = Color;
+
+    Vertices[0].UV = v2{0.0f, 0.0f};
+    Vertices[1].UV = v2{1.0f, 0.0f};
+    Vertices[2].UV = v2{0.0f, 1.0f};
+    Vertices[3].UV = v2{1.0f, 1.0f};
+
+    command_data Data = {};
+    Data.Shader = Render->SDFShader;
+    Data.Texture = Render->TestTexture;
+    Data.QuadDim = v2i{(s32)Dim.x, (s32)Dim.y};
+
     AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
     Render->TexturedVertexCount += 4;
 }
