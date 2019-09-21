@@ -8,59 +8,81 @@
 	"buffers":
 	[
 		{
-			"file": "main.cpp",
+			"file": "src/platform.h",
 			"settings":
 			{
-				"buffer_size": 60,
-				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "//"
-			}
-		},
-		{
-			"file": "main.html",
-			"settings":
-			{
-				"buffer_size": 489,
+				"buffer_size": 307,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "# Copyright (c) 1993-2009 Microsoft Corp.\n#\n# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.\n#\n# This file contains the mappings of IP addresses to host names. Each\n# entry should be kept on an individual line. The IP address should\n# be placed in the first column followed by the corresponding host name.\n# The IP address and the host name should be separated by at least one\n# space.\n#\n# Additionally, comments (such as these) may be inserted on individual\n# lines or following the machine name denoted by a '#' symbol.\n#\n# For example:\n#\n#      102.54.94.97     rhino.acme.com          # source server\n#       38.25.63.10     x.acme.com              # x client host\n\n# localhost name resolution is handled within DNS itself.\n#\t127.0.0.1       localhost\n#\t::1             localhost\n127.0.0.1       printware.local\n127.0.0.1       ld45.local\n127.0.0.1       blog.local\n",
-			"file": "/C/Windows/System32/drivers/etc/hosts",
-			"file_size": 885,
-			"file_write_time": 131992070536117839,
+			"file": "src/game.cpp",
 			"settings":
 			{
-				"buffer_size": 889,
+				"buffer_size": 28,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "build.bat",
+			"file": "src/windows_main.cpp",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 7018,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/render.h",
+			"settings":
+			{
+				"buffer_size": 5743,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/wasm_main.cpp",
+			"settings":
+			{
+				"buffer_size": 7178,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/opengl.cpp",
+			"settings":
+			{
+				"buffer_size": 6192,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "data/shaders/Plain.frag",
+			"settings":
+			{
+				"buffer_size": 765,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
+			"settings":
+			{
+				"buffer_size": 8199,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "build_wasm.bat",
 			"settings":
 			{
-				"buffer_size": 513,
+				"buffer_size": 623,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/P/Ls/ld44 - bacterial/bactorial_wasm_loader.js",
-			"settings":
-			{
-				"buffer_size": 1899,
 				"line_ending": "Windows"
 			}
 		}
@@ -96,6 +118,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"up",
 				"Convert Case: Upper Case"
@@ -185,8 +211,38 @@
 	],
 	"file_history":
 	[
-		"/P/Ls/ld44 - bacterial/build/main_custom.html",
+		"/P/Ls/ld45/build_windows.bat",
+		"/P/Ls/ld45/ld45.sublime-project",
+		"/P/Ls/graphene/source/windows_graphene.cpp",
+		"/P/Ls/ld45/src/wasm_keymap.h",
+		"/P/Ls/ld45/build_wasm.bat",
+		"/P/Ls/ld45/src/render.h",
+		"/P/Ls/ld45/src/main_windows.cpp",
+		"/P/Ls/ld45/src/main.cpp",
+		"/P/Ls/graphene/data/Shaders/TexturedQuad.vert",
+		"/P/Ls/graphene/data/Shaders/TexturedQuad.frag",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/em_js.h",
+		"/P/Ls/ld45/render.h",
+		"/P/Ls/ld45/build/main.js",
+		"/P/Ls/ld45/index.html",
+		"/P/Ls/ld45/platform.h",
+		"/P/Ls/znalka/data/index.html",
+		"/P/Ls/ld45/ls_math.h",
+		"/P/Ls/ld45/main.html",
+		"/P/Ls/ld45/build.bat",
+		"/P/Ls/ld45/main.cpp",
+		"/P/Ls/ld45/src/stb_image.h",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/bind.h",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/asmfs.h",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/emscripten.h",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/html5.h",
+		"/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
+		"/P/Ls/ld44 - bacterial/wasm_bactorial.cpp",
+		"/P/Ls/ld44 - bacterial/bactorial.cpp",
+		"/P/Ls/ld44 - bacterial/bactorial_wasm_loader.js",
 		"/P/Ls/ld44 - bacterial/build/main.html",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/P/Ls/ld44 - bacterial/build/main_custom.html",
 		"/P/Ls/ld44 - bacterial/build_wasm.bat",
 		"/P/Ls/graphene/_build/windows_graphene.i",
 		"/P/Ls/graphene/build.bat",
@@ -215,7 +271,6 @@
 		"/P/Ls/znalka/data/posts/1 pooks-ui-system.html",
 		"/P/Ls/znalka/ls_lib/ls_math.h",
 		"/P/Ls/znalka/build.bat",
-		"/P/Ls/znalka/data/index.html",
 		"/C/Users/stas/Documents/We can hate the web all we want, but the fact that",
 		"/D/Programs/nginx-1.15.10/conf/fastcgi.conf",
 		"/D/Programs/nginx-1.15.10/conf/fastcgi_params",
@@ -283,40 +338,11 @@
 		"/P/Ls/znalka/app.cpp",
 		"/P/Ls/znalka/mimic.cpp",
 		"/home/stas/projects/znalka/template_generator.pro.user",
-		"/home/stas/projects/znalka/server/linux_server.cpp",
-		"/home/stas/projects/znalka/server/build.bat",
-		"/home/stas/projects/znalka/ls/ls_meta.cpp",
-		"/home/stas/projects/znalka/template_maker.cpp",
-		"/home/stas/projects/znalka/ls_string.h",
-		"/home/stas/projects/znalka/app.h",
-		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/cascade/source/ls_string.h",
-		"/home/stas/Downloads/GeoLite2-Country_20190129/GeoLite2-Country.mmdb",
-		"/home/stas/projects/znalka/data/posts/1 Making a better blog platform.html",
-		"/home/stas/projects/znalka/data/index - Copy.html",
-		"/P/printware/orders.log",
-		"/P/Ls/znalka/data/motherfuckingwebsite.com.html",
-		"/P/Ls/znalka/data/data",
-		"/P/Ls/znalka/data/style.css",
-		"/usr/include/x86_64-linux-gnu/bits/types.h",
-		"/home/stas/projects/znalka/sqlite_test.cpp",
-		"/home/stas/projects/znalka/sqlite_test.c",
-		"/usr/include/x86_64-linux-gnu/sys/socket.h",
-		"/home/stas/projects/znalka/blog.cpp",
-		"/home/stas/projects/znalka/data/rendered_templates.h",
-		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/cascade/Docs/ui_spec_demo.pks",
-		"/home/stas/projects/znalka/data/index.html",
-		"/home/stas/projects/znalka/ls/ls_serializer.h",
-		"/media/stas/9CBCE9D0BCE9A4CC/Projects/Ls/blog/templates/post.html",
-		"/home/stas/projects/znalka/data/templates/post.html",
-		"/home/stas/video.sh",
-		"/home/stas/projects/znalka/nginx.conf",
-		"/home/stas/projects/znalka/data/motherfuckingwebsite.com.html",
-		"/media/stas/9CBCE9D0BCE9A4CC/Users/stas/AppData/Roaming/Sublime Text 3/Packages/User/ls.sublime-build",
-		"/media/stas/9CBCE9D0BCE9A4CC/Users/stas/Dropbox/Sublime Configs/Default (Linux).sublime-keymap"
+		"/home/stas/projects/znalka/server/linux_server.cpp"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 49.0
 	},
 	"find_in_files":
 	{
@@ -330,6 +356,113 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Dimension",
+			"Size",
+			"Dimension",
+			"MouseButtons",
+			"Win32",
+			"winma",
+			"data",
+			"initop",
+			"wasm",
+			"n",
+			"bac",
+			"backt",
+			"               ",
+			"em_",
+			"GL",
+			"gl.",
+			"Result",
+			"Plain",
+			"file si",
+			"Z",
+			"Renderer",
+			"Plain",
+			"Bitmap->nComponent",
+			"TextureToBind",
+			"file",
+			"open",
+			"strcmp",
+			"[Key]",
+			"Key",
+			"code",
+			".code",
+			"target",
+			"'",
+			"100",
+			"em_mouse_callback_func callback",
+			"EM_BOOL useCapture",
+			"void *userData",
+			"const char *target",
+			"EMSCRIPTEN_RESULT",
+			"Arrow",
+			"Input->",
+			"input",
+			"Code",
+			"proc",
+			"WasmKeyDown",
+			"true",
+			"window",
+			"log",
+			"false",
+			"true",
+			"document",
+			"#canvas",
+			"\"#window\"",
+			"#canvas",
+			"em_",
+			"уь_",
+			"em_key_callback_func",
+			"EM_BOOL",
+			"const char *target",
+			"h1",
+			"0.2",
+			"-0.2",
+			"1000",
+			"50",
+			"Vertices",
+			"0f",
+			"Vertices",
+			"VertexBufferPlain",
+			"GL_ARRAY_BUFFER",
+			"glBufferSubData",
+			"CreateProgram",
+			"link",
+			"varying",
+			"State.Render",
+			"State",
+			"RenderCommand_",
+			"PrimitiveCount",
+			"shader",
+			"RenderMode_Quad",
+			"Primitive_",
+			"Primitive_Quad",
+			"PrimitiveType",
+			"StartIndex",
+			"State",
+			"Renderer",
+			"OpenglAPI",
+			"Result",
+			"LastCommand",
+			"B",
+			"A",
+			"vertex_xyzrgba",
+			"r32",
+			"CompileShader",
+			"PlainQuadGLProgram",
+			"State.PlainShader",
+			"\\n",
+			"WasmInitOpengl",
+			"vertex",
+			"GLctx",
+			"__glGenObject",
+			");",
+			"PlainShader",
+			"Assert",
+			"internal",
+			"WebGLContext",
+			"case",
+			"EMSCRIPTEN_",
 			"div",
 			"flex"
 		],
@@ -354,57 +487,54 @@
 			[
 				{
 					"buffer": 0,
-					"file": "main.cpp",
+					"file": "src/platform.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60,
+						"buffer_size": 307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17,
-								17
+								305,
+								305
 							]
 						],
 						"settings":
 						{
-							"auto_name": "//",
 							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 3,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "main.html",
+					"file": "src/game.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 489,
+						"buffer_size": 28,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								143,
-								143
+								24,
+								24
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -415,39 +545,42 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Windows/System32/drivers/etc/hosts",
+					"file": "src/windows_main.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 889,
+						"buffer_size": 7018,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								861,
-								861
+								5280,
+								5280
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 100.0,
+						"translation.y": 5423.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "build.bat",
+					"file": "src/render.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 5743,
 						"regions":
 						{
 						},
@@ -460,7 +593,100 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4617.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/wasm_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								560,
+								560
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 475.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/opengl.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4482,
+								4482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2775.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "data/shaders/Plain.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								492,
+								492
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -470,20 +696,85 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "build_wasm.bat",
+					"buffer": 7,
+					"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 513,
+						"buffer_size": 8199,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								223,
-								223
+								1300,
+								1300
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "src/wasm_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1320,
+								1320
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1444.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "build_wasm.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 623,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								622,
+								622
 							]
 						],
 						"settings":
@@ -494,43 +785,97 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 12,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 5,
-					"file": "/P/Ls/ld44 - bacterial/bactorial_wasm_loader.js",
+					"file": "src/opengl.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1899,
+						"buffer_size": 6192,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								67,
-								67
+								5597,
+								5597
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5265.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/render.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								145,
+								145
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "src/platform.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -538,7 +883,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 34.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -586,7 +931,7 @@
 	"project": "ld45.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -596,8 +941,100 @@
 		"selected_items":
 		[
 			[
+				"opengl",
+				"src\\opengl.cpp"
+			],
+			[
+				"plat",
+				"src\\platform.h"
+			],
+			[
 				"render",
-				"source\\graphene_render.h"
+				"src\\render.h"
+			],
+			[
+				"win",
+				"src\\windows_main.cpp"
+			],
+			[
+				"plai",
+				"data\\shaders\\Plain.frag"
+			],
+			[
+				"open",
+				"src\\opengl.cpp"
+			],
+			[
+				"was",
+				"src\\wasm_main.cpp"
+			],
+			[
+				"wind",
+				"src\\windows_main.cpp"
+			],
+			[
+				"bui",
+				"build_wasm.bat"
+			],
+			[
+				"wasm",
+				"src\\wasm_keymap.h"
+			],
+			[
+				"ke",
+				"src\\wasm_keymap.h"
+			],
+			[
+				"pl",
+				"src\\platform.h"
+			],
+			[
+				"ma",
+				"src\\main.cpp"
+			],
+			[
+				"main",
+				"src\\main.cpp"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"red",
+				"src\\render.h"
+			],
+			[
+				"stb",
+				"src\\stb_image.h"
+			],
+			[
+				"pla",
+				"platform.h"
+			],
+			[
+				"mia",
+				"main.html"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"ren",
+				"render.h"
+			],
+			[
+				"main.js",
+				"build\\main.js"
+			],
+			[
+				"math",
+				"ls_math.h"
+			],
+			[
+				"main.",
+				"build\\main.js"
 			],
 			[
 				"pook",
@@ -636,10 +1073,6 @@
 				"source\\windows_graphene.cpp"
 			],
 			[
-				"win",
-				"source\\windows_graphene.cpp"
-			],
-			[
 				"ls_s",
 				"source\\libs\\ls_string.h"
 			],
@@ -656,16 +1089,8 @@
 				"source\\graphene.cpp"
 			],
 			[
-				"bui",
-				"P:\\Ls\\graphene\\build.bat"
-			],
-			[
 				"ls_String",
 				"source\\libs\\ls_string.h"
-			],
-			[
-				"wind",
-				"source\\windows_graphene.cpp"
 			],
 			[
 				"ls_",
@@ -824,14 +1249,6 @@
 				"libs\\ls_string.h"
 			],
 			[
-				"math",
-				"graphene_math.h"
-			],
-			[
-				"in",
-				"graphene_interaction.cpp"
-			],
-			[
 				"vec",
 				"graphene_vector.cpp"
 			],
@@ -904,10 +1321,6 @@
 				"data\\posts\\pooks-ui-system.html"
 			],
 			[
-				"main",
-				"data\\templates\\main.nos"
-			],
-			[
 				"tem",
 				"template_maker.cpp"
 			],
@@ -954,10 +1367,6 @@
 			[
 				"post.",
 				"data\\templates\\post.nos"
-			],
-			[
-				"main.",
-				"data\\templates\\main.nos"
 			],
 			[
 				"m",
@@ -1042,89 +1451,53 @@
 			[
 				"temp",
 				"template_maker.cpp"
-			],
-			[
-				"win_",
-				"P:\\Ls\\znalka\\win_main.cpp"
-			],
-			[
-				"win_ma",
-				"P:\\Ls\\znalka\\win_main.cpp"
-			],
-			[
-				"ad",
-				"data\\assets\\admin_chart.js"
-			],
-			[
-				"admi",
-				"data\\assets\\admin_chart.js"
-			],
-			[
-				"template",
-				"template_maker.cpp"
-			],
-			[
-				"ren",
-				"data\\rendered_templates.h"
-			],
-			[
-				"admin.n",
-				"data\\templates\\admin.nos"
-			],
-			[
-				"ls_t",
-				"ls_lib\\ls_time.h"
-			],
-			[
-				"ls_tim",
-				"ls_lib\\ls_time.h"
-			],
-			[
-				"ls_ti",
-				"ls_lib\\ls_time.h"
-			],
-			[
-				"inde",
-				"data\\index.html"
-			],
-			[
-				"ls_li",
-				"ls_lib\\ls_lib.h"
-			],
-			[
-				"ls_lib",
-				"ls_lib\\ls_lib.h"
-			],
-			[
-				"5xx",
-				"data\\error_pages\\5xx.html"
-			],
-			[
-				"504",
-				"data\\error_pages\\504.html"
-			],
-			[
-				"503",
-				"data\\error_pages\\503.html"
 			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
 		"height": 392.0,
-		"last_filter": "doma",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ini",
+				"WasmInitOpengl"
+			],
+			[
+				"initop",
+				"WasmInitOpengl"
+			],
+			[
+				"drawte",
+				"DrawTexturedRect"
+			],
+			[
+				"render",
+				"render"
+			],
+			[
+				"key_",
+				"key_"
+			],
+			[
+				"key",
+				"key_"
+			],
+			[
+				"state",
+				"wasm_state"
+			],
 			[
 				"doma",
 				"PooksDoManualLayout"
@@ -1236,10 +1609,6 @@
 			[
 				"object",
 				"object"
-			],
-			[
-				"key_",
-				"key_"
 			],
 			[
 				"Utf8Size",
@@ -1612,35 +1981,11 @@
 			[
 				"ls_dy",
 				"ls_dynamic_array"
-			],
-			[
-				"buchse_c",
-				"buchse_context"
-			],
-			[
-				"win",
-				"WinFindFilesRecursive"
-			],
-			[
-				"findi",
-				"WinFindFilesRecursive"
-			],
-			[
-				"os_qu",
-				"os_query"
-			],
-			[
-				"hotlo",
-				"hotloader"
-			],
-			[
-				"hot",
-				"hotloader"
 			]
 		],
 		"width": 592.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

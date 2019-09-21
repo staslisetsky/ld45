@@ -100,7 +100,8 @@ WasmMainLoop()
    Input.Mouse[1].WentDown = false;
    Input.Mouse[1].WentUp = false;
 
-   RenderCommands(Render);
+   Game(0.16f);
+   OpenglRender(Render);
 
    // swap:
    // emscripten_webgl_commit_frame();
@@ -217,7 +218,7 @@ int main() {
       EMSCRIPTEN_RESULT Result = emscripten_webgl_make_context_current(State.WebGLContext);
       WasmPrintError(Result);
 
-      OpenglInit();
+      InitOpengl();
 
       {
          image Image;

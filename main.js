@@ -118,7 +118,9 @@ Module.expectedDataFileDownloads++;
     function assert(check, msg) {
       if (!check) throw msg + new Error().stack;
     }
-Module['FS_createPath']('/', 'assets', true, true);
+Module['FS_createPath']('/', 'data', true, true);
+Module['FS_createPath']('/data', 'images', true, true);
+Module['FS_createPath']('/data', 'shaders', true, true);
 
     function DataRequest(start, end, audio) {
       this.start = start;
@@ -194,7 +196,7 @@ Module['FS_createPath']('/', 'assets', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/assets/karloff.png"}], "remote_package_size": 413464, "package_uuid": "ff7365f2-c737-4752-a1c9-1145cf97976b"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414241, "filename": "/data/shaders/Glyph.frag"}, {"start": 414241, "audio": 0, "end": 414616, "filename": "/data/shaders/Glyph.vert"}, {"start": 414616, "audio": 0, "end": 417195, "filename": "/data/shaders/Gradient.frag"}, {"start": 417195, "audio": 0, "end": 417523, "filename": "/data/shaders/Gradient.vert"}, {"start": 417523, "audio": 0, "end": 418323, "filename": "/data/shaders/Plain.frag"}, {"start": 418323, "audio": 0, "end": 418617, "filename": "/data/shaders/Plain.vert"}, {"start": 418617, "audio": 0, "end": 420444, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 420444, "audio": 0, "end": 420831, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 420831, "package_uuid": "be769433-577c-4612-932c-f2393831a15f"});
 
 })();
 
@@ -1399,11 +1401,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 10368,
+    STACK_BASE = 11424,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5253248,
-    DYNAMIC_BASE = 5253248,
-    DYNAMICTOP_PTR = 10336;
+    STACK_MAX = 5254304,
+    DYNAMIC_BASE = 5254304,
+    DYNAMICTOP_PTR = 11392;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1888,8 +1890,8 @@ Module['asm'] = function(global, env, providedBuffer) {
   ;
   // import table
   env['table'] = wasmTable = new WebAssembly.Table({
-    'initial': 32,
-    'maximum': 32,
+    'initial': 36,
+    'maximum': 36,
     'element': 'anyfunc'
   });
   // With the wasm backend __memory_base and __table_base and only needed for
@@ -1923,7 +1925,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 9344;
+// STATICTOP = STATIC_BASE + 10400;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1934,7 +1936,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 10352
+var tempDoublePtr = 11408
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -6727,6 +6729,17 @@ function copyTempDouble(ptr) {
         );
     }
 
+  function _glGenVertexArrays(n, arrays) {
+      __glGenObject(n, arrays, 'createVertexArray', GL.vaos
+        );
+    }
+
+  function _glGetError() {
+      var error = GLctx.getError() || GL.lastError;
+      GL.lastError = 0/*GL_NO_ERROR*/;
+      return error;
+    }
+
   function _glGetProgramInfoLog(program, maxLength, length, infoLog) {
       var log = GLctx.getProgramInfoLog(GL.programs[program]);
       if (log === null) log = '(unknown error)';
@@ -7004,6 +7017,7 @@ function intArrayToString(array) {
 // ASM_LIBRARY EXTERN PRIMITIVES: Int8Array,Int32Array
 
 function nullFunc_ii(x) { abortFnPtrError(x, 'ii'); }
+function nullFunc_iidiiii(x) { abortFnPtrError(x, 'iidiiii'); }
 function nullFunc_iiii(x) { abortFnPtrError(x, 'iiii'); }
 function nullFunc_iiiiii(x) { abortFnPtrError(x, 'iiiiii'); }
 function nullFunc_jiji(x) { abortFnPtrError(x, 'jiji'); }
@@ -7020,6 +7034,7 @@ var asmLibraryArg = {
   "getTempRet0": getTempRet0,
   "abortStackOverflow": abortStackOverflow,
   "nullFunc_ii": nullFunc_ii,
+  "nullFunc_iidiiii": nullFunc_iidiiii,
   "nullFunc_iiii": nullFunc_iiii,
   "nullFunc_iiiiii": nullFunc_iiiiii,
   "nullFunc_jiji": nullFunc_jiji,
@@ -7084,6 +7099,8 @@ var asmLibraryArg = {
   "_glEnableVertexAttribArray": _glEnableVertexAttribArray,
   "_glGenBuffers": _glGenBuffers,
   "_glGenTextures": _glGenTextures,
+  "_glGenVertexArrays": _glGenVertexArrays,
+  "_glGetError": _glGetError,
   "_glGetProgramInfoLog": _glGetProgramInfoLog,
   "_glGetProgramiv": _glGetProgramiv,
   "_glGetShaderInfoLog": _glGetShaderInfoLog,
@@ -7184,6 +7201,12 @@ var dynCall_ii = Module["dynCall_ii"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["dynCall_ii"].apply(null, arguments)
+};
+
+var dynCall_iidiiii = Module["dynCall_iidiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iidiiii"].apply(null, arguments)
 };
 
 var dynCall_iiii = Module["dynCall_iiii"] = function() {
