@@ -117,7 +117,7 @@ Square(r32 A)
 inline u32
 SafeTruncateU64(u64 Value)
 {
-    assert(Value <= 0xffffffff);
+    Assert(Value <= 0xffffffff);
     u32 Result = (u32)Value;
 
     return(Result);

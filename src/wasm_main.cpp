@@ -183,7 +183,7 @@ WasmGetFileSize(FILE *File)
 }
 
 bool
-WasmReadFile(char *Filename, read_file *Result)
+ReadFile(char *Filename, read_file *Result)
 {
    FILE *File = fopen(Filename, "rb");
 

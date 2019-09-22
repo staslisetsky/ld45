@@ -185,3 +185,42 @@ DrawGlyph(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
     AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
     Render->TexturedVertexCount += 4;
 }
+
+void
+DrawText(render *Render, v2 P, r32 Z, v4 Color, cached_font *Font, char *Text)
+{
+    u32 Len = strlen(Text);
+
+    v2 CurrentP = P;
+
+    for (u32 i=0; i<Len; ++i) {
+        vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
+
+        cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
+        v2 Dim = { Glyph->Width, Glyph->Height };
+
+        Vertices[0].P = v3{CurrentP.x, CurrentP.y, (r32)Z};
+        Vertices[1].P = v3{CurrentP.x + Dim.x, CurrentP.y, (r32)Z};
+        Vertices[2].P = v3{CurrentP.x, CurrentP.y + Dim.y, (r32)Z};
+        Vertices[3].P = v3{CurrentP.x + Dim.x, CurrentP.y + Dim.y, (r32)Z};
+
+        Vertices[0].Color = Color;
+        Vertices[1].Color = Color;
+        Vertices[2].Color = Color;
+        Vertices[3].Color = Color;
+
+        Vertices[0].UV = Glyph->UV.TopLeft;
+        Vertices[1].UV = Glyph->UV.TopRight;
+        Vertices[2].UV = Glyph->UV.BottomLeft;
+        Vertices[3].UV = Glyph->UV.BottomRight;
+
+        command_data Data = {};
+        Data.Shader = Render->TexturedShader;
+        Data.Texture = Render->TestTexture;
+
+        AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
+        Render->TexturedVertexCount += 4;
+
+        CurrentP.x += Glyph->XAdvance;
+    }
+}

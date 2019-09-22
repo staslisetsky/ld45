@@ -20,7 +20,7 @@ typedef double r64;
 #define Assert(Expression) if(!(Expression)) {*(int *)0=0;}
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "include/stb_image.h"
 
 #define LS_STRING_IMPLEMENTATION
 enum ls_string_allocator_ {
@@ -32,6 +32,8 @@ ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
 #include "windows_opengl.h"
 
 #include "ls_math.h"
+#include "font.h"
+
 #include "render.h"
 #include "platform.h"
 
@@ -39,6 +41,9 @@ static BOOL GlobalRunning = true;
 
 static render Render = {};
 static input Input = {};
+
+bool
+WindowsReadFile(char *Filename, read_file *Result);
 
 //
 //
@@ -132,6 +137,33 @@ ProcessMouseMessage(button *Button, b32 Down)
 
         Button->Down = !Button->Down;
     }
+}
+
+u32
+GetFileSize(FILE *File)
+{
+   fseek(File, 0, SEEK_END);
+   u32 Size = ftell(File);
+   fseek(File, 0, SEEK_SET);
+
+   return Size;
+}
+
+bool
+WindowsReadFile(char *Filename, read_file *Result)
+{
+   FILE *File = fopen(Filename, "rb");
+
+   if (File) {
+      Result->Size = GetFileSize(File);
+      Result->Data = (u8 *)malloc(Result->Size);
+      fread(Result->Data, 1, Result->Size, File);
+      fclose(File);
+
+      return true;
+   }
+
+   return false;
 }
 
 void
@@ -232,10 +264,11 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
+
+        GameInit();
+
         {
-            image Image = {};
-            Image.Data = stbi_load("sdf/A.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
-            Render.TestTexture = OpenglUploadTexture(Image);
+
         }
 
         while (GlobalRunning) {

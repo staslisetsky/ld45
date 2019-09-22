@@ -20,7 +20,7 @@
 			"file": "src/game.cpp",
 			"settings":
 			{
-				"buffer_size": 28,
+				"buffer_size": 1962,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -29,16 +29,69 @@
 			"file": "src/windows_main.cpp",
 			"settings":
 			{
-				"buffer_size": 7018,
+				"buffer_size": 7927,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "build.bat",
+			"settings":
+			{
+				"buffer_size": 596,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "build_wasm.bat",
+			"settings":
+			{
+				"buffer_size": 621,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/P/ls/ld45/src/ls_string.h",
+			"settings":
+			{
+				"buffer_size": 33551,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "src/render.h",
 			"settings":
 			{
-				"buffer_size": 5743,
+				"buffer_size": 6149,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/fontgen.cpp",
+			"settings":
+			{
+				"buffer_size": 6656,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nПЕРЕРЫВ 5 минут",
+			"settings":
+			{
+				"buffer_size": 31,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/font.h",
+			"settings":
+			{
+				"buffer_size": 1559,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -47,7 +100,7 @@
 			"file": "src/wasm_main.cpp",
 			"settings":
 			{
-				"buffer_size": 7178,
+				"buffer_size": 7480,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -56,8 +109,15 @@
 			"file": "src/opengl.cpp",
 			"settings":
 			{
-				"buffer_size": 6192,
+				"buffer_size": 10439,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
 		},
@@ -70,6 +130,15 @@
 			}
 		},
 		{
+			"file": "data/shaders/Plain.vert",
+			"settings":
+			{
+				"buffer_size": 277,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
 			"settings":
 			{
@@ -78,11 +147,36 @@
 			}
 		},
 		{
-			"file": "build_wasm.bat",
+			"file": "src/windows_opengl.h",
 			"settings":
 			{
-				"buffer_size": 623,
+				"buffer_size": 20642,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "_build/s.txt",
+			"settings":
+			{
+				"buffer_size": 12085,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/P/ls/ld45/src/ls_math.h",
+			"settings":
+			{
+				"buffer_size": 28180,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/include/stb_image_write.h",
+			"settings":
+			{
+				"buffer_size": 66401,
 				"line_ending": "Windows"
 			}
 		}
@@ -211,6 +305,8 @@
 	],
 	"file_history":
 	[
+		"/P/Ls/streams/descr.txt",
+		"/P/Ls/computer/notes.txt",
 		"/P/Ls/ld45/build_windows.bat",
 		"/P/Ls/ld45/ld45.sublime-project",
 		"/P/Ls/graphene/source/windows_graphene.cpp",
@@ -336,13 +432,11 @@
 		"/P/Ls/znalka/data/templates/showoff.nos",
 		"/P/Ls/znalka/cascade_ls_string.h",
 		"/P/Ls/znalka/app.cpp",
-		"/P/Ls/znalka/mimic.cpp",
-		"/home/stas/projects/znalka/template_generator.pro.user",
-		"/home/stas/projects/znalka/server/linux_server.cpp"
+		"/P/Ls/znalka/mimic.cpp"
 	],
 	"find":
 	{
-		"height": 49.0
+		"height": 51.0
 	},
 	"find_in_files":
 	{
@@ -356,6 +450,41 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Font.",
+			"8192",
+			"sprint",
+			"72.0f",
+			"Atlas->",
+			"Font->",
+			"PxPerFontUnit",
+			"Face.",
+			"Face->",
+			"Height",
+			"Font->BaseFont->FreetypeFace",
+			"AtlasHeight",
+			"TextureXDim",
+			"Font->FreetypeFace",
+			"CachedFont",
+			"Scale",
+			"FreetypeLoadFont",
+			"QuadP",
+			"Texture",
+			"QuadDim",
+			"quadDim",
+			"sample",
+			"msdf",
+			"100.0f",
+			"PlainShader",
+			"DumpGlErrors",
+			"View",
+			"ViewUniformBuffer",
+			"SDFShader",
+			"Textured",
+			"TexturedV",
+			"MouseButtons",
+			"Input.",
+			"Input->",
+			"swap",
 			"Dimension",
 			"Size",
 			"Dimension",
@@ -448,23 +577,7 @@
 			"A",
 			"vertex_xyzrgba",
 			"r32",
-			"CompileShader",
-			"PlainQuadGLProgram",
-			"State.PlainShader",
-			"\\n",
-			"WasmInitOpengl",
-			"vertex",
-			"GLctx",
-			"__glGenObject",
-			");",
-			"PlainShader",
-			"Assert",
-			"internal",
-			"WebGLContext",
-			"case",
-			"EMSCRIPTEN_",
-			"div",
-			"flex"
+			"CompileShader"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -482,7 +595,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -504,6 +617,7 @@
 						],
 						"settings":
 						{
+							"history_list_is_closing": true,
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -512,7 +626,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
@@ -521,26 +635,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 28,
+						"buffer_size": 1962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								24,
-								24
+								1061,
+								1061
 							]
 						],
 						"settings":
 						{
+							"history_list_is_closing": true,
+							"spell_check": true,
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 830.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -549,15 +665,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7018,
+						"buffer_size": 7927,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5280,
-								5280
+								754,
+								754
 							]
 						],
 						"settings":
@@ -567,20 +683,287 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 100.0,
-						"translation.y": 5423.0,
+						"translation.x": 0.0,
+						"translation.y": 609.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								308,
+								308
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "build_wasm.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								619,
+								619
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/P/ls/ld45/src/ls_string.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 33551,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								32475,
+								32475
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 36051.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 35,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "src/render.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5743,
+						"buffer_size": 6149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5970,
+								5970
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5393.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/fontgen.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6173,
+								6173
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5559.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 31,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/font.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1014,
+								1014
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1555.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/wasm_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6196,
+								6196
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4696.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 34,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/opengl.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5688,
+								5688
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5477.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -593,80 +976,17 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4617.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/wasm_main.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7178,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								560,
-								560
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 475.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/opengl.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6192,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4482,
-								4482
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2775.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 13,
 					"file": "data/shaders/Plain.frag",
 					"semi_transient": false,
 					"settings":
@@ -678,8 +998,8 @@
 						"selection":
 						[
 							[
-								492,
-								492
+								490,
+								490
 							]
 						],
 						"settings":
@@ -692,11 +1012,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 14,
+					"file": "data/shaders/Plain.vert",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 277,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								197,
+								197
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
 					"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
 					"semi_transient": false,
 					"settings":
@@ -708,8 +1056,8 @@
 						"selection":
 						[
 							[
-								1300,
-								1300
+								1299,
+								1299
 							]
 						],
 						"settings":
@@ -720,30 +1068,24 @@
 						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 38,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 4,
+					"buffer": 10,
 					"file": "src/wasm_main.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7178,
+						"buffer_size": 7480,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1320,
-								1320
+								5729,
+								5729
 							]
 						],
 						"settings":
@@ -754,27 +1096,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1444.0,
+						"translation.y": 5264.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 4,
 					"file": "build_wasm.bat",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 623,
+						"buffer_size": 621,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								622,
-								622
+								620,
+								620
 							]
 						],
 						"settings":
@@ -785,24 +1127,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 11,
 					"file": "src/opengl.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6192,
+						"buffer_size": 10439,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5597,
-								5597
+								10002,
+								10002
 							]
 						],
 						"settings":
@@ -812,27 +1154,86 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5265.0,
+						"translation.y": 8744.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "src/render.h",
+					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5743,
+						"buffer_size": 596,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								145,
-								145
+								375,
+								375
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 37,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "src/windows_opengl.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20642,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20517,
+								20507
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9901.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 36,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/render.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4411,
+								4411
 							]
 						],
 						"settings":
@@ -842,10 +1243,100 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 4093.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 30,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/game.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								348,
+								348
+							]
+						],
+						"settings":
+						{
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 261.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/font.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1559,
+								1559
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 13.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/fontgen.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								389,
+								389
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
@@ -875,7 +1366,465 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 39,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/fontgen.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2014,
+								2014
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1700.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								391,
+								391
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "_build/s.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7399,
+								7400
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2990.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/font.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1559,
+								1559
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1218.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "/P/ls/ld45/src/ls_math.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1764,
+								1764
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								427,
+								427
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/wasm_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5137,
+								5000
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4755.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "src/include/stb_image_write.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 66401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2175,
+								2175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 840.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/fontgen.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6155,
+								6155
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5277.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/font.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1193,
+								1193
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1767.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "/P/ls/ld45/src/ls_math.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1063,
+								1063
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1595.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/render.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								212,
+								212
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/windows_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7435,
+								7435
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8323.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/opengl.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2467,
+								2471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2580.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/game.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1794,
+								1794
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1275.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -883,7 +1832,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 51.0
 	},
 	"input":
 	{
@@ -909,7 +1858,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.1171875,
 			1.0
 		],
 		"rows":
@@ -921,7 +1870,7 @@
 	"menu_visible": false,
 	"output.exec":
 	{
-		"height": 708.0
+		"height": 271.0
 	},
 	"output.find_results":
 	{
@@ -931,7 +1880,7 @@
 	"project": "ld45.sublime-project",
 	"replace":
 	{
-		"height": 68.0
+		"height": 72.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -941,20 +1890,116 @@
 		"selected_items":
 		[
 			[
-				"opengl",
-				"src\\opengl.cpp"
+				"win",
+				"src\\windows_main.cpp"
 			],
 			[
-				"plat",
-				"src\\platform.h"
+				"math",
+				"src\\ls_math.h"
+			],
+			[
+				"font",
+				"src\\font.h"
 			],
 			[
 				"render",
 				"src\\render.h"
 			],
 			[
-				"win",
+				"game",
+				"src\\game.cpp"
+			],
+			[
+				"",
 				"src\\windows_main.cpp"
+			],
+			[
+				"fontg",
+				"src\\fontgen.cpp"
+			],
+			[
+				"windo",
+				"src\\windows_main.cpp"
+			],
+			[
+				"wind",
+				"src\\windows_main.cpp"
+			],
+			[
+				"bui",
+				"build.bat"
+			],
+			[
+				"font.",
+				"src\\font.h"
+			],
+			[
+				"image_w",
+				"src\\include\\stb_image_write.h"
+			],
+			[
+				"fo",
+				"src\\fontgen.cpp"
+			],
+			[
+				"gam",
+				"src\\game.cpp"
+			],
+			[
+				"wian",
+				"src\\windows_main.cpp"
+			],
+			[
+				"wasm",
+				"src\\wasm_main.cpp"
+			],
+			[
+				"plain.",
+				"data\\shaders\\Plain.vert"
+			],
+			[
+				"lain",
+				"data\\shaders\\Plain.frag"
+			],
+			[
+				"pla",
+				"src\\platform.h"
+			],
+			[
+				"re",
+				"src\\render.h"
+			],
+			[
+				"w",
+				"src\\wasm_main.cpp"
+			],
+			[
+				"was",
+				"src\\wasm_main.cpp"
+			],
+			[
+				"build_w",
+				"build_wasm.bat"
+			],
+			[
+				"windwo",
+				"src\\windows_main.cpp"
+			],
+			[
+				"redner",
+				"src\\render.h"
+			],
+			[
+				"opengl",
+				"src\\opengl.cpp"
+			],
+			[
+				"rend",
+				"src\\render.h"
+			],
+			[
+				"plat",
+				"src\\platform.h"
 			],
 			[
 				"plai",
@@ -963,22 +2008,6 @@
 			[
 				"open",
 				"src\\opengl.cpp"
-			],
-			[
-				"was",
-				"src\\wasm_main.cpp"
-			],
-			[
-				"wind",
-				"src\\windows_main.cpp"
-			],
-			[
-				"bui",
-				"build_wasm.bat"
-			],
-			[
-				"wasm",
-				"src\\wasm_keymap.h"
 			],
 			[
 				"ke",
@@ -1009,10 +2038,6 @@
 				"src\\stb_image.h"
 			],
 			[
-				"pla",
-				"platform.h"
-			],
-			[
 				"mia",
 				"main.html"
 			],
@@ -1027,10 +2052,6 @@
 			[
 				"main.js",
 				"build\\main.js"
-			],
-			[
-				"math",
-				"ls_math.h"
 			],
 			[
 				"main.",
@@ -1067,10 +2088,6 @@
 			[
 				"bug",
 				"Docs\\bug_list.txt"
-			],
-			[
-				"w",
-				"source\\windows_graphene.cpp"
 			],
 			[
 				"ls_s",
@@ -1147,10 +2164,6 @@
 			[
 				"ui_e",
 				"source\\graphene_ui_engine.cpp"
-			],
-			[
-				"",
-				"source\\graphene_pooks.cpp"
 			],
 			[
 				"pook.s",
@@ -1387,70 +2400,6 @@
 			[
 				"buche",
 				"buchse.cpp"
-			],
-			[
-				"ls_fc",
-				"ls_lib\\ls_fcgi_win.h"
-			],
-			[
-				"p",
-				"data\\posts\\1 Pooks_1.html"
-			],
-			[
-				"linux",
-				"linux_buchse.cpp"
-			],
-			[
-				"win fc",
-				"ls_lib\\ls_fcgi_win.h"
-			],
-			[
-				"win_b",
-				"win_buchse.cpp"
-			],
-			[
-				"templates",
-				"data\\rendered_templates.h"
-			],
-			[
-				"templ",
-				"data\\rendered_templates.h"
-			],
-			[
-				"conta",
-				"ls_lib\\ls_containers.h"
-			],
-			[
-				"admin.",
-				"data\\templates\\admin.nos"
-			],
-			[
-				"admin",
-				"data\\assets\\admin_chart.js"
-			],
-			[
-				"ls_co",
-				"ls_lib\\ls_containers.h"
-			],
-			[
-				"am",
-				"data\\templates\\admin.nos"
-			],
-			[
-				"copy",
-				"data\\index - Copy.html"
-			],
-			[
-				"main.n",
-				"data\\templates\\main.nos"
-			],
-			[
-				"stri",
-				"ls_lib\\ls_string.h"
-			],
-			[
-				"temp",
-				"template_maker.cpp"
 			]
 		],
 		"width": 0.0
@@ -1467,24 +2416,88 @@
 	"select_symbol":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "game",
 		"selected_items":
 		[
 			[
-				"ini",
-				"WasmInitOpengl"
+				"game",
+				"Game"
 			],
 			[
-				"initop",
-				"WasmInitOpengl"
+				"initp",
+				"InitOpengl"
+			],
+			[
+				"glyp",
+				"cached_glyph"
 			],
 			[
 				"drawte",
-				"DrawTexturedRect"
+				"DrawText"
 			],
 			[
 				"render",
 				"render"
+			],
+			[
+				"gameini",
+				"GameInit"
+			],
+			[
+				"readfi",
+				"WasmReadFile"
+			],
+			[
+				"cached",
+				"cached_font"
+			],
+			[
+				"addcom",
+				"AddRenderCommand"
+			],
+			[
+				"initop",
+				"InitOpengl"
+			],
+			[
+				"ini",
+				"InitOpengl"
+			],
+			[
+				"opengl",
+				"OpenglRender"
+			],
+			[
+				"drawg",
+				"DrawGlyph"
+			],
+			[
+				"inio",
+				"InitOpengl"
+			],
+			[
+				"command",
+				"command_data"
+			],
+			[
+				"createsh",
+				"CreateShader"
+			],
+			[
+				"openglre",
+				"OpenglRender"
+			],
+			[
+				"dumpo",
+				"DumpGlErrors"
+			],
+			[
+				"dump",
+				"DumpGlErrors"
+			],
+			[
+				"renderco",
+				"RenderCommands"
 			],
 			[
 				"key_",
@@ -1529,10 +2542,6 @@
 			[
 				"dotext",
 				"DoTextEdit"
-			],
-			[
-				"renderco",
-				"BeginRenderDrawCommand"
 			],
 			[
 				"parse",
@@ -1921,66 +2930,6 @@
 			[
 				"ls",
 				"ls_parser"
-			],
-			[
-				"mutable",
-				"ls_mutable_string"
-			],
-			[
-				"ceil",
-				"Ceil_r32"
-			],
-			[
-				"ui_id",
-				"ui_id"
-			],
-			[
-				"buchseget",
-				"BuchseGetFileSize"
-			],
-			[
-				"strcm",
-				"strncmp"
-			],
-			[
-				"malloc",
-				"malloc_stats"
-			],
-			[
-				"malloc_stats",
-				"malloc_stats"
-			],
-			[
-				"filld",
-				"FillDb"
-			],
-			[
-				"buchsege",
-				"BuchseGetFileSize"
-			],
-			[
-				"buchsere",
-				"buchse_request"
-			],
-			[
-				"server",
-				"server"
-			],
-			[
-				"sevrer",
-				"server"
-			],
-			[
-				"cache",
-				"BuchseCacheAllPages"
-			],
-			[
-				"ls_d",
-				"ls_dynamic_array"
-			],
-			[
-				"ls_dy",
-				"ls_dynamic_array"
 			]
 		],
 		"width": 592.0
