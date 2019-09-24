@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <GL\gl.h>
+#include <al.h>
+#include <alc.h>
 
 typedef char utf8;
 typedef uint8_t u8;
@@ -21,6 +23,7 @@ typedef double r64;
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "include/stb_image.h"
+
 
 #define LS_STRING_IMPLEMENTATION
 enum ls_string_allocator_ {
@@ -49,6 +52,8 @@ WindowsReadFile(char *Filename, read_file *Result);
 //
 //
 
+#include "include/stb_vorbis.c"
+#include "openal.cpp"
 #include "opengl.cpp"
 #include "game.cpp"
 
@@ -256,6 +261,7 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
 
         InitOpenglContext(Window);
         InitOpengl();
+        InitOpenal();
 
         POINT MousePointer;
         GetCursorPos(&MousePointer);

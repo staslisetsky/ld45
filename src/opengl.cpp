@@ -33,7 +33,7 @@ DumpGlErrors(char *Section) {
 char Buffer[100];
 sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
       // WasmConsoleLog(Buffer);
-// Assert(false);
+Assert(false);
 }
 }
 
@@ -54,7 +54,7 @@ CreateShader(const char *String, GLuint Type)
   glGetShaderInfoLog(Shader, Length, 0, Log);
       // WasmConsoleLog("Shader compilation failed");
       // WasmConsoleLog(Log);
-  // Assert(false);
+  Assert(false);
   free(Log);
 }
 
@@ -182,6 +182,41 @@ InitOpengl()
     }
     )str";
 
+    const char *GlyphV = R"str(#version 300 es
+
+    in vec4 In_P;
+    in vec4 In_VertexColor;
+    in vec2 In_TexelUV;
+
+    out vec4 VertexColor;
+    out vec2 TexelUV;
+
+    layout(std140) uniform view
+    {
+        mat4 Projection;
+    } View;
+
+    void main()
+    {
+        gl_Position = View.Projection * In_P;
+        VertexColor = In_VertexColor;
+        TexelUV = In_TexelUV;
+    }
+    )str";
+
+    const char *GlyphF = R"str(#version 300 es
+    precision mediump float;
+    uniform sampler2D TextureSample;
+    in vec4 VertexColor;
+    in vec2 TexelUV;
+    out vec4 FragmentColor;
+    void main(void)
+    {
+        vec4 ColorSample = texture(TextureSample, TexelUV);
+        FragmentColor = vec4(VertexColor.rgb, ColorSample.r);
+    }
+    )str";
+
     const char *SDFV = R"str(#version 300 es
     in vec4 In_P;
     in vec4 In_VertexColor;
@@ -233,6 +268,7 @@ InitOpengl()
     Render.PlainShader = CreateProgram(PlainV, PlainF);
     Render.TexturedShader = CreateProgram(TexturedV, TexturedF);
     Render.SDFShader = CreateProgram(SDFV, SDFF);
+    Render.GlyphShader = CreateProgram(GlyphV, GlyphF);
 
     Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * 100);
     Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * 100);

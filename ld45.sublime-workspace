@@ -38,7 +38,7 @@
 			"file": "build.bat",
 			"settings":
 			{
-				"buffer_size": 596,
+				"buffer_size": 576,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -65,7 +65,7 @@
 			"file": "src/render.h",
 			"settings":
 			{
-				"buffer_size": 6149,
+				"buffer_size": 6444,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -109,7 +109,7 @@
 			"file": "src/opengl.cpp",
 			"settings":
 			{
-				"buffer_size": 10439,
+				"buffer_size": 11240,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -436,7 +436,7 @@
 	],
 	"find":
 	{
-		"height": 51.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -595,7 +595,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -650,13 +650,15 @@
 						{
 							"history_list_is_closing": true,
 							"spell_check": true,
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 830.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -672,8 +674,8 @@
 						"selection":
 						[
 							[
-								754,
-								754
+								7772,
+								7772
 							]
 						],
 						"settings":
@@ -684,10 +686,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 609.0,
+						"translation.y": 8585.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -696,15 +698,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								308,
-								308
+								292,
+								292
 							]
 						],
 						"settings":
@@ -715,7 +717,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
@@ -731,8 +733,8 @@
 						"selection":
 						[
 							[
-								619,
-								619
+								617,
+								617
 							]
 						],
 						"settings":
@@ -743,7 +745,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
@@ -759,8 +761,8 @@
 						"selection":
 						[
 							[
-								32475,
-								32475
+								32473,
+								32473
 							]
 						],
 						"settings":
@@ -782,15 +784,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6149,
+						"buffer_size": 6444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5970,
-								5970
+								0,
+								0
 							]
 						],
 						"settings":
@@ -800,10 +802,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5393.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -819,8 +821,8 @@
 						"selection":
 						[
 							[
-								6173,
-								6173
+								6198,
+								6198
 							]
 						],
 						"settings":
@@ -832,10 +834,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5559.0,
+						"translation.y": 5789.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -863,7 +865,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
@@ -894,7 +896,7 @@
 						"translation.y": 1555.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -910,8 +912,8 @@
 						"selection":
 						[
 							[
-								6196,
-								6196
+								6190,
+								6190
 							]
 						],
 						"settings":
@@ -934,15 +936,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10439,
+						"buffer_size": 11240,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5688,
-								5688
+								128,
+								128
 							]
 						],
 						"settings":
@@ -952,10 +954,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5477.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -998,8 +1000,8 @@
 						"selection":
 						[
 							[
-								490,
-								490
+								488,
+								488
 							]
 						],
 						"settings":
@@ -1056,8 +1058,8 @@
 						"selection":
 						[
 							[
-								1299,
-								1299
+								1297,
+								1297
 							]
 						],
 						"settings":
@@ -1099,7 +1101,7 @@
 						"translation.y": 5264.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
@@ -1136,15 +1138,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10439,
+						"buffer_size": 11240,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10002,
-								10002
+								5495,
+								5495
 							]
 						],
 						"settings":
@@ -1154,10 +1156,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8744.0,
+						"translation.y": 5786.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1166,15 +1168,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								375,
-								375
+								359,
+								359
 							]
 						],
 						"settings":
@@ -1225,7 +1227,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6149,
+						"buffer_size": 6444,
 						"regions":
 						{
 						},
@@ -1275,7 +1277,7 @@
 						"translation.y": 261.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -1304,7 +1306,7 @@
 						"translation.y": 13.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
@@ -1336,7 +1338,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
@@ -1398,7 +1400,7 @@
 						"translation.y": 1700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
@@ -1407,15 +1409,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								391,
-								391
+								375,
+								375
 							]
 						],
 						"settings":
@@ -1426,7 +1428,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
@@ -1456,7 +1458,7 @@
 						"translation.y": 2990.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
@@ -1485,7 +1487,7 @@
 						"translation.y": 1218.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
@@ -1501,8 +1503,8 @@
 						"selection":
 						[
 							[
-								1764,
-								1764
+								1760,
+								1760
 							]
 						],
 						"settings":
@@ -1515,13 +1517,13 @@
 						"translation.y": 2450.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 25,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 9,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1530,15 +1532,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								427,
-								427
+								262,
+								262
 							]
 						],
 						"settings":
@@ -1549,7 +1551,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1580,7 +1582,7 @@
 						"translation.y": 4755.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -1596,8 +1598,8 @@
 						"selection":
 						[
 							[
-								2175,
-								2175
+								2173,
+								2173
 							]
 						],
 						"settings":
@@ -1610,7 +1612,7 @@
 						"translation.y": 840.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
@@ -1626,8 +1628,8 @@
 						"selection":
 						[
 							[
-								6155,
-								6155
+								6433,
+								6433
 							]
 						],
 						"settings":
@@ -1639,10 +1641,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5277.0,
+						"translation.y": 5634.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1673,7 +1675,7 @@
 						"translation.y": 1767.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1703,7 +1705,7 @@
 						"translation.y": 1595.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -1712,15 +1714,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6149,
+						"buffer_size": 6444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								212,
-								212
+								5796,
+								5796
 							]
 						],
 						"settings":
@@ -1730,10 +1732,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5811.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1764,7 +1766,7 @@
 						"translation.y": 8323.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1773,15 +1775,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10439,
+						"buffer_size": 11240,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2467,
-								2471
+								2461,
+								2465
 							]
 						],
 						"settings":
@@ -1794,7 +1796,7 @@
 						"translation.y": 2580.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -1810,8 +1812,8 @@
 						"selection":
 						[
 							[
-								1794,
-								1794
+								1726,
+								1726
 							]
 						],
 						"settings":
@@ -1821,10 +1823,10 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1275.0,
+						"translation.y": 1248.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1832,7 +1834,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 51.0
+		"height": 38.0
 	},
 	"input":
 	{
@@ -1858,7 +1860,7 @@
 		"cols":
 		[
 			0.0,
-			0.1171875,
+			0.851041666667,
 			1.0
 		],
 		"rows":
@@ -1890,16 +1892,32 @@
 		"selected_items":
 		[
 			[
+				"fontg",
+				"src\\fontgen.cpp"
+			],
+			[
+				"bui",
+				"build.bat"
+			],
+			[
+				"ope",
+				"src\\opengl.cpp"
+			],
+			[
+				"opengl",
+				"src\\opengl.cpp"
+			],
+			[
 				"win",
 				"src\\windows_main.cpp"
 			],
 			[
-				"math",
-				"src\\ls_math.h"
+				"font",
+				"src\\fontgen.cpp"
 			],
 			[
-				"font",
-				"src\\font.h"
+				"math",
+				"src\\ls_math.h"
 			],
 			[
 				"render",
@@ -1914,20 +1932,12 @@
 				"src\\windows_main.cpp"
 			],
 			[
-				"fontg",
-				"src\\fontgen.cpp"
-			],
-			[
 				"windo",
 				"src\\windows_main.cpp"
 			],
 			[
 				"wind",
 				"src\\windows_main.cpp"
-			],
-			[
-				"bui",
-				"build.bat"
 			],
 			[
 				"font.",
@@ -1988,10 +1998,6 @@
 			[
 				"redner",
 				"src\\render.h"
-			],
-			[
-				"opengl",
-				"src\\opengl.cpp"
 			],
 			[
 				"rend",
@@ -2396,10 +2402,6 @@
 			[
 				"tod",
 				"todo.txt"
-			],
-			[
-				"buche",
-				"buchse.cpp"
 			]
 		],
 		"width": 0.0
@@ -2415,10 +2417,18 @@
 	},
 	"select_symbol":
 	{
-		"height": 392.0,
-		"last_filter": "game",
+		"height": 101.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"drawt",
+				"DrawText"
+			],
+			[
+				"render",
+				"render"
+			],
 			[
 				"game",
 				"Game"
@@ -2434,10 +2444,6 @@
 			[
 				"drawte",
 				"DrawText"
-			],
-			[
-				"render",
-				"render"
 			],
 			[
 				"gameini",
@@ -2926,15 +2932,11 @@
 			[
 				"ls_gap",
 				"ls_gap_array"
-			],
-			[
-				"ls",
-				"ls_parser"
 			]
 		],
 		"width": 592.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
