@@ -63,9 +63,15 @@ void
 Game(r32 dT)
 {
     static u32 FrameCounter = 0;
-    r32 Z = (sin((r32)FrameCounter / 100.0f) + 1.0f) / 2.0f * 200.0f + 20.0f;
+    r32 Z = (sin((r32)FrameCounter / 300.0f) + 1.0f) / 2.0f * 200.0f + 20.0f;
     // static r32 Y = 0.0f;
     DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, Z, "To Playing jazz vibe");
+    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 80.0, "To Playing jazz vibe");
+    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 80.1, "To Playing jazz vibe");
+
+    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 25.0001, "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+    // DrawText(&Render, v2{100, 150}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 25.0,    "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+
     ++FrameCounter;
     // Y += 0.01;
 }

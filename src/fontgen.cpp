@@ -72,9 +72,11 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
         *Glyph = {};
 
         Glyph->CodePoint = CharMapEntry->CodePoint;
-        Glyph->XAdvance = Metrics.horiAdvance / 64.0f;
-        Glyph->Width  = Metrics.width / 64.0f;
-        Glyph->Height = Metrics.height / 64.0f;
+        Glyph->XAdvance = (r32)Metrics.horiAdvance / 64.0f;
+        Glyph->Width  = (r32)Metrics.width / 64.0f;
+        Glyph->Height = (r32)Metrics.height / 64.0f;
+        Glyph->LeftBearing = (r32)Metrics.horiBearingX / 64.0;
+        Glyph->TopBearing = (r32)Metrics.horiBearingY / 64.0;
 
 
         //
@@ -82,13 +84,12 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
         //
 
         FT_Render_Glyph(Face->glyph, FT_RENDER_MODE_NORMAL);
-        Glyph->TopBearing = (r32)Face->glyph->bitmap_top;
-        Glyph->LeftBearing = (r32)Face->glyph->bitmap_left;
+        Glyph->BitmapTop = Face->glyph->bitmap_top;
+        Glyph->BitmapLeft = Face->glyph->bitmap_left;
+        Glyph->BitmapWidth = Face->glyph->bitmap.width;
+        Glyph->BitmapHeight = Face->glyph->bitmap.rows;
 
-        u32 GlyphBitmapW = Face->glyph->bitmap.width;
-        u32 GlyphBitmapH = Face->glyph->bitmap.rows;
-
-        if (XOffset + GlyphBitmapW >= Atlas.Width - 1) {
+        if (XOffset + Glyph->BitmapWidth >= Atlas.Width - 1) {
             XOffset = 1;
             YOffset += FontFullHeight + 1;
             Assert(YOffset + FontFullHeight + 1 < Atlas.Height);
@@ -96,8 +97,8 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
 
         r32 NormalizedXOffset = (r32)(XOffset) / Atlas.Width;
         r32 NormalizedYOffset = (r32)(YOffset) / Atlas.Height;
-        r32 NormalizedGlyphWidth = (r32)(GlyphBitmapW) / (r32)Atlas.Width;
-        r32 NormalizedGlyphHeight = (r32)(GlyphBitmapH) / (r32)Atlas.Height;
+        r32 NormalizedGlyphWidth = (r32)(Glyph->BitmapWidth) / (r32)Atlas.Width;
+        r32 NormalizedGlyphHeight = (r32)(Glyph->BitmapHeight) / (r32)Atlas.Height;
 
         Glyph->UV.TopLeft.x = NormalizedXOffset;
         Glyph->UV.TopLeft.y = NormalizedYOffset;
@@ -117,16 +118,16 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
             u8 *Source = Face->glyph->bitmap.buffer;
             u8 *DestRow = Location;
 
-            for (u32 y=0; y<GlyphBitmapH; ++y){
+            for (u32 y=0; y<Glyph->BitmapHeight; ++y){
                 u8 *Dest = DestRow;
-                for (u32 x=0; x<GlyphBitmapW; ++x) {
+                for (u32 x=0; x<Glyph->BitmapWidth; ++x) {
                     *Dest++ = *Source++;
                 }
                 DestRow += Atlas.Width;
             }
         }
 
-        XOffset += GlyphBitmapW + 1;
+        XOffset += Glyph->BitmapWidth + 1;
     }
 
     return Atlas;

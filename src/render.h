@@ -215,11 +215,11 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         r32 Left = XKern + Glyph->LeftBearing;
         r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
         r32 Width = (Glyph->Width + Left + Right) * Scale;
-        v2 QuadDim = v2{ Glyph->Width, Glyph->Height } * Scale;
+        v2 QuadDim = v2{ (r32)Glyph->BitmapWidth, (r32)Glyph->BitmapHeight } * Scale;
 
         v2 GlyphP = CurrentP;
         GlyphP.x += Left * Scale;
-        GlyphP.y += (Font->Baseline - Glyph->TopBearing) * Scale;
+        GlyphP.y += (Font->Baseline - Glyph->BitmapTop) * Scale;
 
         Vertices[0].P = v3{GlyphP.x, GlyphP.y, (r32)Z};
         Vertices[1].P = v3{GlyphP.x + QuadDim.x, GlyphP.y, (r32)Z};
@@ -260,6 +260,8 @@ DrawText(render *Render, v2 P, v4 Color, font_ FontId, r32 SizePt, char *Text)
 {
     cached_font *Font = 0;
 
+    static cached_font *LastFont = 0;
+
     s32 Index = -1;
     r32 MinSizeDiff = 999999.0f;
     for (u32 i=0; i<CachedFontCount; ++i) {
@@ -276,6 +278,13 @@ DrawText(render *Render, v2 P, v4 Color, font_ FontId, r32 SizePt, char *Text)
     if (Index >=0) {
         Font = FontCache + Index;
     }
+
+    // if (Font != LastFont) {
+    //     LastFont = Font;
+    //     char Buf[50];
+    //     sprintf(Buf, "Switch to font: %.2f\n", Font->SizePt);
+    //     OutputDebugString(Buf);
+    // }
 
     Assert(Font);
 
