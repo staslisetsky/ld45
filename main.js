@@ -198,7 +198,7 @@ Module['FS_createPath']('/data', 'sdf', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 351748, "filename": "/data/fonts.data"}, {"start": 351748, "audio": 0, "end": 355856, "filename": "/data/PT Sans_10.png"}, {"start": 355856, "audio": 0, "end": 423388, "filename": "/data/PT Sans_100.png"}, {"start": 423388, "audio": 0, "end": 433220, "filename": "/data/PT Sans_20.png"}, {"start": 433220, "audio": 0, "end": 590390, "filename": "/data/PT Sans_200.png"}, {"start": 590390, "audio": 0, "end": 607250, "filename": "/data/PT Sans_30.png"}, {"start": 607250, "audio": 0, "end": 1001284, "filename": "/data/PT Sans_400.png"}, {"start": 1001284, "audio": 0, "end": 1037763, "filename": "/data/PT Sans_60.png"}, {"start": 1037763, "audio": 1, "end": 1053906, "filename": "/data/audio/mwak.ogg"}, {"start": 1053906, "audio": 0, "end": 1483078, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 1483078, "audio": 0, "end": 1940526, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 1940526, "audio": 0, "end": 2353330, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 2353330, "audio": 0, "end": 2766794, "filename": "/data/images/karloff.png"}, {"start": 2766794, "audio": 0, "end": 2768436, "filename": "/data/sdf/A.png"}, {"start": 2768436, "audio": 0, "end": 3759668, "filename": "/data/sdf/msdfgen.exe"}, {"start": 3759668, "audio": 0, "end": 4188840, "filename": "/data/sdf/PT_Sans.ttf"}], "remote_package_size": 4188840, "package_uuid": "fb6c2b3b-634f-49b3-921d-5b6f5dd6db29"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021499, "filename": "/data/PT Sans_10.png"}, {"start": 14021499, "audio": 0, "end": 14144393, "filename": "/data/PT Sans_100.png"}, {"start": 14144393, "audio": 0, "end": 14165142, "filename": "/data/PT Sans_20.png"}, {"start": 14165142, "audio": 0, "end": 14450250, "filename": "/data/PT Sans_200.png"}, {"start": 14450250, "audio": 0, "end": 14483077, "filename": "/data/PT Sans_30.png"}, {"start": 14483077, "audio": 0, "end": 15208991, "filename": "/data/PT Sans_400.png"}, {"start": 15208991, "audio": 0, "end": 15280262, "filename": "/data/PT Sans_60.png"}, {"start": 15280262, "audio": 1, "end": 15296405, "filename": "/data/audio/mwak.ogg"}, {"start": 15296405, "audio": 0, "end": 15725577, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 15725577, "audio": 0, "end": 16183025, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 16183025, "audio": 0, "end": 16595829, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 16595829, "audio": 0, "end": 17009293, "filename": "/data/images/karloff.png"}, {"start": 17009293, "audio": 0, "end": 17010935, "filename": "/data/sdf/A.png"}, {"start": 17010935, "audio": 0, "end": 18002167, "filename": "/data/sdf/msdfgen.exe"}, {"start": 18002167, "audio": 0, "end": 18431339, "filename": "/data/sdf/PT_Sans.ttf"}], "remote_package_size": 18431339, "package_uuid": "3d869348-6fea-4359-8039-cb87bd7bf023"});
 
 })();
 
@@ -1403,11 +1403,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 14528,
+    STACK_BASE = 14672,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5257408,
-    DYNAMIC_BASE = 5257408,
-    DYNAMICTOP_PTR = 14496;
+    STACK_MAX = 5257552,
+    DYNAMIC_BASE = 5257552,
+    DYNAMICTOP_PTR = 14640;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1927,7 +1927,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 13504;
+// STATICTOP = STATIC_BASE + 13648;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1938,7 +1938,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 14512
+var tempDoublePtr = 14656
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much

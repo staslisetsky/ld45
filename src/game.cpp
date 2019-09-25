@@ -20,8 +20,8 @@ GameInit()
         memcpy(Font->Name, Packed->Name, 20);
         Font->Id = Packed->Id;
         Font->GlyphCount = Packed->GlyphCount;
-        Font->Atlas.Width = Packed->AltasWidth;
-        Font->Atlas.Height = Packed->AltasHeight;
+        Font->Atlas.Width = Packed->AtlasWidth;
+        Font->Atlas.Height = Packed->AtlasHeight;
         Font->SizePt = Packed->SizePt;
         Font->PxPerFontUnit = Packed->PxPerFontUnit;
         Font->Height = Packed->Height;
@@ -41,7 +41,7 @@ GameInit()
         At += sizeof(cached_glyph) * Font->GlyphCount;
 
         Font->Advances = (r32 *)At;
-        At += sizeof(r32) * Font->GlyphCount;
+        At += sizeof(r32) * Font->GlyphCount * Font->GlyphCount;
 
         char Name[30];
         sprintf(Name, "%s_%d.png", Font->Name, (u32)Font->SizePt);
@@ -63,9 +63,11 @@ void
 Game(r32 dT)
 {
     static u32 FrameCounter = 0;
-    r32 Z = (sin((r32)FrameCounter / 300.0f) + 1.0f) / 2.0f * 200.0f;
-    DrawText(&Render, v2{100, 100}, v4{1.0, 0.0, 0.0, 1.0f}, Font_PTSans, Z, "Hello wolrd!");
+    r32 Z = (sin((r32)FrameCounter / 100.0f) + 1.0f) / 2.0f * 200.0f + 20.0f;
+    // static r32 Y = 0.0f;
+    DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, Z, "To Playing jazz vibe");
     ++FrameCounter;
+    // Y += 0.01;
 }
 
 // tool -font PT_Sans -size 16

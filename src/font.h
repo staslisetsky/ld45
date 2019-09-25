@@ -17,11 +17,15 @@ struct uincode_character_map {
 struct cached_glyph {
     u16 CodePoint;
 
-    r32 Width;
-    r32 Height;
+    u32 BitmapWidth;
+    u32 BitmapHeight;
+    u32 BitmapLeft;
+    u32 BitmapTop;
 
     r32 LeftBearing;
     r32 TopBearing;
+    r32 Width;
+    r32 Height;
     r32 XAdvance;
 
     u32 Texture;
@@ -60,8 +64,8 @@ struct packed_font {
     font_ Id;
     u32 GlyphCount;
 
-    u32 AltasWidth;
-    u32 AltasHeight;
+    u32 AtlasWidth;
+    u32 AtlasHeight;
     r32 SizePt;
     r32 PxPerFontUnit;
     r32 Height;
@@ -106,7 +110,7 @@ GetKerningForPair(cached_font *Font, u16 CodePointA, u16 CodePointB)
     u32 CodePointAIndex = LocateCodepointIndex(Font, CodePointA);
     u32 CodePointBIndex = LocateCodepointIndex(Font, CodePointB);
 
-    // Result = Font->Advances[CodePointAIndex * Font->BaseFont->CodePointCount + CodePointBIndex] / 64.0f;
+    Result = Font->Advances[CodePointAIndex * Font->GlyphCount + CodePointBIndex];
 
     return Result;
 }

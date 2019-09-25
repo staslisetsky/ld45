@@ -215,6 +215,8 @@ InitOpengl()
     {
         vec4 ColorSample = texture(TextureSample, TexelUV);
         FragmentColor = vec4(VertexColor.rgb, ColorSample.r);
+        // vec3 Mixed = mix(vec3(1.0, 0.0, 1.0), VertexColor.rgb, ColorSample.r);
+        // FragmentColor = vec4(Mixed, 1.0);
     }
     )str";
 
@@ -271,10 +273,9 @@ InitOpengl()
     Render.SDFShader = CreateProgram(SDFV, SDFF);
     Render.GlyphShader = CreateProgram(GlyphV, GlyphF);
 
-    Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * 100);
-    Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * 100);
-
-    Render.Commands = (render_command *)malloc(sizeof(render_command) * 100);
+    Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * VERTEX_BUFFER_SIZE);
+    Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * VERTEX_BUFFER_SIZE);
+    Render.Commands = (render_command *)malloc(sizeof(render_command) * COMMAND_BUFFER_SIZE);
 
     DumpGlErrors("Bind buffers");
     glBindBuffer(GL_ARRAY_BUFFER, Render.ViewUniformBuffer);
@@ -325,6 +326,7 @@ OpenglUploadTexture(image Image)
    // DumpGlErrors("Upload texture");
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_FILTER, GL_LINEAR);
    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 

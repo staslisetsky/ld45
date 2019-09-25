@@ -58,6 +58,8 @@ struct render {
     u32 CommandCount;
 };
 
+#define VERTEX_BUFFER_SIZE 1000
+#define COMMAND_BUFFER_SIZE 100
 
 m4x4
 GetOrthoProjectionMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight)
@@ -82,6 +84,8 @@ GetOrthoProjectionMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight)
 void
 AddRenderCommand(render *Render, draw_mode_ Mode, u32 Offset, u32 PrimitiveCount, command_data Data)
 {
+    Assert(Render->CommandCount + 1 <= COMMAND_BUFFER_SIZE);
+
     render_command *Command = 0;
     if (!Render->CommandCount) {
         Command = Render->Commands + 0;
@@ -114,6 +118,8 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
 {
     vertex_xyzrgba *Vertices = Render->PlainVertices + Render->PlainVertexCount;
 
+    Assert(Render->PlainVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+
     Vertices[0].P = v3{P.x, P.y, Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, Z};
     Vertices[2].P = v3{P.x, P.y + Dim.y, Z};
@@ -134,6 +140,8 @@ void
 DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
 {
     vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
+
+    Assert(Render->TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, (r32)Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
@@ -161,6 +169,8 @@ void
 DrawGlyph(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
 {
     vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
+
+    Assert(Render->TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, (r32)Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
@@ -197,25 +207,27 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
     for (u32 i=0; i<Len; ++i) {
         vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
 
+        Assert(Render->TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
+
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
-        v2 Dim = v2{ Glyph->Width, Glyph->Height } * Scale;
 
         r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
         r32 Left = XKern + Glyph->LeftBearing;
         r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
         r32 Width = (Glyph->Width + Left + Right) * Scale;
+        v2 QuadDim = v2{ Glyph->Width, Glyph->Height } * Scale;
 
         v2 GlyphP = CurrentP;
-        GlyphP.y += (Font->Baseline - Glyph->TopBearing) * Scale;
         GlyphP.x += Left * Scale;
+        GlyphP.y += (Font->Baseline - Glyph->TopBearing) * Scale;
 
         Vertices[0].P = v3{GlyphP.x, GlyphP.y, (r32)Z};
-        Vertices[1].P = v3{GlyphP.x + Dim.x, GlyphP.y, (r32)Z};
-        Vertices[2].P = v3{GlyphP.x, GlyphP.y + Dim.y, (r32)Z};
+        Vertices[1].P = v3{GlyphP.x + QuadDim.x, GlyphP.y, (r32)Z};
+        Vertices[2].P = v3{GlyphP.x, GlyphP.y + QuadDim.y, (r32)Z};
 
-        Vertices[3].P = v3{GlyphP.x + Dim.x, GlyphP.y, (r32)Z};
-        Vertices[4].P = v3{GlyphP.x, GlyphP.y + Dim.y, (r32)Z};
-        Vertices[5].P = v3{GlyphP.x + Dim.x, GlyphP.y + Dim.y, (r32)Z};
+        Vertices[3].P = v3{GlyphP.x + QuadDim.x, GlyphP.y, (r32)Z};
+        Vertices[4].P = v3{GlyphP.x, GlyphP.y + QuadDim.y, (r32)Z};
+        Vertices[5].P = v3{GlyphP.x + QuadDim.x, GlyphP.y + QuadDim.y, (r32)Z};
 
         Vertices[0].Color = Color;
         Vertices[1].Color = Color;
