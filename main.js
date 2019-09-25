@@ -119,9 +119,10 @@ Module.expectedDataFileDownloads++;
       if (!check) throw msg + new Error().stack;
     }
 Module['FS_createPath']('/', 'data', true, true);
+Module['FS_createPath']('/data', 'audio', true, true);
+Module['FS_createPath']('/data', 'fonts', true, true);
 Module['FS_createPath']('/data', 'images', true, true);
 Module['FS_createPath']('/data', 'sdf', true, true);
-Module['FS_createPath']('/data', 'shaders', true, true);
 
     function DataRequest(start, end, audio) {
       this.start = start;
@@ -197,7 +198,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 413464, "filename": "/data/images/karloff.png"}, {"start": 413464, "audio": 0, "end": 414802, "filename": "/data/sdf/A.png"}, {"start": 414802, "audio": 0, "end": 415579, "filename": "/data/shaders/Glyph.frag"}, {"start": 415579, "audio": 0, "end": 415954, "filename": "/data/shaders/Glyph.vert"}, {"start": 415954, "audio": 0, "end": 418533, "filename": "/data/shaders/Gradient.frag"}, {"start": 418533, "audio": 0, "end": 418861, "filename": "/data/shaders/Gradient.vert"}, {"start": 418861, "audio": 0, "end": 419661, "filename": "/data/shaders/Plain.frag"}, {"start": 419661, "audio": 0, "end": 419955, "filename": "/data/shaders/Plain.vert"}, {"start": 419955, "audio": 0, "end": 421782, "filename": "/data/shaders/TexturedQuad.frag"}, {"start": 421782, "audio": 0, "end": 422169, "filename": "/data/shaders/TexturedQuad.vert"}], "remote_package_size": 422169, "package_uuid": "90359b35-e9e3-4eff-9b2b-0b8038ddee38"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 351748, "filename": "/data/fonts.data"}, {"start": 351748, "audio": 0, "end": 355856, "filename": "/data/PT Sans_10.png"}, {"start": 355856, "audio": 0, "end": 423388, "filename": "/data/PT Sans_100.png"}, {"start": 423388, "audio": 0, "end": 433220, "filename": "/data/PT Sans_20.png"}, {"start": 433220, "audio": 0, "end": 590390, "filename": "/data/PT Sans_200.png"}, {"start": 590390, "audio": 0, "end": 607250, "filename": "/data/PT Sans_30.png"}, {"start": 607250, "audio": 0, "end": 1001284, "filename": "/data/PT Sans_400.png"}, {"start": 1001284, "audio": 0, "end": 1037763, "filename": "/data/PT Sans_60.png"}, {"start": 1037763, "audio": 1, "end": 1053906, "filename": "/data/audio/mwak.ogg"}, {"start": 1053906, "audio": 0, "end": 1483078, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 1483078, "audio": 0, "end": 1940526, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 1940526, "audio": 0, "end": 2353330, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 2353330, "audio": 0, "end": 2766794, "filename": "/data/images/karloff.png"}, {"start": 2766794, "audio": 0, "end": 2768436, "filename": "/data/sdf/A.png"}, {"start": 2768436, "audio": 0, "end": 3759668, "filename": "/data/sdf/msdfgen.exe"}, {"start": 3759668, "audio": 0, "end": 4188840, "filename": "/data/sdf/PT_Sans.ttf"}], "remote_package_size": 4188840, "package_uuid": "fb6c2b3b-634f-49b3-921d-5b6f5dd6db29"});
 
 })();
 
@@ -1402,11 +1403,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 12752,
+    STACK_BASE = 14528,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5255632,
-    DYNAMIC_BASE = 5255632,
-    DYNAMICTOP_PTR = 12720;
+    STACK_MAX = 5257408,
+    DYNAMIC_BASE = 5257408,
+    DYNAMICTOP_PTR = 14496;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1891,8 +1892,8 @@ Module['asm'] = function(global, env, providedBuffer) {
   ;
   // import table
   env['table'] = wasmTable = new WebAssembly.Table({
-    'initial': 36,
-    'maximum': 36,
+    'initial': 240,
+    'maximum': 240,
     'element': 'anyfunc'
   });
   // With the wasm backend __memory_base and __table_base and only needed for
@@ -1912,7 +1913,12 @@ var tempI64;
 
 // === Body ===
 
-var ASM_CONSTS = [function($0) { console.log(UTF8ToString($0)) }];
+var ASM_CONSTS = [function($0, $1) { console.log('Assertion failed ' + UTF8ToString($0) + ': ' + $1) },
+ function($0) { console.log(UTF8ToString($0)) }];
+
+function _emscripten_asm_const_iii(code, a0, a1) {
+  return ASM_CONSTS[code](a0, a1);
+}
 
 function _emscripten_asm_const_ii(code, a0) {
   return ASM_CONSTS[code](a0);
@@ -1921,7 +1927,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 11728;
+// STATICTOP = STATIC_BASE + 13504;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1932,7 +1938,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 12736
+var tempDoublePtr = 14512
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -5101,7 +5107,19 @@ function copyTempDouble(ptr) {
         return low;
       },getZero:function() {
         assert(SYSCALLS.get() === 0);
-      }};function ___syscall140(which, varargs) {SYSCALLS.varargs = varargs;
+      }};function ___syscall12(which, varargs) {SYSCALLS.varargs = varargs;
+  try {
+   // chdir
+      var path = SYSCALLS.getStr();
+      FS.chdir(path);
+      return 0;
+    } catch (e) {
+    if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
+    return -e.errno;
+  }
+  }
+
+  function ___syscall140(which, varargs) {SYSCALLS.varargs = varargs;
   try {
    // llseek
       var stream = SYSCALLS.getStreamFromFD(), offset_high = SYSCALLS.get(), offset_low = SYSCALLS.get(), result = SYSCALLS.get(), whence = SYSCALLS.get();
@@ -6971,6 +6989,12 @@ function copyTempDouble(ptr) {
       GLctx.vertexAttribPointer(index, size, type, !!normalized, stride, ptr);
     }
 
+  var _llvm_sin_f32=Math_sin;
+
+  function _llvm_trap() {
+      abort('trap!');
+    }
+
   
   function _emscripten_memcpy_big(dest, src, num) {
       HEAPU8.set(HEAPU8.subarray(src, src+num), dest);
@@ -7074,6 +7098,7 @@ var asmLibraryArg = {
   "___assert_fail": ___assert_fail,
   "___lock": ___lock,
   "___setErrNo": ___setErrNo,
+  "___syscall12": ___syscall12,
   "___syscall140": ___syscall140,
   "___syscall145": ___syscall145,
   "___syscall221": ___syscall221,
@@ -7092,6 +7117,7 @@ var asmLibraryArg = {
   "__registerKeyEventCallback": __registerKeyEventCallback,
   "__registerMouseEventCallback": __registerMouseEventCallback,
   "_emscripten_asm_const_ii": _emscripten_asm_const_ii,
+  "_emscripten_asm_const_iii": _emscripten_asm_const_iii,
   "_emscripten_get_heap_size": _emscripten_get_heap_size,
   "_emscripten_get_now": _emscripten_get_now,
   "_emscripten_memcpy_big": _emscripten_memcpy_big,
@@ -7143,6 +7169,8 @@ var asmLibraryArg = {
   "_glUniformBlockBinding": _glUniformBlockBinding,
   "_glUseProgram": _glUseProgram,
   "_glVertexAttribPointer": _glVertexAttribPointer,
+  "_llvm_sin_f32": _llvm_sin_f32,
+  "_llvm_trap": _llvm_trap,
   "abortOnCannotGrowMemory": abortOnCannotGrowMemory,
   "demangle": demangle,
   "demangleAll": demangleAll,

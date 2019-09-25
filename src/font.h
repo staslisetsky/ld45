@@ -1,3 +1,8 @@
+enum font_ {
+    Font_PTSans,
+    Font_Count,
+};
+
 struct codepoint_pair {
     u16 UnicodeCodepointA;
     u16 UnicodeCodepointB;
@@ -27,10 +32,12 @@ struct bitmap {
     u8 *Data;
     u32 Width;
     u32 Height;
+    u32 Texture;
 };
 
 struct cached_font {
     char Name[20];
+    font_ Id;
     bitmap Atlas;
 
     r32 SizePt;
@@ -46,6 +53,22 @@ struct cached_font {
     cached_glyph *Glyphs;
     r32 *Advances;
     u32 GlyphCount;
+};
+
+struct packed_font {
+    char Name[20];
+    font_ Id;
+    u32 GlyphCount;
+
+    u32 AltasWidth;
+    u32 AltasHeight;
+    r32 SizePt;
+    r32 PxPerFontUnit;
+    r32 Height;
+    r32 Baseline;
+    r32 BaselineSpacing;
+    r32 Ascender;
+    r32 Descender;
 };
 
 struct file_header {
@@ -87,3 +110,6 @@ GetKerningForPair(cached_font *Font, u16 CodePointA, u16 CodePointB)
 
     return Result;
 }
+
+static cached_font FontCache[20];
+static u32 CachedFontCount = 0;

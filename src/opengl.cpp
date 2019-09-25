@@ -210,6 +210,7 @@ InitOpengl()
     in vec4 VertexColor;
     in vec2 TexelUV;
     out vec4 FragmentColor;
+
     void main(void)
     {
         vec4 ColorSample = texture(TextureSample, TexelUV);
@@ -301,32 +302,34 @@ InitOpengl()
 GLuint
 OpenglUploadTexture(image Image)
 {
- GLuint Texture;
- glGenTextures(1, &Texture);
- glBindTexture(GL_TEXTURE_2D, Texture);
+    GLuint Texture;
+    glGenTextures(1, &Texture);
+    glBindTexture(GL_TEXTURE_2D, Texture);
 
- GLint ImageMode = GL_RGB;
- GLint InternalFormat = GL_RGB8;
+    GLint ImageMode = GL_RGB;
+    GLint InternalFormat = GL_RGB8;
 
- if (Image.N == 4) {
-  ImageMode = GL_RGBA;
-  InternalFormat = GL_RGBA8;
-} else if (Image.N == 1) {
-  ImageMode = GL_RED;
-  InternalFormat = GL_RED;
-}
+    if (Image.N == 4) {
+        ImageMode = GL_RGBA;
+        InternalFormat = GL_RGBA8;
+    } else if (Image.N == 1) {
+        ImageMode = GL_RED;
+        InternalFormat = GL_R8;
+    }
 
-glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat,
-             Image.Width, Image.Height,
-             0, ImageMode, GL_UNSIGNED_BYTE, Image.Data);
+    // note: Not GL_RED not supported in GL ES
+
+    glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat,
+                 Image.Width, Image.Height,
+                 0, ImageMode, GL_UNSIGNED_BYTE, Image.Data);
    // DumpGlErrors("Upload texture");
 
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
 
-return Texture;
+  return Texture;
 }
 
 void
@@ -361,7 +364,6 @@ OpenglRender(render Render)
         if (Command.Data.Shader == Render.PlainShader) {
             glBindVertexArray(Render.VertexArrayPlain);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-            DumpGlErrors("Bind buffers");
         } else if (Command.Data.Shader == Render.TexturedShader) {
             glBindVertexArray(Render.VertexArrayTextured);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
@@ -373,6 +375,11 @@ OpenglRender(render Render)
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
             glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
 
+            // EM_ASM(console.log($0), Command.Data.Texture);
+        } else if (Command.Data.Shader == Render.GlyphShader) {
+            glBindVertexArray(Render.VertexArrayTextured);
+            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
+            glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
             // EM_ASM(console.log($0), Command.Data.Texture);
         }
 

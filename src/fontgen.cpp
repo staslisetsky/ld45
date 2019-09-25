@@ -56,8 +56,11 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
     u32 YOffset = 1;
 
     for (u32 i = 0; i < Font.GlyphCount; ++i) {
-        uincode_character_map *CharMapEntry = Font.Map + i;
 
+        uincode_character_map *CharMapEntry = Font.Map + i;
+        if (CharMapEntry->CodePoint > 0xb0) {
+            break;
+        }
         FT_Set_Char_Size(Face, 0, SizePx * 64, PPI, PPI);
         FT_Load_Glyph(Face, CharMapEntry->Index, FT_LOAD_NO_HINTING | FT_LOAD_NO_AUTOHINT);
 
@@ -128,11 +131,11 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
 }
 
 cached_font
-FreetypeLoadFont(char *Filename, char *FontName, r32 SizePt, u8 RetinaScale, u32 AtlasW, u32 AtlasH)
+FreetypeLoadFont(char *Filename, font_ FontId, r32 SizePt, u8 RetinaScale, u32 AtlasW, u32 AtlasH)
 {
     cached_font Font = {};
-    sprintf(Font.Name, "%s", FontName);
     Font.SizePt = SizePt;
+    Font.Id = FontId;
 
     r32 SizePx = PointsToPixels(SizePt, SYSTEM_PPI) * RetinaScale;
 
@@ -142,6 +145,8 @@ FreetypeLoadFont(char *Filename, char *FontName, r32 SizePt, u8 RetinaScale, u32
 
     Error = FT_New_Face(FreeType, Filename, 0, &Face);
     FT_Select_Charmap(Face, FT_ENCODING_UNICODE);
+
+    sprintf(Font.Name, "%s", Face->family_name);
 
     u32 CodePointCount = Face->num_glyphs;
     Font.Advances = (r32 *)malloc(sizeof(r32) * CodePointCount * CodePointCount);
@@ -154,11 +159,13 @@ FreetypeLoadFont(char *Filename, char *FontName, r32 SizePt, u8 RetinaScale, u32
 
     CodePoint = FT_Get_First_Char(Face, &GlyphIndex);
     while (GlyphIndex != 0) {
-        uincode_character_map *MapEntry  = Font.Map + GlyphIndex;
+        uincode_character_map *MapEntry = Font.Map + GlyphIndex;
         MapEntry->Index = GlyphIndex;
         MapEntry->CodePoint = CodePoint;
         CodePoint = FT_Get_Next_Char(Face, CodePoint, &GlyphIndex);
     }
+
+    Font.Map[0] = {};
 
     Font.PxPerFontUnit = SizePx / (Face->units_per_EM);
     // Font.MaxGlyphDim.x = Font.PxPerFontUnit * Face->max_advance_width;
@@ -184,8 +191,24 @@ FreetypeLoadFont(char *Filename, char *FontName, r32 SizePt, u8 RetinaScale, u32
 s32
 WriteFont(FILE *File, cached_font Font)
 {
+    packed_font Packed = {};
+
+    memcpy(Packed.Name, Font.Name, 20);
+
+    Packed.Id = Font.Id;
+    Packed.GlyphCount = Font.GlyphCount;
+    Packed.AltasWidth = Font.Atlas.Width;
+    Packed.AltasHeight = Font.Atlas.Height;
+    Packed.SizePt = Font.SizePt;
+    Packed.PxPerFontUnit = Font.PxPerFontUnit;
+    Packed.Height = Font.Height;
+    Packed.Baseline = Font.Baseline;
+    Packed.BaselineSpacing = Font.BaselineSpacing;
+    Packed.Ascender = Font.Ascender;
+    Packed.Descender = Font.Descender;
+
     s32 Size = 0;
-    Size += fwrite(&Font, 1, sizeof(Font), File);
+    Size += fwrite(&Packed, 1, sizeof(Packed), File);
     Size += fwrite(Font.Map, 1, sizeof(uincode_character_map) * Font.GlyphCount, File);
     Size += fwrite(Font.Glyphs, 1, sizeof(cached_glyph) * Font.GlyphCount, File);
     Size += fwrite(Font.Advances, 1, sizeof(r32) * Font.GlyphCount, File);
@@ -198,7 +221,16 @@ void main()
     cached_font Fonts[20];
     u32 FontCount = 0;
 
-    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", "PT_Sans", 20.0f, 1, 512, 512);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 10.0f, 1, 128, 128);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 20.0f, 1, 256, 256);
+
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 30.0f, 1, 512, 256);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 60.0f, 1, 512, 512);
+
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 100.0f, 1, 1024, 1024);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 200.0f, 1, 2048, 2048);
+
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 400.0f, 1, 4096, 4096);
 
     FILE *File = fopen("fonts.data", "wb");
 

@@ -21,3 +21,5 @@ struct read_file {
     u8 *Data;
     u32 Size;
 };
+
+bool PlatformReadFile(char *Filename, read_file *Result);

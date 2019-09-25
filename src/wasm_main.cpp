@@ -3,12 +3,10 @@
 #include <emscripten/html5.h>
 
 #include <stdint.h>
+#include <unistd.h>
 #include <malloc.h>
 
 #include <GLES3/gl3.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 typedef char utf8;
 typedef uint8_t u8;
@@ -23,21 +21,29 @@ typedef s32 b32;
 typedef float r32;
 typedef double r64;
 
-void
-WasmConsoleLog(const char *String)
-{
-   EM_ASM(console.log(UTF8ToString($0)), String);
-}
+#define ArrayCount(Array) ((sizeof(Array)) / (sizeof(Array[0])))
+#define Assert(Expression) if(!(Expression)) { EM_ASM(console.log('Assertion failed ' + UTF8ToString($0) + ': ' + $1), __FUNCTION__, __LINE__); *(int *)0=0; }
 
-#include "ls_math.h"
-#include "render.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "include/stb_image.h"
+
+#define LS_STRING_IMPLEMENTATION
+enum ls_string_allocator_ {
+};
+#include "ls_string.h"
+ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
+
 #include "wasm_keymap.h"
-#include "platform.h"
+#include "ls_math.h"
+#include "font.h"
 
 struct wasm_state {
    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE WebGLContext;
    u32 Frame;
 };
+
+#include "render.h"
+#include "platform.h"
 
 wasm_state State = {};
 render Render = {};
@@ -46,6 +52,12 @@ input Input = {};
 //
 //
 //
+
+void
+WasmConsoleLog(const char *String)
+{
+   EM_ASM(console.log(UTF8ToString($0)), String);
+}
 
 #include "opengl.cpp"
 #include "game.cpp"
@@ -103,6 +115,8 @@ WasmMainLoop()
 
    Render.Screen.x = 1000;
    Render.Screen.y = 500;
+
+
    Game(0.16f);
    OpenglRender(Render);
 
@@ -183,7 +197,7 @@ WasmGetFileSize(FILE *File)
 }
 
 bool
-ReadFile(char *Filename, read_file *Result)
+PlatformReadFile(char *Filename, read_file *Result)
 {
    FILE *File = fopen(Filename, "rb");
 
@@ -223,18 +237,8 @@ int main() {
 
       InitOpengl();
 
-      {
-         image Image = {};
-         Image.Data = stbi_load("/data/sdf/A.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
-         Render.TestTexture = OpenglUploadTexture(Image);
-      }
-
-      // {
-      //    image Image;
-      //    Image.Data = stbi_load("/assets/karloff.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
-      //    EM_ASM(console.log('Loaded Image w: ' + $0 + ', h:' + $1), Image.Width, Image.Height);
-      //    Render.TestTexture = OpenglUploadTexture(Image);
-      // // }
+      chdir("/data");
+      GameInit();
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);
       Result = emscripten_set_keyup_callback("#body", 0, false, WasmKeyEventCallback);

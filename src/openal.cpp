@@ -58,9 +58,9 @@ InitOpenal()
         Samples += Read;
     } while (Read);
 
-    alBufferData(Sound.Sounds[Sound_Mwak].Buffer, AL_FORMAT_MONO16, Buffer, 44100 * sizeof(short), 44100);
-    alSourcei(Sound.MainSource, AL_BUFFER, Sound.Sounds[Sound_Mwak].Buffer);
-    alSourcePlay(Sound.MainSource);
+    // alBufferData(Sound.Sounds[Sound_Mwak].Buffer, AL_FORMAT_MONO16, Buffer, 44100 * sizeof(short), 44100);
+    // alSourcei(Sound.MainSource, AL_BUFFER, Sound.Sounds[Sound_Mwak].Buffer);
+    // alSourcePlay(Sound.MainSource);
 }
 
 // Sound::Play(Sound_Pew);

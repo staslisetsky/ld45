@@ -24,7 +24,6 @@ typedef double r64;
 #define STB_IMAGE_IMPLEMENTATION
 #include "include/stb_image.h"
 
-
 #define LS_STRING_IMPLEMENTATION
 enum ls_string_allocator_ {
 };
@@ -44,9 +43,6 @@ static BOOL GlobalRunning = true;
 
 static render Render = {};
 static input Input = {};
-
-bool
-WindowsReadFile(char *Filename, read_file *Result);
 
 //
 //
@@ -155,7 +151,7 @@ GetFileSize(FILE *File)
 }
 
 bool
-WindowsReadFile(char *Filename, read_file *Result)
+PlatformReadFile(char *Filename, read_file *Result)
 {
    FILE *File = fopen(Filename, "rb");
 

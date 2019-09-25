@@ -187,25 +187,35 @@ DrawGlyph(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
 }
 
 void
-DrawText(render *Render, v2 P, r32 Z, v4 Color, cached_font *Font, char *Text)
+DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text)
 {
     u32 Len = strlen(Text);
 
     v2 CurrentP = P;
+    u32 PreviousCodePoint = 0;
 
     for (u32 i=0; i<Len; ++i) {
         vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
 
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
-        v2 Dim = { Glyph->Width, Glyph->Height };
+        v2 Dim = v2{ Glyph->Width, Glyph->Height } * Scale;
 
-        Vertices[0].P = v3{CurrentP.x, CurrentP.y, (r32)Z};
-        Vertices[1].P = v3{CurrentP.x + Dim.x, CurrentP.y, (r32)Z};
-        Vertices[2].P = v3{CurrentP.x, CurrentP.y + Dim.y, (r32)Z};
+        r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
+        r32 Left = XKern + Glyph->LeftBearing;
+        r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
+        r32 Width = (Glyph->Width + Left + Right) * Scale;
 
-        Vertices[3].P = v3{CurrentP.x + Dim.x, CurrentP.y, (r32)Z};
-        Vertices[4].P = v3{CurrentP.x, CurrentP.y + Dim.y, (r32)Z};
-        Vertices[5].P = v3{CurrentP.x + Dim.x, CurrentP.y + Dim.y, (r32)Z};
+        v2 GlyphP = CurrentP;
+        GlyphP.y += (Font->Baseline - Glyph->TopBearing) * Scale;
+        GlyphP.x += Left * Scale;
+
+        Vertices[0].P = v3{GlyphP.x, GlyphP.y, (r32)Z};
+        Vertices[1].P = v3{GlyphP.x + Dim.x, GlyphP.y, (r32)Z};
+        Vertices[2].P = v3{GlyphP.x, GlyphP.y + Dim.y, (r32)Z};
+
+        Vertices[3].P = v3{GlyphP.x + Dim.x, GlyphP.y, (r32)Z};
+        Vertices[4].P = v3{GlyphP.x, GlyphP.y + Dim.y, (r32)Z};
+        Vertices[5].P = v3{GlyphP.x + Dim.x, GlyphP.y + Dim.y, (r32)Z};
 
         Vertices[0].Color = Color;
         Vertices[1].Color = Color;
@@ -223,11 +233,40 @@ DrawText(render *Render, v2 P, r32 Z, v4 Color, cached_font *Font, char *Text)
 
         command_data Data = {};
         Data.Shader = Render->GlyphShader;
-        Data.Texture = Render->TestTexture;
+        Data.Texture = Font->Atlas.Texture;
 
         AddRenderCommand(Render, DrawMode_Quad, Render->TexturedVertexCount, 1, Data);
         Render->TexturedVertexCount += 6;
 
-        CurrentP.x += Glyph->XAdvance;
+        CurrentP.x += Width;
+        PreviousCodePoint = Glyph->CodePoint;
     }
+}
+
+void
+DrawText(render *Render, v2 P, v4 Color, font_ FontId, r32 SizePt, char *Text)
+{
+    cached_font *Font = 0;
+
+    s32 Index = -1;
+    r32 MinSizeDiff = 999999.0f;
+    for (u32 i=0; i<CachedFontCount; ++i) {
+        cached_font *Font = FontCache + i;
+        if (Font->Id == FontId) {
+            r32 Diff = Abs_r32(SizePt - Font->SizePt);
+            if (Diff < MinSizeDiff) {
+                Index = i;
+                MinSizeDiff = Diff;
+            }
+        }
+    }
+
+    if (Index >=0) {
+        Font = FontCache + Index;
+    }
+
+    Assert(Font);
+
+    r32 Scale = SizePt / Font->SizePt;
+    DrawText(Render, P, 1.0f, Scale, Color, Font, Text);
 }

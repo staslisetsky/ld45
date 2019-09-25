@@ -483,8 +483,6 @@ operator-=(v3 &A, v3 B)
     return(A);
 }
 
-#ifdef GRAPHENE_MATH_IMPLEMENTATION
-
 inline v2
 V2(r32 X, r32 Y) {
     v2 Result;
@@ -1424,4 +1422,3 @@ WithinThreshold_v2(v2 A, r32 T) {
     return (Abs_r32(A.x) <= T && Abs(A.y) <= T);
 }
 
-#endif // IMPLEMENTATION

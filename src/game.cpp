@@ -1,75 +1,70 @@
-// enum font_ {
-//     Font_Default,
-//     Font_PTSans,
-// };
-
-// enum font_style_ {
-//     FontStyle_Normal,
-//     FontStyle_Bold,
-//     FontStyle_Italic,
-// };
-
-// struct font {
-//     font_ Font;
-//     font_style_ Style;
-//     r32 SizePt;
-//     r32 SizePx;
-
-//     glyph *Glyphs;
-//     u32 GlyphCount;
-// };
-
-// static font Fonts[10] = {};
-// static u32 FontCount;
-static cached_font *FontCache[20];
-static u32 CachedFontCount = 0;
-
 void
 GameInit()
 {
     read_file FontFile;
-    WindowsReadFile("fonts.data", &FontFile);
+    PlatformReadFile("fonts.data", &FontFile);
 
     u8 *At = FontFile.Data;
 
     file_header Header = *(file_header *)At;
-    At += sizeof(file_header);
+    u32 HeaderSize = sizeof(file_header);
+    At += HeaderSize;
+
+    // WasmConsoleLog(F->Name);
+    // EM_ASM(console.log('Header size: ' + $0), Size);
 
     for (u32 i=0; i<Header.Count; ++i) {
-        cached_font **Font = FontCache + CachedFontCount;
-        *Font = (cached_font *)At;
-        At += sizeof(cached_font);
+        cached_font *Font = FontCache + CachedFontCount;
+        packed_font *Packed = (packed_font *)At;
 
-        cached_font *F = FontCache[CachedFontCount];
-        F->Map = (uincode_character_map *)At;
-        At += sizeof(uincode_character_map) * F->GlyphCount;
+        memcpy(Font->Name, Packed->Name, 20);
+        Font->Id = Packed->Id;
+        Font->GlyphCount = Packed->GlyphCount;
+        Font->Atlas.Width = Packed->AltasWidth;
+        Font->Atlas.Height = Packed->AltasHeight;
+        Font->SizePt = Packed->SizePt;
+        Font->PxPerFontUnit = Packed->PxPerFontUnit;
+        Font->Height = Packed->Height;
+        Font->Baseline = Packed->Baseline;
+        Font->BaselineSpacing = Packed->BaselineSpacing;
+        Font->Ascender = Packed->Ascender;
+        Font->Descender = Packed->Descender;
 
-        F->Glyphs = (cached_glyph *)At;
-        At += sizeof(cached_glyph) * F->GlyphCount;
+        At += sizeof(packed_font);
 
-        F->Advances = (r32 *)At;
-        At += sizeof(r32) * F->GlyphCount;
+        Font->Map = (uincode_character_map *)At;
+
+        // EM_ASM(console.log('Count ' + $0), Font->GlyphCount);
+        At += sizeof(uincode_character_map) * Font->GlyphCount;
+
+        Font->Glyphs = (cached_glyph *)At;
+        At += sizeof(cached_glyph) * Font->GlyphCount;
+
+        Font->Advances = (r32 *)At;
+        At += sizeof(r32) * Font->GlyphCount;
 
         char Name[30];
-        sprintf(Name, "%s_%d.png", F->Name, (u32)F->SizePt);
+        sprintf(Name, "%s_%d.png", Font->Name, (u32)Font->SizePt);
 
         image Image = {};
         Image.Data = stbi_load(Name, (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
-        Render.TestTexture = OpenglUploadTexture(Image);
+        Font->Atlas.Texture = OpenglUploadTexture(Image);
+
+        // WasmConsoleLog(Name);
+        // EM_ASM(console.log('Texture ' + $0), Font->Atlas.Texture);
+
+        ++CachedFontCount;
     }
+
+    // WasmConsoleLog("Font files loaded");
 }
 
 void
 Game(r32 dT)
 {
     static u32 FrameCounter = 0;
-
-    r32 Z = (sin((r32)FrameCounter / 60.0f / 2.0f) + 1.0f) / 2.0f * 200.0f + 100.0f;
-
-    cached_font *Font = FontCache[0];
-    // DrawGlyph(&Render, v2{100, 100}, Z, v4{1.0, 0.0, 0.0, 1.0f}, Font_PTSans, 0, 13.5. "Hello world, this is Patrick!");
-    DrawText(&Render, v2{100, 100}, Z, v4{1.0, 0.0, 0.0, 1.0f}, Font, "Hello!");
-
+    r32 Z = (sin((r32)FrameCounter / 300.0f) + 1.0f) / 2.0f * 200.0f;
+    DrawText(&Render, v2{100, 100}, v4{1.0, 0.0, 0.0, 1.0f}, Font_PTSans, Z, "Hello wolrd!");
     ++FrameCounter;
 }
 
