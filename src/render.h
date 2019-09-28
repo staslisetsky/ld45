@@ -118,22 +118,57 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
 {
     vertex_xyzrgba *Vertices = Render->PlainVertices + Render->PlainVertexCount;
 
-    Assert(Render->PlainVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+    Assert(Render->PlainVertexCount + 6 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, Z};
     Vertices[2].P = v3{P.x, P.y + Dim.y, Z};
-    Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, Z};
+    Vertices[3].P = v3{P.x + Dim.x, P.y, Z};
+    Vertices[4].P = v3{P.x, P.y + Dim.y, Z};
+    Vertices[5].P = v3{P.x + Dim.x, P.y + Dim.y, Z};
 
     Vertices[0].Color = Color;
     Vertices[1].Color = Color;
     Vertices[2].Color = Color;
     Vertices[3].Color = Color;
+    Vertices[4].Color = Color;
+    Vertices[5].Color = Color;
 
     command_data Data = {};
     Data.Shader = Render->PlainShader;
-    AddRenderCommand(Render, DrawMode_Strip, Render->PlainVertexCount, 4, Data);
-    Render->PlainVertexCount += 4;
+    AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 2, Data);
+    Render->PlainVertexCount += 6;
+}
+
+void
+DrawPlayer(render *Render, v4 Color, v2 P, v2 MouseP, r32 NoseRadius, r32 Z)
+{
+    vertex_xyzrgba *Vertices = Render->PlainVertices + Render->PlainVertexCount;
+
+    Assert(Render->PlainVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+
+    v2 NoseVector = Normalize(MouseP - P);
+    v2 WidthVector = Perp(NoseVector);
+
+    r32 Tail = 0.3f;
+    r32 Width = 0.3f;
+
+    v2 SideVector1 = WidthVector * Width - NoseVector * Tail;
+    v2 SideVector2 = -1.0f * WidthVector * Width - NoseVector * Tail;
+
+    Vertices[0].P = V3(P + NoseVector * NoseRadius, Z);
+    Vertices[1].P = V3(P + SideVector1 * NoseRadius, Z);
+    Vertices[2].P = V3(P + SideVector2 * NoseRadius, Z);
+
+    Vertices[0].Color = Color;
+    Vertices[1].Color = Color;
+    Vertices[2].Color = Color;
+
+    command_data Data = {};
+    Data.Shader = Render->PlainShader;
+    AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 1, Data);
+
+    Render->PlainVertexCount += 3;
 }
 
 void

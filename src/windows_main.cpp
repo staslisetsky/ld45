@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <vector>
+
 #include <GL\gl.h>
 #include <al.h>
 #include <alc.h>
@@ -244,15 +246,15 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
             0,
             WindowClass.lpszClassName,
             L"Ludum Dare - 45",
-            WS_OVERLAPPED | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_THICKFRAME | WS_CLIPSIBLINGS | WS_CLIPCHILDREN,
-            100, 100, 220, 220,
+            WS_OVERLAPPEDWINDOW,
+            100, 100, 1000, 500,
             0, 0, Instance, 0
         );
 
         RECT Rect;
         GetClientRect(Window, &Rect);
         UpdateWindow(Window);
-        ShowWindow(Window, SW_MAXIMIZE);
+        ShowWindow(Window, SW_SHOW);
         HDC DeviceContext = GetDC(Window);
 
         InitOpenglContext(Window);
@@ -266,12 +268,7 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
-
         GameInit();
-
-        {
-
-        }
 
         while (GlobalRunning) {
             Input.dWheel = 0;

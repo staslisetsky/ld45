@@ -20,9 +20,17 @@
 			"file": "src/game.cpp",
 			"settings":
 			{
-				"buffer_size": 2258,
+				"buffer_size": 2678,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/GLES3/gl3.h",
+			"settings":
+			{
+				"buffer_size": 82722,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -82,16 +90,16 @@
 			"file": "src/render.h",
 			"settings":
 			{
-				"buffer_size": 7126,
+				"buffer_size": 8239,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/fontgen.cpp",
+			"file": "src/openal.cpp",
 			"settings":
 			{
-				"buffer_size": 7874,
+				"buffer_size": 1347,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -108,7 +116,7 @@
 			"file": "src/font.h",
 			"settings":
 			{
-				"buffer_size": 1952,
+				"buffer_size": 2019,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -126,7 +134,7 @@
 			"file": "src/opengl.cpp",
 			"settings":
 			{
-				"buffer_size": 11682,
+				"buffer_size": 12169,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -150,7 +158,16 @@
 			"file": "src/windows_opengl.h",
 			"settings":
 			{
-				"buffer_size": 20642,
+				"buffer_size": 20663,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/fontgen.cpp",
+			"settings":
+			{
+				"buffer_size": 8327,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -168,15 +185,6 @@
 			"settings":
 			{
 				"buffer_size": 28118,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/openal.cpp",
-			"settings":
-			{
-				"buffer_size": 1347,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -327,6 +335,7 @@
 	],
 	"file_history":
 	[
+		"/P/Ls/ld45/src/fontgen.cpp",
 		"/P/Ls/ld45/data/shaders/Plain.vert",
 		"/P/Ls/ld45/data/shaders/Plain.frag",
 		"/P/Ls/streams/descr.txt",
@@ -453,12 +462,11 @@
 		"/P/Ls/znalka/ls_time.h",
 		"/home/stas/.config/sublime-text-3/Packages/User/ls_clang.sublime-build",
 		"/P/Ls/znalka/data/templates/page.nos",
-		"/P/Ls/znalka/data/templates/showoff.nos",
-		"/P/Ls/znalka/cascade_ls_string.h"
+		"/P/Ls/znalka/data/templates/showoff.nos"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -473,6 +481,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"BitmapHeight",
+			"BitmapWidth",
+			"XAdvance",
+			"eferenceGlyph->Glyph",
+			"bitm",
+			"GlyphBitmapH",
+			"GlyphBitmapW",
+			", ",
+			"PPI",
+			"face",
+			"Altas",
+			"PPI",
+			"GlyphBitmapH",
+			"GlyphBitmapW",
+			"glyphf",
+			"bitma",
+			"Dim",
+			"Offset",
+			"command_bu",
+			"_buffer_s",
+			"1000",
+			"malloc",
+			"CachedGlyph",
+			"CurrentP",
+			"F",
 			"Font->",
 			"union uv",
 			"initop",
@@ -575,32 +608,7 @@
 			"EMSCRIPTEN_RESULT",
 			"Arrow",
 			"Input->",
-			"input",
-			"Code",
-			"proc",
-			"WasmKeyDown",
-			"true",
-			"window",
-			"log",
-			"false",
-			"true",
-			"document",
-			"#canvas",
-			"\"#window\"",
-			"#canvas",
-			"em_",
-			"уь_",
-			"em_key_callback_func",
-			"EM_BOOL",
-			"const char *target",
-			"h1",
-			"0.2",
-			"-0.2",
-			"1000",
-			"50",
-			"Vertices",
-			"0f",
-			"Vertices"
+			"input"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -649,7 +657,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
@@ -658,15 +666,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2258,
+						"buffer_size": 2678,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1492,
-								1492
+								1494,
+								1494
 							]
 						],
 						"settings":
@@ -678,14 +686,42 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 16.0,
+						"translation.y": 513.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/GLES3/gl3.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 82722,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								54240,
+								54240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 16336.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "src/windows_main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -712,11 +748,11 @@
 						"translation.y": 603.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "src/include/stb_vorbis.c",
 					"semi_transient": false,
 					"settings":
@@ -742,11 +778,11 @@
 						"translation.y": 5715.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "src/include/stb_vorbis.cpp",
 					"semi_transient": false,
 					"settings":
@@ -772,11 +808,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -800,11 +836,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 34,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "build_wasm.bat",
 					"semi_transient": false,
 					"settings":
@@ -828,11 +864,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 36,
+					"stack_index": 39,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "/P/ls/ld45/src/ls_string.h",
 					"semi_transient": false,
 					"settings":
@@ -858,66 +894,34 @@
 						"translation.y": 738.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "src/render.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7126,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4097,
-								4097
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2628.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "src/fontgen.cpp",
+					"file": "src/render.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7874,
+						"buffer_size": 8239,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5818,
-								5818
+								7498,
+								7498
 							]
 						],
 						"settings":
 						{
-							"history_list_is_closing": true,
-							"spell_check": true,
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3272.0,
+						"translation.y": 4707.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -925,6 +929,35 @@
 				},
 				{
 					"buffer": 10,
+					"file": "src/openal.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1347,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								336,
+								336
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
 					"semi_transient": false,
 					"settings":
 					{
@@ -948,24 +981,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 31,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "src/font.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1952,
+						"buffer_size": 2019,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								374,
-								374
+								2018,
+								2018
 							]
 						],
 						"settings":
@@ -976,14 +1009,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1192.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "src/wasm_main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -995,8 +1028,8 @@
 						"selection":
 						[
 							[
-								6660,
-								6660
+								782,
+								805
 							]
 						],
 						"settings":
@@ -1008,27 +1041,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3791.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "src/opengl.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11682,
+						"buffer_size": 12169,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5549,
-								5549
+								5615,
+								5615
 							]
 						],
 						"settings":
@@ -1038,14 +1071,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3700.0,
+						"translation.y": 3577.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1068,11 +1101,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 39,
+					"stack_index": 41,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "/P/third party/emsdk/fastcomp/emscripten/system/include/emscripten/key_codes.h",
 					"semi_transient": false,
 					"settings":
@@ -1096,11 +1129,11 @@
 						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 43,
+					"stack_index": 44,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "src/wasm_main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1127,11 +1160,11 @@
 						"translation.y": 227.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "build_wasm.bat",
 					"semi_transient": false,
 					"settings":
@@ -1155,24 +1188,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 45,
+					"stack_index": 46,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "src/opengl.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11682,
+						"buffer_size": 12169,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7202,
-								7202
+								6158,
+								6160
 							]
 						],
 						"settings":
@@ -1182,14 +1215,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5183.0,
+						"translation.y": 4100.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -1213,24 +1246,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 42,
+					"stack_index": 43,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 17,
 					"file": "src/windows_opengl.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20642,
+						"buffer_size": 20663,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20517,
-								20507
+								675,
+								675
 							]
 						],
 						"settings":
@@ -1241,27 +1274,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6470.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 41,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "src/render.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7126,
+						"buffer_size": 8239,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4411,
-								4411
+								4738,
+								4738
 							]
 						],
 						"settings":
@@ -1274,7 +1307,7 @@
 						"translation.y": 4093.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 40,
+					"stack_index": 42,
 					"type": "text"
 				},
 				{
@@ -1283,7 +1316,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2258,
+						"buffer_size": 2678,
 						"regions":
 						{
 						},
@@ -1303,24 +1336,24 @@
 						"translation.y": 261.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 29,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "src/font.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1952,
+						"buffer_size": 2019,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1952,
-								1952
+								2019,
+								2019
 							]
 						],
 						"settings":
@@ -1332,24 +1365,24 @@
 						"translation.y": 13.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 38,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 18,
 					"file": "src/fontgen.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7874,
+						"buffer_size": 8327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								389,
-								389
+								7725,
+								7725
 							]
 						],
 						"settings":
@@ -1361,10 +1394,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4249.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 37,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1394,24 +1427,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 44,
+					"stack_index": 45,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 18,
 					"file": "src/fontgen.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7874,
+						"buffer_size": 8327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2089,
-								2089
+								5567,
+								5567
 							]
 						],
 						"settings":
@@ -1423,14 +1456,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1700.0,
+						"translation.y": 2704.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 35,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -1454,11 +1487,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 19,
 					"file": "_build/s.txt",
 					"semi_transient": false,
 					"settings":
@@ -1484,24 +1517,24 @@
 						"translation.y": 2990.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 33,
+					"stack_index": 37,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "src/font.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1952,
+						"buffer_size": 2019,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1952,
-								1952
+								2019,
+								2019
 							]
 						],
 						"settings":
@@ -1510,14 +1543,14 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1218.0,
+						"translation.y": 1173.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 20,
 					"file": "/P/ls/ld45/src/ls_math.h",
 					"semi_transient": false,
 					"settings":
@@ -1543,17 +1576,17 @@
 						"translation.y": 794.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 18,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 14,
+			"selected": 12,
 			"sheets":
 			[
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -1577,11 +1610,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 10,
 					"file": "src/openal.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1606,11 +1639,11 @@
 						"translation.y": 560.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "src/include/stb_vorbis.c",
 					"semi_transient": false,
 					"settings":
@@ -1636,11 +1669,11 @@
 						"translation.y": 13751.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "src/include/stb_vorbis.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1666,11 +1699,11 @@
 						"translation.y": 13751.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "src/wasm_main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1682,8 +1715,8 @@
 						"selection":
 						[
 							[
-								2775,
-								2775
+								3444,
+								3444
 							]
 						],
 						"settings":
@@ -1694,14 +1727,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1197.0,
+						"translation.y": 1539.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 21,
 					"file": "src/include/stb_image_write.h",
 					"semi_transient": false,
 					"settings":
@@ -1727,24 +1760,24 @@
 						"translation.y": 840.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 32,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 18,
 					"file": "src/fontgen.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7874,
+						"buffer_size": 8327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7874,
-								7874
+								8045,
+								8045
 							]
 						],
 						"settings":
@@ -1756,27 +1789,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3733.0,
+						"translation.y": 4358.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "src/font.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1952,
+						"buffer_size": 2019,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1951,
-								1951
+								434,
+								434
 							]
 						],
 						"settings":
@@ -1787,14 +1820,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1396.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 22,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1849,11 +1882,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 20,
 					"file": "/P/ls/ld45/src/ls_math.h",
 					"semi_transient": false,
 					"settings":
@@ -1879,24 +1912,24 @@
 						"translation.y": 26020.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "src/render.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7126,
+						"buffer_size": 8239,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7101,
-								7101
+								7465,
+								7465
 							]
 						],
 						"settings":
@@ -1906,14 +1939,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4099.0,
+						"translation.y": 5057.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "src/windows_main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1940,11 +1973,11 @@
 						"translation.y": 4613.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "build_wasm.bat",
 					"semi_transient": false,
 					"settings":
@@ -1956,8 +1989,8 @@
 						"selection":
 						[
 							[
-								620,
-								620
+								359,
+								359
 							]
 						],
 						"settings":
@@ -1968,24 +2001,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "src/opengl.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11682,
+						"buffer_size": 12169,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								469,
-								469
+								7703,
+								7703
 							]
 						],
 						"settings":
@@ -1995,10 +2028,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4738.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -2007,28 +2040,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2258,
+						"buffer_size": 2678,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1719,
-								1719
+								1580,
+								1580
 							]
 						],
 						"settings":
 						{
 							"history_list_is_closing": true,
-							"spell_check": true,
+							"spell_check": false,
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 228.0,
+						"translation.y": 684.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -2036,7 +2069,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 41.0
 	},
 	"input":
 	{
@@ -2094,6 +2127,34 @@
 		"selected_items":
 		[
 			[
+				"bui",
+				"ld45\\build_wasm.bat"
+			],
+			[
+				"fontg",
+				"ld45\\src\\fontgen.cpp"
+			],
+			[
+				"openg",
+				"P:\\Ls\\ld45\\src\\opengl.cpp"
+			],
+			[
+				"op",
+				"ld45\\src\\opengl.cpp"
+			],
+			[
+				"opengl",
+				"P:\\Ls\\ld45\\src\\opengl.cpp"
+			],
+			[
+				"wasm",
+				"ld45\\src\\wasm_main.cpp"
+			],
+			[
+				"was",
+				"ld45\\src\\wasm_main.cpp"
+			],
+			[
 				"font",
 				"ld45\\src\\font.h"
 			],
@@ -2104,14 +2165,6 @@
 			[
 				"math",
 				"P:\\ls\\ld45\\src\\ls_math.h"
-			],
-			[
-				"was",
-				"ld45\\src\\wasm_main.cpp"
-			],
-			[
-				"bui",
-				"ld45\\build_wasm.bat"
 			],
 			[
 				"fon",
@@ -2138,19 +2191,7 @@
 				"ld45\\src\\platform.h"
 			],
 			[
-				"fontg",
-				"ld45\\src\\fontgen.cpp"
-			],
-			[
 				"opegn",
-				"ld45\\src\\opengl.cpp"
-			],
-			[
-				"openg",
-				"ld45\\src\\opengl.cpp"
-			],
-			[
-				"opengl",
 				"ld45\\src\\opengl.cpp"
 			],
 			[
@@ -2196,10 +2237,6 @@
 			[
 				"wian",
 				"src\\windows_main.cpp"
-			],
-			[
-				"wasm",
-				"src\\wasm_main.cpp"
 			],
 			[
 				"plain.",
@@ -2600,10 +2637,6 @@
 			[
 				"admion",
 				"data\\templates\\admin.nos"
-			],
-			[
-				"nos",
-				"data\\templates\\main.nos"
 			]
 		],
 		"width": 0.0
@@ -2628,16 +2661,80 @@
 				"Game"
 			],
 			[
+				"cached",
+				"cached_glyph"
+			],
+			[
+				"draw",
+				"DrawText"
+			],
+			[
+				"drawte",
+				"DrawText"
+			],
+			[
+				"drawt",
+				"DrawText"
+			],
+			[
+				"bake",
+				"BakeFont"
+			],
+			[
+				"write",
+				"WriteFont"
+			],
+			[
+				"packed",
+				"packed_font"
+			],
+			[
+				"pointst",
+				"PointsToPixels"
+			],
+			[
+				"system",
+				"SYSTEM_PPI"
+			],
+			[
+				"bakef",
+				"BakeFont"
+			],
+			[
+				"loadfo",
+				"FreetypeLoadFont"
+			],
+			[
+				"upload",
+				"OpenglUploadTexture"
+			],
+			[
+				"COMMAND_BUFFER_SIZE",
+				"COMMAND_BUFFER_SIZE"
+			],
+			[
+				"addrender",
+				"AddRenderCommand"
+			],
+			[
+				"init",
+				"InitOpengl"
+			],
+			[
+				"gami",
+				"GameInit"
+			],
+			[
+				"gamini",
+				"GameInit"
+			],
+			[
 				"cached_glyph",
 				"cached_glyph"
 			],
 			[
 				"uincode_character_map",
 				"uincode_character_map"
-			],
-			[
-				"cached",
-				"cached_font"
 			],
 			[
 				"gameini",
@@ -2648,20 +2745,12 @@
 				"image"
 			],
 			[
-				"draw",
-				"DrawText"
-			],
-			[
 				"openglre",
 				"OpenglRender"
 			],
 			[
 				"render",
 				"render"
-			],
-			[
-				"bakef",
-				"BakeFont"
 			],
 			[
 				"GetCachedGlyph",
@@ -2676,16 +2765,8 @@
 				"Abs_s16"
 			],
 			[
-				"loadfo",
-				"FreetypeLoadFont"
-			],
-			[
 				"font",
 				"font_"
-			],
-			[
-				"drawt",
-				"DrawText"
 			],
 			[
 				"initp",
@@ -2694,10 +2775,6 @@
 			[
 				"glyp",
 				"cached_glyph"
-			],
-			[
-				"drawte",
-				"DrawText"
 			],
 			[
 				"readfi",
@@ -2960,10 +3037,6 @@
 				"gui_state"
 			],
 			[
-				"init",
-				"GrapheneInit"
-			],
-			[
 				"addsimple",
 				"AddSimpleItem"
 			],
@@ -3094,46 +3167,6 @@
 			[
 				"ConvertSlashesToUnix",
 				"ConvertSlashesToUnix"
-			],
-			[
-				"render_la",
-				"render_layer"
-			],
-			[
-				"app",
-				"GrapheneApp"
-			],
-			[
-				"fitsi",
-				"FitSize"
-			],
-			[
-				"lstring",
-				"ls_stringbuf"
-			],
-			[
-				"stringbuf",
-				"ls_stringbuf"
-			],
-			[
-				"stringbu",
-				"ls_stringbuf"
-			],
-			[
-				"ls_string_a",
-				"ls_string_allocator"
-			],
-			[
-				"pool",
-				"pool"
-			],
-			[
-				"stor",
-				"storage_block"
-			],
-			[
-				"fit",
-				"FitSize"
 			]
 		],
 		"width": 592.0

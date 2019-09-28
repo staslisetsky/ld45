@@ -723,6 +723,18 @@ Normalize(v2 A)
     return (Result);
 }
 
+inline v2
+NormalizeZero(v2 A)
+{
+    r32 Len = Length(A);
+
+    if (Len == 0.0f) {
+        return v2 {0.0f, 0.0f};
+    }
+
+    return A / Len;
+}
+
 inline v3
 Normalize(v3 A)
 {

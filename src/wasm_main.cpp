@@ -5,8 +5,11 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <malloc.h>
+#include <vector>
 
 #include <GLES3/gl3.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 typedef char utf8;
 typedef uint8_t u8;
@@ -45,7 +48,7 @@ struct wasm_state {
 #include "render.h"
 #include "platform.h"
 
-wasm_state State = {};
+wasm_state WasmState = {};
 render Render = {};
 input Input = {};
 
@@ -59,6 +62,8 @@ WasmConsoleLog(const char *String)
    EM_ASM(console.log(UTF8ToString($0)), String);
 }
 
+#include "include/stb_vorbis.c"
+#include "openal.cpp"
 #include "opengl.cpp"
 #include "game.cpp"
 
@@ -96,6 +101,7 @@ WasmPrintError(EMSCRIPTEN_RESULT Error)
       default: {
          WasmConsoleLog("Unknown error");
       }
+
    }
 }
 
@@ -113,11 +119,28 @@ WasmMainLoop()
    Input.Mouse[1].WentDown = false;
    Input.Mouse[1].WentUp = false;
 
+   u32 LastEvent = Input.LastEvent;
+   while (Input.FirstUnusedEvent != LastEvent) {
+      u32 FirstUnusedEvent = Input.FirstUnusedEvent;
+      EM_ASM(console.log("Last event: " + $0 + ", FirstUnused: " + $1), LastEvent, FirstUnusedEvent);
+
+      input_event *Event = Input.Events + Input.FirstUnusedEvent;
+      if (Event->Type == InputEvent_MouseDown) {
+         Input.Mouse[Event->Index].WentDown = true;
+         EM_ASM(console.log("Mouse down"));
+      } else if (Event->Type == InputEvent_MouseUp) {
+         Input.Mouse[Event->Index].WentUp = true;
+         EM_ASM(console.log("Mouse up"));
+      }
+
+      Input.FirstUnusedEvent = (Input.FirstUnusedEvent + 1) % MAX_INPUT_EVENTS;
+      EM_ASM(console.log("Next index: " + $0), Input.FirstUnusedEvent);
+   }
+
    Render.Screen.x = 1000;
    Render.Screen.y = 500;
 
-
-   Game(0.16f);
+   Game(0.1f);
    OpenglRender(Render);
 
    // swap:
@@ -126,8 +149,6 @@ WasmMainLoop()
    Render.PlainVertexCount = 0;
    Render.TexturedVertexCount = 0;
    Render.CommandCount = 0;
-
-   ++State.Frame;
 }
 
 EM_BOOL
@@ -138,13 +159,21 @@ WasmKeyMouseEventCallback(s32 EventType, const EmscriptenMouseEvent *Event, void
       Button = 1;
    }
 
+   input_event InputEvent;
+   u32 EventIndex = (Input.LastEvent + 1) % MAX_INPUT_EVENTS;
+
    if (EventType == EMSCRIPTEN_EVENT_MOUSEDOWN) {
-      Input.Mouse[Button].WentDown = true;
-      Input.Mouse[Button].Down = true;
-      // EM_ASM(console.log('Mouse button '  + $0 + 'down'), Button);
+      InputEvent.Type = InputEvent_MouseDown;
+      InputEvent.Index = Button;
+
+      Input.Events[EventIndex] = InputEvent;
+      Input.LastEvent = EventIndex;
    } else if (EventType == EMSCRIPTEN_EVENT_MOUSEUP) {
-      Input.Mouse[Button].WentUp = true;
-      Input.Mouse[Button].Down = false;
+      InputEvent.Type = InputEvent_MouseUp;
+      InputEvent.Index = Button;
+
+      Input.Events[EventIndex] = InputEvent;
+      Input.LastEvent = EventIndex;
       // EM_ASM(console.log('Mouse button '  + $0 + 'up'), Button);
    } else if (EventType == EMSCRIPTEN_EVENT_DBLCLICK) {
 
@@ -225,19 +254,20 @@ int main() {
    // Attributes.explicitSwapControl = true;
    Attributes.renderViaOffscreenBackBuffer = true;
 
-   State.WebGLContext = emscripten_webgl_create_context("canvas", &Attributes);
+   WasmState.WebGLContext = emscripten_webgl_create_context("canvas", &Attributes);
 
-   if (State.WebGLContext <= 0) {
-      WasmPrintError((EMSCRIPTEN_RESULT)State.WebGLContext);
+   if (WasmState.WebGLContext <= 0) {
+      WasmPrintError((EMSCRIPTEN_RESULT)WasmState.WebGLContext);
    } else {
       WasmConsoleLog("Initializing GL");
 
-      EMSCRIPTEN_RESULT Result = emscripten_webgl_make_context_current(State.WebGLContext);
+      EMSCRIPTEN_RESULT Result = emscripten_webgl_make_context_current(WasmState.WebGLContext);
       WasmPrintError(Result);
 
-      InitOpengl();
-
       chdir("/data");
+
+      InitOpengl();
+      InitOpenal();
       GameInit();
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);

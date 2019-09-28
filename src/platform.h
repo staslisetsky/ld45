@@ -6,6 +6,23 @@ struct button {
     b32 WentDownOrRepeated;
 };
 
+enum input_event_ {
+    InputEvent_Null,
+
+    InputEvent_MouseDown,
+    InputEvent_MouseUp,
+    InputEvent_KeyUp,
+    InputEvent_KeyDown,
+    InputEvent_Count,
+};
+
+struct input_event {
+    input_event_ Type;
+    u32 Index;
+};
+
+#define MAX_INPUT_EVENTS 10
+
 struct input {
     v2 MouseP;
     v2 MouseDragStartP;
@@ -15,6 +32,10 @@ struct input {
 
     button Mouse[2];
     button Keys[Key_Count];
+
+    input_event Events[MAX_INPUT_EVENTS];
+    u32 LastEvent;
+    u32 FirstUnusedEvent;
 };
 
 struct read_file {

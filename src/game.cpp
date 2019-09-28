@@ -1,3 +1,19 @@
+struct bullet {
+    u32 Type;
+    v2 P;
+    v2 V;
+};
+
+struct state {
+    v2 PlayerP;
+    v2 PlayerV;
+    v2 PlayerFacing;
+
+    std::vector<bullet>Bullets;
+};
+
+state State = {};
+
 void
 GameInit()
 {
@@ -62,26 +78,85 @@ GameInit()
 void
 Game(r32 dT)
 {
-    static u32 FrameCounter = 0;
-    r32 Z = (sin((r32)FrameCounter / 300.0f) + 1.0f) / 2.0f * 200.0f + 20.0f;
-    // static r32 Y = 0.0f;
-    DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, Z, "To Playing jazz vibe");
-    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 80.0, "To Playing jazz vibe");
-    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 80.1, "To Playing jazz vibe");
+    r32 Acceleration = 5.0f;
+    v2 Direction = {};
 
-    // DrawText(&Render, v2{100, 100}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 25.0001, "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-    // DrawText(&Render, v2{100, 150}, v4{0.0, 0.0, 0.0, 1.0f}, Font_PTSans, 25.0,    "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+    if (Input.Keys[Key_D].Down) {
+        Direction += v2{1.0f, 0.0f};
+    }
+    if (Input.Keys[Key_A].Down) {
+        Direction += v2{-1.0f, 0.0f};
+    }
+    if (Input.Keys[Key_W].Down) {
+        Direction += v2{0.0f, -1.0f};
+    }
+    if (Input.Keys[Key_S].Down) {
+        Direction += v2{0.0f, 1.0f};
+    }
 
-    ++FrameCounter;
-    // Y += 0.01;
+    if (Input.Mouse[0].WentDown) {
+        EM_ASM(console.log('Pew!'));
+
+        bullet Bullet;
+        Bullet.P = State.PlayerP;
+        Bullet.V = State.PlayerFacing * 1000.0f;
+
+        State.Bullets.push_back(Bullet);
+
+        sound::Play();
+    }
+
+    State.PlayerFacing = Normalize(Input.MouseP - State.PlayerP);
+
+    Direction = NormalizeZero(Direction);
+
+    v2 dV = (Acceleration * Direction) * dT;
+    v2 dP = State.PlayerV + dV * dT;
+
+    State.PlayerV += dV;
+    State.PlayerP += dP;
+
+    //
+    //
+    //
+
+    r32 PlayerSize = 40.0f;
+
+    DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP, Input.MouseP, 50.0f, 1);
+
+    if (State.PlayerP.x > PlayerSize + Render.Screen.x) {
+        State.PlayerP.x -= Render.Screen.x;
+    }
+    if (State.PlayerP.x < -PlayerSize) {
+        State.PlayerP.x += Render.Screen.x;
+    }
+    if (State.PlayerP.y > PlayerSize + Render.Screen.y) {
+        State.PlayerP.y -= Render.Screen.y;
+    }
+    if (State.PlayerP.y < -PlayerSize) {
+        State.PlayerP.y += Render.Screen.y;
+    }
+
+    if (State.PlayerP.x < PlayerSize) {
+        v2 Offset = v2{(r32)Render.Screen.x, 0.0f};
+        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+    }
+    if (State.PlayerP.x < Render.Screen.x - PlayerSize) {
+        v2 Offset = v2{(r32)-Render.Screen.x, 0.0f};
+        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+    }
+    if (State.PlayerP.y < PlayerSize) {
+        v2 Offset = v2{0.0f, (r32)Render.Screen.y};
+        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+    }
+    if (State.PlayerP.y > Render.Screen.y - PlayerSize) {
+        v2 Offset = v2{0.0f, (r32)-Render.Screen.y};
+        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+    }
+
+    for(u32 i=0; i<State.Bullets.size(); ++i) {
+        v2 dP = State.Bullets[i].V * dT;
+        State.Bullets[i].P += dP;
+        DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{20.0, 20.0f}, 1);
+    }
 }
-
-// tool -font PT_Sans -size 16
-// png
-// .font
-// 0. scale, baseline
-// 1. kerning
-// 2. glyph
-//     - size
-//     - advance
-//     - UV
