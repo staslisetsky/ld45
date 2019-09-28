@@ -143,7 +143,7 @@ InitOpengl()
     out vec4 FragmentColor;
     void main(void)
     {
-        FragmentColor = vec4(1.0, 0.0, 0.0, 1.0);
+        FragmentColor = VertexColor;
     }
     )str";
 

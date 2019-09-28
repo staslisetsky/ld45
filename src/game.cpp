@@ -95,8 +95,6 @@ Game(r32 dT)
     }
 
     if (Input.Mouse[0].WentDown) {
-        EM_ASM(console.log('Pew!'));
-
         bullet Bullet;
         Bullet.P = State.PlayerP;
         Bullet.V = State.PlayerFacing * 1000.0f;
@@ -152,6 +150,15 @@ Game(r32 dT)
     if (State.PlayerP.y > Render.Screen.y - PlayerSize) {
         v2 Offset = v2{0.0f, (r32)-Render.Screen.y};
         DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+    }
+
+    for(u32 i=0; i<State.Bullets.size(); ++i) {
+        if (State.Bullets[i].P.x < -100 || State.Bullets[i].P.x > Render.Screen.x + 100.0f ||
+            State.Bullets[i].P.y < -100 || State.Bullets[i].P.y > Render.Screen.y + 100.0f)
+        {
+            State.Bullets.erase(State.Bullets.begin() + i);
+            --i;
+        }
     }
 
     for(u32 i=0; i<State.Bullets.size(); ++i) {
