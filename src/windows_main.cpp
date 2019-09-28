@@ -159,9 +159,10 @@ PlatformReadFile(char *Filename, read_file *Result)
 
    if (File) {
       Result->Size = GetFileSize(File);
-      Result->Data = (u8 *)malloc(Result->Size);
+      Result->Data = (u8 *)malloc(Result->Size + 1);
       fread(Result->Data, 1, Result->Size, File);
       fclose(File);
+      Result->Data[Result->Size] = 0;
 
       return true;
    }

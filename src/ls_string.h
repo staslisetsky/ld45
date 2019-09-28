@@ -167,6 +167,10 @@ struct ls_stringbuf: public ls_mutable_string {
     }
 
     ls_stringbuf(ls_string String) {
+        this->Allocator = {};
+        this->Data = 0;
+        this->Cap = 0;
+        this->Size = 0;
         this->FitSize(String.Size + 1);
         memcpy(this->Data, String.Data, String.Size);
         this->Size = String.Size;
@@ -176,6 +180,9 @@ struct ls_stringbuf: public ls_mutable_string {
 
     ls_stringbuf(char *String) {
         u32 Size = strlen(String);
+        this->Allocator = {};
+        this->Data = 0;
+        this->Cap = 0;
         this->FitSize(Size + 1);
         memcpy(this->Data,String, Size);
         this->Size = Size;

@@ -28,6 +28,14 @@ struct vertex_xyzrgbauv {
     v2 UV;
 };
 
+enum shader_ {
+    Shader_Plain,
+    Shader_Textured,
+    Shader_Glyph,
+    Shader_SDF,
+    Shader_Count,
+};
+
 struct render {
     v2i Screen;
 
@@ -37,14 +45,8 @@ struct render {
     GLuint VertexBufferTextured;
     GLuint ViewUniformBuffer;
 
-    GLuint PlainShader;
-    GLuint TexturedShader;
-    GLuint GlyphShader;
-    GLuint SDFShader;
-
+    GLuint Shaders[Shader_Count];
     GLuint QuadDimUniform;
-
-    GLuint TestTexture;
 
     m4x4 ProjectionMatrix;
 
@@ -135,7 +137,7 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
     Vertices[5].Color = Color;
 
     command_data Data = {};
-    Data.Shader = Render->PlainShader;
+    Data.Shader = Render->Shaders[Shader_Plain];
     AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 2, Data);
     Render->PlainVertexCount += 6;
 }
@@ -165,7 +167,7 @@ DrawPlayer(render *Render, v4 Color, v2 P, v2 MouseP, r32 NoseRadius, r32 Z)
     Vertices[2].Color = Color;
 
     command_data Data = {};
-    Data.Shader = Render->PlainShader;
+    Data.Shader = Render->Shaders[Shader_Plain];
     AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 1, Data);
 
     Render->PlainVertexCount += 3;
@@ -194,8 +196,10 @@ DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
     Vertices[3].UV = v2{1.0f, 1.0f};
 
     command_data Data = {};
-    Data.Shader = Render->TexturedShader;
-    Data.Texture = Render->TestTexture;
+    Data.Shader = Render->Shaders[Shader_Textured];
+
+    assert(!"texture is wrong! fix me!");
+    // Data.Texture = Render->TestTexture;
     AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
     Render->TexturedVertexCount += 4;
 }
@@ -223,8 +227,10 @@ DrawGlyph(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
     Vertices[3].UV = v2{1.0f, 1.0f};
 
     command_data Data = {};
-    Data.Shader = Render->SDFShader;
-    Data.Texture = Render->TestTexture;
+    Data.Shader = Render->Shaders[Shader_SDF];
+
+    assert(!"Fixme: texture");
+    // Data.Texture = Render->TestTexture;
     Data.QuadDim = v2i{(s32)Dim.x, (s32)Dim.y};
 
     AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
@@ -279,7 +285,7 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         Vertices[5].UV = Glyph->UV.BottomRight;
 
         command_data Data = {};
-        Data.Shader = Render->GlyphShader;
+        Data.Shader = Render->Shaders[Shader_Glyph];
         Data.Texture = Font->Atlas.Texture;
 
         AddRenderCommand(Render, DrawMode_Quad, Render->TexturedVertexCount, 1, Data);

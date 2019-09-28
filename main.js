@@ -123,6 +123,7 @@ Module['FS_createPath']('/data', 'audio', true, true);
 Module['FS_createPath']('/data', 'fonts', true, true);
 Module['FS_createPath']('/data', 'images', true, true);
 Module['FS_createPath']('/data', 'sdf', true, true);
+Module['FS_createPath']('/data', 'shaders', true, true);
 
     function DataRequest(start, end, audio) {
       this.start = start;
@@ -198,7 +199,7 @@ Module['FS_createPath']('/data', 'sdf', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15296408, "filename": "/data/audio/mwak.ogg"}, {"start": 15296408, "audio": 1, "end": 15302613, "filename": "/data/audio/pew_laser.ogg"}, {"start": 15302613, "audio": 0, "end": 15731785, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 15731785, "audio": 0, "end": 16189233, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 16189233, "audio": 0, "end": 16602037, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 16602037, "audio": 0, "end": 17015501, "filename": "/data/images/karloff.png"}, {"start": 17015501, "audio": 0, "end": 17017143, "filename": "/data/sdf/A.png"}, {"start": 17017143, "audio": 0, "end": 18008375, "filename": "/data/sdf/msdfgen.exe"}, {"start": 18008375, "audio": 0, "end": 18437547, "filename": "/data/sdf/PT_Sans.ttf"}], "remote_package_size": 18437547, "package_uuid": "99f68ea3-3305-469d-ab90-a3d2cc54120e"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15296408, "filename": "/data/audio/mwak.ogg"}, {"start": 15296408, "audio": 1, "end": 15302613, "filename": "/data/audio/pew_laser.ogg"}, {"start": 15302613, "audio": 0, "end": 15731785, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 15731785, "audio": 0, "end": 16189233, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 16189233, "audio": 0, "end": 16602037, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 16602037, "audio": 0, "end": 17015501, "filename": "/data/images/karloff.png"}, {"start": 17015501, "audio": 0, "end": 17017143, "filename": "/data/sdf/A.png"}, {"start": 17017143, "audio": 0, "end": 18008375, "filename": "/data/sdf/msdfgen.exe"}, {"start": 18008375, "audio": 0, "end": 18437547, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 18437547, "audio": 0, "end": 18438213, "filename": "/data/shaders/glyph.f"}, {"start": 18438213, "audio": 0, "end": 18438526, "filename": "/data/shaders/glyph.v"}, {"start": 18438526, "audio": 0, "end": 18438671, "filename": "/data/shaders/plain.f"}, {"start": 18438671, "audio": 0, "end": 18438913, "filename": "/data/shaders/plain.v"}, {"start": 18438913, "audio": 0, "end": 18439181, "filename": "/data/shaders/textured.f"}, {"start": 18439181, "audio": 0, "end": 18439494, "filename": "/data/shaders/textured.v"}], "remote_package_size": 18439494, "package_uuid": "3ab37554-b811-4b97-b0e5-ff1db1eeb156"});
 
 })();
 
@@ -1403,11 +1404,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 29824,
+    STACK_BASE = 27136,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5272704,
-    DYNAMIC_BASE = 5272704,
-    DYNAMICTOP_PTR = 29792;
+    STACK_MAX = 5270016,
+    DYNAMIC_BASE = 5270016,
+    DYNAMICTOP_PTR = 27104;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1892,8 +1893,8 @@ Module['asm'] = function(global, env, providedBuffer) {
   ;
   // import table
   env['table'] = wasmTable = new WebAssembly.Table({
-    'initial': 2640,
-    'maximum': 2640,
+    'initial': 3088,
+    'maximum': 3088,
     'element': 'anyfunc'
   });
   // With the wasm backend __memory_base and __table_base and only needed for
@@ -1915,7 +1916,6 @@ var tempI64;
 
 var ASM_CONSTS = [function($0, $1) { console.log('Assertion failed ' + UTF8ToString($0) + ': ' + $1) },
  function($0) { console.log(UTF8ToString($0)) },
- function() { console.log('Pew!') },
  function($0, $1) { console.log("Last event: " + $0 + ", FirstUnused: " + $1) },
  function() { console.log("Mouse down") },
  function() { console.log("Mouse up") },
@@ -1925,18 +1925,18 @@ function _emscripten_asm_const_iii(code, a0, a1) {
   return ASM_CONSTS[code](a0, a1);
 }
 
-function _emscripten_asm_const_i(code) {
-  return ASM_CONSTS[code]();
-}
-
 function _emscripten_asm_const_ii(code, a0) {
   return ASM_CONSTS[code](a0);
 }
 
+function _emscripten_asm_const_i(code) {
+  return ASM_CONSTS[code]();
+}
 
 
 
-// STATICTOP = STATIC_BASE + 28800;
+
+// STATICTOP = STATIC_BASE + 26112;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1947,7 +1947,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 29808
+var tempDoublePtr = 27120
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -8514,25 +8514,6 @@ function copyTempDouble(ptr) {
       return GLctx['getUniformBlockIndex'](GL.programs[program], UTF8ToString(uniformBlockName));
     }
 
-  function _glGetUniformLocation(program, name) {
-      name = UTF8ToString(name);
-  
-      var arrayIndex = 0;
-      // If user passed an array accessor "[index]", parse the array index off the accessor.
-      if (name[name.length - 1] == ']') {
-        var leftBrace = name.lastIndexOf('[');
-        arrayIndex = name[leftBrace+1] != ']' ? parseInt(name.slice(leftBrace + 1)) : 0; // "index]", parseInt will ignore the ']' at the end; but treat "foo[]" as "foo[0]"
-        name = name.slice(0, leftBrace);
-      }
-  
-      var uniformInfo = GL.programInfos[program] && GL.programInfos[program].uniforms[name]; // returns pair [ dimension_of_uniform_array, uniform_location ]
-      if (uniformInfo && arrayIndex >= 0 && arrayIndex < uniformInfo[0]) { // Check if user asked for an out-of-bounds element, i.e. for 'vec4 colors[3];' user could ask for 'colors[10]' which should return -1.
-        return uniformInfo[1] + arrayIndex;
-      } else {
-        return -1;
-      }
-    }
-
   function _glLinkProgram(program) {
       GLctx.linkProgram(GL.programs[program]);
       GL.populateUniformTable(program);
@@ -8860,7 +8841,6 @@ var asmLibraryArg = {
   "_glGetShaderInfoLog": _glGetShaderInfoLog,
   "_glGetShaderiv": _glGetShaderiv,
   "_glGetUniformBlockIndex": _glGetUniformBlockIndex,
-  "_glGetUniformLocation": _glGetUniformLocation,
   "_glLinkProgram": _glLinkProgram,
   "_glShaderSource": _glShaderSource,
   "_glTexImage2D": _glTexImage2D,

@@ -152,7 +152,7 @@ Game(r32 dT)
         DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
     }
 
-    for(u32 i=0; i<State.Bullets.size(); ++i) {
+    for (u32 i=0; i<State.Bullets.size(); ++i) {
         if (State.Bullets[i].P.x < -100 || State.Bullets[i].P.x > Render.Screen.x + 100.0f ||
             State.Bullets[i].P.y < -100 || State.Bullets[i].P.y > Render.Screen.y + 100.0f)
         {
@@ -161,7 +161,7 @@ Game(r32 dT)
         }
     }
 
-    for(u32 i=0; i<State.Bullets.size(); ++i) {
+    for (u32 i=0; i<State.Bullets.size(); ++i) {
         v2 dP = State.Bullets[i].V * dT;
         State.Bullets[i].P += dP;
         DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{20.0, 20.0f}, 1);
