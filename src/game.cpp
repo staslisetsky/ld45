@@ -18,7 +18,7 @@ void
 GameInit()
 {
     read_file FontFile;
-    PlatformReadFile("fonts.data", &FontFile);
+    os::ReadFile("fonts.data", &FontFile);
 
     u8 *At = FontFile.Data;
 

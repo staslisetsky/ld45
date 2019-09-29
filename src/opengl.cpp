@@ -1,92 +1,79 @@
-struct image {
- u32 Texture;
-
- u32 Width;
- u32 Height;
- u32 N;
-
- u8 *Data;
-};
-
 void
 DumpGlErrors(char *Section) {
- char Buf[100];
+    char Buf[100];
 
- while (true) {
-  GLenum Error = glGetError();
-  if (Error == GL_NO_ERROR) { break; }
+    while (true) {
+        GLenum Error = glGetError();
+        if (Error == GL_NO_ERROR) { break; }
 
-  char *ErrorMessage = "";
+        char *ErrorMessage = "";
 
-  if (Error == GL_INVALID_ENUM) {
-   ErrorMessage = "Invalid Enum";
-} else if (Error == GL_INVALID_VALUE) {
-   ErrorMessage = "Invalid Value";
-} else if (Error == GL_INVALID_OPERATION) {
-   ErrorMessage = "Invalid Operation";
-} else if (Error == GL_INVALID_FRAMEBUFFER_OPERATION) {
-   ErrorMessage = "Invalid Framebuffer Operation";
-} else if (Error == GL_OUT_OF_MEMORY) {
-   ErrorMessage = "Out of Memory";
-}
+        if (Error == GL_INVALID_ENUM) {
+            ErrorMessage = "Invalid Enum";
+        } else if (Error == GL_INVALID_VALUE) {
+            ErrorMessage = "Invalid Value";
+        } else if (Error == GL_INVALID_OPERATION) {
+            ErrorMessage = "Invalid Operation";
+        } else if (Error == GL_INVALID_FRAMEBUFFER_OPERATION) {
+            ErrorMessage = "Invalid Framebuffer Operation";
+        } else if (Error == GL_OUT_OF_MEMORY) {
+            ErrorMessage = "Out of Memory";
+        }
 
-char Buffer[100];
-sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
-      // WasmConsoleLog(Buffer);
-Assert(false);
-}
+        char Buffer[100];
+        sprintf(Buffer, "[OpenGL] %s: %s\0", Section, ErrorMessage);
+        // WasmConsoleLog(Buffer);
+    }
 }
 
 GLuint
 CreateShader(const char *String, GLuint Type)
 {
- GLuint Shader = glCreateShader(Type);
- glShaderSource(Shader, 1, &String, 0);
- glCompileShader(Shader);
+    GLuint Shader = glCreateShader(Type);
+    glShaderSource(Shader, 1, &String, 0);
+    glCompileShader(Shader);
 
- GLint Status;
- glGetShaderiv(Shader, GL_COMPILE_STATUS, &Status);
+    GLint Status;
+    glGetShaderiv(Shader, GL_COMPILE_STATUS, &Status);
 
- if (!Status) {
-  GLint Length = 0;
-  glGetShaderiv(Shader, GL_INFO_LOG_LENGTH, &Length);
-  char *Log = (char *)malloc(Length);
-  glGetShaderInfoLog(Shader, Length, 0, Log);
-      // WasmConsoleLog("Shader compilation failed");
-      // WasmConsoleLog(Log);
-  Assert(false);
-  free(Log);
-}
+    if (!Status) {
+        GLint Length = 0;
+        glGetShaderiv(Shader, GL_INFO_LOG_LENGTH, &Length);
+        char *Log = (char *)malloc(Length + 1);
+        glGetShaderInfoLog(Shader, Length, 0, Log);
+        Log[Length] = 0;
 
-return Shader;
+        os::PrintLog("opengl", Log);
+        free(Log);
+    }
+
+    return Shader;
 }
 
 GLuint
 CreateProgram(const char *V, const char *F)
 {
- GLuint Program = glCreateProgram();
- GLuint VShader = CreateShader(V, GL_VERTEX_SHADER);
- GLuint FShader = CreateShader(F, GL_FRAGMENT_SHADER);
+    GLuint Program = glCreateProgram();
+    GLuint VShader = CreateShader(V, GL_VERTEX_SHADER);
+    GLuint FShader = CreateShader(F, GL_FRAGMENT_SHADER);
 
- glAttachShader(Program, VShader);
- glAttachShader(Program, FShader);
+    glAttachShader(Program, VShader);
+    glAttachShader(Program, FShader);
 
- GLint GLProgramLinkStatus;
- glLinkProgram(Program);
- glGetProgramiv(Program, GL_LINK_STATUS, &GLProgramLinkStatus);
+    GLint GLProgramLinkStatus;
+    glLinkProgram(Program);
+    glGetProgramiv(Program, GL_LINK_STATUS, &GLProgramLinkStatus);
 
- if (GLProgramLinkStatus == GL_FALSE) {
-    GLint Length;
-    glGetProgramiv(Program, GL_INFO_LOG_LENGTH, &Length);
-    char *Log = (char *)malloc(Length);
-    glGetProgramInfoLog(Program, Length, NULL, Log);
-        // WasmConsoleLog("Shader linking failed");
-        // WasmConsoleLog(Log);
-    free(Log);
-}
+    if (GLProgramLinkStatus == GL_FALSE) {
+        GLint Length;
+        glGetProgramiv(Program, GL_INFO_LOG_LENGTH, &Length);
+        char *Log = (char *)malloc(Length);
+        glGetProgramInfoLog(Program, Length, NULL, Log);
+        os::PrintLog("opengl", Log);
+        free(Log);
+    }
 
-
-return Program;
+    return Program;
 }
 
 GLuint
@@ -97,14 +84,14 @@ LoadShader(char *Name)
     Filename.AppendCString(".v");
 
     read_file VertexFile;
-    assert(PlatformReadFile(Filename.Data, &VertexFile));
+    assert(os::ReadFile(Filename.Data, &VertexFile));
 
     Filename = "shaders/";
     Filename.AppendCString(Name);
     Filename.AppendCString(".f");
 
     read_file FragmentFile;
-    assert(PlatformReadFile(Filename.Data, &FragmentFile));
+    assert(os::ReadFile(Filename.Data, &FragmentFile));
 
     return CreateProgram((char *)VertexFile.Data, (char *)FragmentFile.Data);
 }

@@ -43,4 +43,8 @@ struct read_file {
     u32 Size;
 };
 
-bool PlatformReadFile(char *Filename, read_file *Result);
+struct os {
+    static bool ReadFile(char *Filename, read_file *Result);
+    static void PrintLog(char *Section, char *Log);
+};
+

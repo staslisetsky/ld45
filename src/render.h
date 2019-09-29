@@ -1,3 +1,13 @@
+struct image {
+    u32 Texture;
+
+    u32 Width;
+    u32 Height;
+    u32 N;
+
+    u8 *Data;
+};
+
 enum shader_ {
     Shader_Plain,
     Shader_Textured,
@@ -41,6 +51,8 @@ struct shader {
 };
 
 struct render {
+    char *ShaderError;
+
     v2i Screen;
 
     GLuint VertexArrayPlain;

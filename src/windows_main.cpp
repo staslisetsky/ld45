@@ -153,8 +153,8 @@ GetFileSize(FILE *File)
    return Size;
 }
 
-bool
-PlatformReadFile(char *Filename, read_file *Result)
+bool os::
+ReadFile(char *Filename, read_file *Result)
 {
    FILE *File = fopen(Filename, "rb");
 
@@ -169,6 +169,12 @@ PlatformReadFile(char *Filename, read_file *Result)
    }
 
    return false;
+}
+
+void os::
+PrintLog(char *Section, char *Log)
+{
+    printf("[%s] %s\n", Section, Log);
 }
 
 void
@@ -234,9 +240,14 @@ ProcessMessages()
     }
 }
 
-int
-WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
+// int
+// WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
+// {
+void
+main()
 {
+    HINSTANCE Instance = GetModuleHandleW(0);
+
     WNDCLASSW WindowClass = {};
     WindowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC | CS_DBLCLKS;
     WindowClass.lpfnWndProc = MainWindowCallback;
