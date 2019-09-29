@@ -13,6 +13,7 @@ enum input_event_ {
     InputEvent_MouseUp,
     InputEvent_KeyUp,
     InputEvent_KeyDown,
+    InputEvent_KeyDownRepeated,
     InputEvent_Count,
 };
 
@@ -34,8 +35,8 @@ struct input {
     button Keys[Key_Count];
 
     input_event Events[MAX_INPUT_EVENTS];
-    u32 LastEvent;
-    u32 FirstUnusedEvent;
+    volatile u32 LastEvent;
+    volatile u32 LastUsedEvent;
 };
 
 struct read_file {

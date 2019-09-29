@@ -43,6 +43,7 @@ ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
 struct wasm_state {
    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE WebGLContext;
    u32 Frame;
+   r64 LastFrameMs;
 };
 
 #include "render.h"
@@ -108,6 +109,10 @@ WasmPrintError(EMSCRIPTEN_RESULT Error)
 void
 WasmMainLoop()
 {
+   r64 Time = emscripten_performance_now();
+   r32 dT = Time - WasmState.LastFrameMs;
+   WasmState.LastFrameMs = Time;
+
    for (u32 i=0; i<Key_Count; ++i) {
       Input.Keys[i].WentDown = false;
       Input.Keys[i].WentUp = false;
@@ -120,31 +125,37 @@ WasmMainLoop()
    Input.Mouse[1].WentUp = false;
 
    u32 LastEvent = Input.LastEvent;
-   while (Input.FirstUnusedEvent != LastEvent) {
-      u32 FirstUnusedEvent = Input.FirstUnusedEvent;
-      EM_ASM(console.log("Last event: " + $0 + ", FirstUnused: " + $1), LastEvent, FirstUnusedEvent);
+   while (Input.LastUsedEvent != LastEvent) {
+      u32 FirstUnusedEvent = (Input.LastUsedEvent + 1) % MAX_INPUT_EVENTS;
 
-      input_event *Event = Input.Events + Input.FirstUnusedEvent;
+      input_event *Event = Input.Events + FirstUnusedEvent;
+
       if (Event->Type == InputEvent_MouseDown) {
          Input.Mouse[Event->Index].WentDown = true;
-         EM_ASM(console.log("Mouse down"));
       } else if (Event->Type == InputEvent_MouseUp) {
          Input.Mouse[Event->Index].WentUp = true;
-         EM_ASM(console.log("Mouse up"));
+      } else if (Event->Type == InputEvent_KeyDown) {
+         EM_ASM(console.log("Key Down: " + $0 + " Index: " + $1), Event->Index, FirstUnusedEvent);
+
+         Input.Keys[Event->Index].Down = true;
+         Input.Keys[Event->Index].WentDown = true;
+         Input.Keys[Event->Index].WentDownOrRepeated = true;
+      } else if (Event->Type == InputEvent_KeyDownRepeated) {
+         Input.Keys[Event->Index].WentDownOrRepeated = true;
+      } else if (Event->Type == InputEvent_KeyUp) {
+         EM_ASM(console.log("Key Up: " + $0 + " Index: " + $1), Event->Index, FirstUnusedEvent);
+         Input.Keys[Event->Index].Down = false;
+         Input.Keys[Event->Index].WentUp = true;
       }
 
-      Input.FirstUnusedEvent = (Input.FirstUnusedEvent + 1) % MAX_INPUT_EVENTS;
-      EM_ASM(console.log("Next index: " + $0), Input.FirstUnusedEvent);
+      Input.LastUsedEvent = FirstUnusedEvent;
    }
 
    Render.Screen.x = 1000;
    Render.Screen.y = 500;
 
-   Game(0.1f);
+   Game(dT / 1000.0f);
    OpenglRender(Render);
-
-   // swap:
-   // emscripten_webgl_commit_frame();
 
    Render.PlainVertexCount = 0;
    Render.TexturedVertexCount = 0;
@@ -193,21 +204,26 @@ WasmKeyEventCallback(s32 EventType, const EmscriptenKeyboardEvent *Event, void *
        (Event->keyCode >= 0x41 && Event->keyCode <= 0x5a) ||
        (Event->keyCode >= 0x0E && Event->keyCode <= 0x2E))
    {
+      input_event InputEvent = {};
+      u32 EventIndex = (Input.LastEvent + 1) % MAX_INPUT_EVENTS;
+
       key_ Key = (key_)Event->keyCode;
+      InputEvent.Index = Key;
 
       if (EventType == EMSCRIPTEN_EVENT_KEYDOWN) {
          if (Event->repeat) {
-            Input.Keys[Event->keyCode].WentDownOrRepeated = true;
+            InputEvent.Type = InputEvent_KeyDownRepeated;
          } else {
-            Input.Keys[Event->keyCode].WentDown = true;
-            Input.Keys[Event->keyCode].WentDownOrRepeated = true;
+            EM_ASM(console.log("Callback Event: Down: " + $0 + ", Index: " + $1), Key, EventIndex);
+            InputEvent.Type = InputEvent_KeyDown;
          }
-
-         Input.Keys[Event->keyCode].Down = true;
       } else if (EventType == EMSCRIPTEN_EVENT_KEYUP) {
-         Input.Keys[Event->keyCode].Down = false;
-         Input.Keys[Event->keyCode].WentUp = true;
+         EM_ASM(console.log("Callback Event: Up: " + $0 + ", Index: " + $1), Key, EventIndex);
+         InputEvent.Type = InputEvent_KeyUp;
       }
+
+      Input.Events[EventIndex] = InputEvent;
+      Input.LastEvent = EventIndex;
 
       return true;
    }
@@ -225,8 +241,8 @@ WasmGetFileSize(FILE *File)
    return Size;
 }
 
-bool
-PlatformReadFile(char *Filename, read_file *Result)
+bool os::
+ReadFile(char *Filename, read_file *Result)
 {
    FILE *File = fopen(Filename, "rb");
 
@@ -244,6 +260,12 @@ PlatformReadFile(char *Filename, read_file *Result)
    return false;
 }
 
+void os::
+PrintLog(char *Section, char *Log)
+{
+   EM_ASM(console.log('[' + UTF8ToString($0) + '] ' + $1), Section, Log);
+}
+
 int main() {
    EmscriptenWebGLContextAttributes Attributes = {};
    emscripten_webgl_init_context_attributes(&Attributes);
@@ -253,8 +275,6 @@ int main() {
    Attributes.alpha = true;
    Attributes.depth = true;
    Attributes.antialias = true;
-   // Attributes.explicitSwapControl = true;
-   Attributes.renderViaOffscreenBackBuffer = true;
 
    WasmState.WebGLContext = emscripten_webgl_create_context("canvas", &Attributes);
 
@@ -268,6 +288,8 @@ int main() {
 
       chdir("/data");
 
+      WasmState.LastFrameMs = emscripten_performance_now();
+
       InitOpengl();
       InitOpenal();
       GameInit();
@@ -279,8 +301,11 @@ int main() {
       emscripten_set_mouseup_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
       emscripten_set_mousemove_callback("#canvas", 0, false, WasmKeyMouseEventCallback);
 
+      emscripten_run_script("gameInitialized()");
+
       WasmConsoleLog("Starting the main loop");
       emscripten_set_main_loop(WasmMainLoop, 0, 0);
+
       // this sets the swap interval:
       emscripten_set_main_loop_timing(EM_TIMING_RAF, 1);
    }

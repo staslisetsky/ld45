@@ -4,12 +4,23 @@ struct bullet {
     v2 V;
 };
 
+struct asteroid {
+    r32 Size;
+    v2 P;
+    v2 V;
+};
+
 struct state {
+    u32 FrameCounter;
+
     v2 PlayerP;
     v2 PlayerV;
     v2 PlayerFacing;
 
+    r32 Time;
+
     std::vector<bullet>Bullets;
+    std::vector<asteroid>Asteroids;
 };
 
 state State = {};
@@ -76,6 +87,55 @@ GameInit()
 }
 
 void
+SpawnAsteroids(u32 Count, u32 SizeFactor)
+{
+    r32 SizeBase = 50.0f;
+    r32 MaxSpeed = 290.0f;
+
+    for (u32 i=0; i<Count; ++i) {
+        r32 Rand = (r32)(rand() % 100);
+        r32 RandX = (r32)(rand() % 200) - 100.0f;
+        r32 RandY = (r32)(rand() % 200) - 100.0f;
+        r32 RandSpeed = (r32)(rand() % 100) / 100.0f;
+
+        if (RandX > 0.0) {
+            RandX += Render.Screen.x - 200.0;
+        } else {
+            RandX += 200.0;
+        }
+        if (RandY > 0.0) {
+            RandY += Render.Screen.y - 100.0;
+        } else{
+            RandY += 100.0;
+        }
+
+        asteroid New = {};
+        New.Size = SizeBase + SizeFactor * Rand;
+        New.P = v2{RandX, RandY};
+
+        v2 Center = v2{Render.Screen.x / 2.0f, Render.Screen.y / 2.0f};
+        v2 ToCenter = Center - New.P;
+        v2 N = Normalize(Perp(ToCenter));
+
+        r32 V1 = Dot(v2{0.0f, 0.0f} - Center, N);
+        r32 V2 = Dot(v2{(r32)Render.Screen.x, 0.0f} - Center, N);
+        r32 V3 = Dot(v2{(r32)Render.Screen.x, (r32)Render.Screen.y} - Center, N);
+        r32 V4 = Dot(v2{0.0f, (r32)Render.Screen.y} - Center, N);
+
+        r32 RandDirection = (r32)(rand() % 100) / 100.0f;
+
+        v2 MinDirection = Normalize(Min_r32(Min_r32(V1, V2), Min_r32(V3, V4)) * N + Center - New.P);
+        v2 MaxDirection = Normalize(Max_r32(Max_r32(V1, V2), Max_r32(V3, V4)) * N + Center - New.P);
+
+        v2 Direction = Lerp(MinDirection, MaxDirection, RandDirection);
+
+        New.V = Direction * (Max_r32(RandSpeed * MaxSpeed, 70.0f));
+
+        State.Asteroids.push_back(New);
+    }
+}
+
+void
 Game(r32 dT)
 {
     r32 Acceleration = 5.0f;
@@ -101,7 +161,7 @@ Game(r32 dT)
 
         State.Bullets.push_back(Bullet);
 
-        sound::Play();
+        // sound::Play(Sound_Pew);
     }
 
     State.PlayerFacing = Normalize(Input.MouseP - State.PlayerP);
@@ -113,6 +173,10 @@ Game(r32 dT)
 
     State.PlayerV += dV;
     State.PlayerP += dP;
+
+    if (State.Time == 0) {
+        SpawnAsteroids(3, 1);
+    }
 
     //
     //
@@ -139,7 +203,7 @@ Game(r32 dT)
         v2 Offset = v2{(r32)Render.Screen.x, 0.0f};
         DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
     }
-    if (State.PlayerP.x < Render.Screen.x - PlayerSize) {
+    if (State.PlayerP.x > Render.Screen.x - PlayerSize) {
         v2 Offset = v2{(r32)-Render.Screen.x, 0.0f};
         DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
     }
@@ -164,6 +228,35 @@ Game(r32 dT)
     for (u32 i=0; i<State.Bullets.size(); ++i) {
         v2 dP = State.Bullets[i].V * dT;
         State.Bullets[i].P += dP;
-        DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{20.0, 20.0f}, 1);
+        DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{7.0, 7.0f}, 1);
+
+        for (u32 j=0; j<State.Asteroids.size(); ++j) {
+            rect Rect = RectPDim(State.Asteroids[j].P, v2{State.Asteroids[j].Size, State.Asteroids[j].Size});
+
+            if (InRect(Rect, State.Bullets[i].P)) {
+                State.Bullets.erase(State.Bullets.begin() + i);
+                State.Asteroids.erase(State.Asteroids.begin() + j);
+
+                if (i > 0) {
+                    --i;
+                }
+                if (j > 0) {
+                    --j;
+                }
+
+                sound::Play(Sound_AsteroidExplode);
+            }
+        }
     }
+
+    for (u32 i=0; i<State.Asteroids.size(); ++i) {
+        v2 dP = State.Asteroids[i].V * dT;
+        State.Asteroids[i].P += dP;
+        r32 Size = State.Asteroids[i].Size;
+        DrawRect(&Render, RGBA(255,0,0,255), State.Asteroids[i].P, v2{Size, Size}, 1);
+    }
+
+    State.Time += dT;
+
+    // DrawText(&Render, v2{ 100.0f, 100.0f }, RGBA(0,0,0,255), Font_PTSans, 16.0f, "Insert Coin");
 }

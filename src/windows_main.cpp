@@ -366,16 +366,15 @@ main()
             Render.CommandCount = 0;
 
             ProcessMessages();
-
-            Game(0.016f);
-
             Render.Screen = GetWindowSize(Window);
+            Game(0.016f);
             OpenglRender(Render);
             SwapBuffers(DeviceContext);
 
+
             if (Input.Keys[Key_Alt].Down && Input.Keys[Key_F4].WentDown) {
                 GlobalRunning = false;
-            } else if (Input.Keys[Key_Alt].Down && Input.Keys[Key_W].WentDown) {
+            } else if (Input.Keys[Key_Esc].Down) {
                 GlobalRunning = false;
             }
         }

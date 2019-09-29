@@ -199,10 +199,20 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15296408, "filename": "/data/audio/mwak.ogg"}, {"start": 15296408, "audio": 1, "end": 15302613, "filename": "/data/audio/pew_laser.ogg"}, {"start": 15302613, "audio": 0, "end": 15731785, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 15731785, "audio": 0, "end": 16189233, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 16189233, "audio": 0, "end": 16602037, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 16602037, "audio": 0, "end": 17015501, "filename": "/data/images/karloff.png"}, {"start": 17015501, "audio": 0, "end": 17017143, "filename": "/data/sdf/A.png"}, {"start": 17017143, "audio": 0, "end": 18008375, "filename": "/data/sdf/msdfgen.exe"}, {"start": 18008375, "audio": 0, "end": 18437547, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 18437547, "audio": 0, "end": 18438213, "filename": "/data/shaders/glyph.f"}, {"start": 18438213, "audio": 0, "end": 18438526, "filename": "/data/shaders/glyph.v"}, {"start": 18438526, "audio": 0, "end": 18438671, "filename": "/data/shaders/plain.f"}, {"start": 18438671, "audio": 0, "end": 18438913, "filename": "/data/shaders/plain.v"}, {"start": 18438913, "audio": 0, "end": 18439181, "filename": "/data/shaders/textured.f"}, {"start": 18439181, "audio": 0, "end": 18439494, "filename": "/data/shaders/textured.v"}], "remote_package_size": 18439494, "package_uuid": "3ab37554-b811-4b97-b0e5-ff1db1eeb156"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15298147, "filename": "/data/audio/boom_1.ogg"}, {"start": 15298147, "audio": 1, "end": 15370757, "filename": "/data/audio/intro.ogg"}, {"start": 15370757, "audio": 1, "end": 18240408, "filename": "/data/audio/music.ogg"}, {"start": 18240408, "audio": 1, "end": 18256551, "filename": "/data/audio/mwak.ogg"}, {"start": 18256551, "audio": 1, "end": 18262756, "filename": "/data/audio/pew_laser.ogg"}, {"start": 18262756, "audio": 1, "end": 18288584, "filename": "/data/audio/powerup.ogg"}, {"start": 18288584, "audio": 0, "end": 18717756, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 18717756, "audio": 0, "end": 19175204, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 19175204, "audio": 0, "end": 19588008, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 19588008, "audio": 0, "end": 20001472, "filename": "/data/images/karloff.png"}, {"start": 20001472, "audio": 0, "end": 20003114, "filename": "/data/sdf/A.png"}, {"start": 20003114, "audio": 0, "end": 20994346, "filename": "/data/sdf/msdfgen.exe"}, {"start": 20994346, "audio": 0, "end": 21423518, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 21423518, "audio": 0, "end": 21424184, "filename": "/data/shaders/glyph.f"}, {"start": 21424184, "audio": 0, "end": 21424497, "filename": "/data/shaders/glyph.v"}, {"start": 21424497, "audio": 0, "end": 21424644, "filename": "/data/shaders/plain.f"}, {"start": 21424644, "audio": 0, "end": 21424886, "filename": "/data/shaders/plain.v"}, {"start": 21424886, "audio": 0, "end": 21425154, "filename": "/data/shaders/textured.f"}, {"start": 21425154, "audio": 0, "end": 21425467, "filename": "/data/shaders/textured.v"}], "remote_package_size": 21425467, "package_uuid": "b92d8ad5-19e8-4119-b56f-e951401e9501"});
 
 })();
 
+Module['onRuntimeInitialized'] = function(text) {
+    console.log('preRun');
+};
+
+function gameInitialized() {
+    var loading = document.getElementById('loading');
+    console.log(loading);
+    loading.innerHTML = "";
+    console.log('game initialized!');
+}
 
 
 // Sometimes an existing Module object exists with properties
@@ -1404,11 +1414,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 27136,
+    STACK_BASE = 27616,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5270016,
-    DYNAMIC_BASE = 5270016,
-    DYNAMICTOP_PTR = 27104;
+    STACK_MAX = 5270496,
+    DYNAMIC_BASE = 5270496,
+    DYNAMICTOP_PTR = 27584;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1916,10 +1926,11 @@ var tempI64;
 
 var ASM_CONSTS = [function($0, $1) { console.log('Assertion failed ' + UTF8ToString($0) + ': ' + $1) },
  function($0) { console.log(UTF8ToString($0)) },
- function($0, $1) { console.log("Last event: " + $0 + ", FirstUnused: " + $1) },
- function() { console.log("Mouse down") },
- function() { console.log("Mouse up") },
- function($0) { console.log("Next index: " + $0) }];
+ function($0, $1) { console.log('[' + UTF8ToString($0) + '] ' + $1) },
+ function($0, $1) { console.log("Key Down: " + $0 + " Index: " + $1) },
+ function($0, $1) { console.log("Key Up: " + $0 + " Index: " + $1) },
+ function($0, $1) { console.log("Callback Event: Down: " + $0 + ", Index: " + $1) },
+ function($0, $1) { console.log("Callback Event: Up: " + $0 + ", Index: " + $1) }];
 
 function _emscripten_asm_const_iii(code, a0, a1) {
   return ASM_CONSTS[code](a0, a1);
@@ -1929,15 +1940,11 @@ function _emscripten_asm_const_ii(code, a0) {
   return ASM_CONSTS[code](a0);
 }
 
-function _emscripten_asm_const_i(code) {
-  return ASM_CONSTS[code]();
-}
 
 
 
-
-// STATICTOP = STATIC_BASE + 26112;
-/* global initializers */ /*__ATINIT__.push();*/
+// STATICTOP = STATIC_BASE + 26592;
+/* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_wasm_main_cpp() } });
 
 
 
@@ -1947,7 +1954,7 @@ function _emscripten_asm_const_i(code) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 27120
+var tempDoublePtr = 27600
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -7780,6 +7787,14 @@ function copyTempDouble(ptr) {
       return HEAP8.length;
     }
 
+  function _emscripten_performance_now() {
+      return performance.now();
+    }
+
+  function _emscripten_run_script(ptr) {
+      eval(UTF8ToString(ptr));
+    }
+
   
   
   var JSEvents={keyEvent:0,mouseEvent:0,wheelEvent:0,uiEvent:0,focusEvent:0,deviceOrientationEvent:0,deviceMotionEvent:0,fullscreenChangeEvent:0,pointerlockChangeEvent:0,visibilityChangeEvent:0,touchEvent:0,previousFullscreenElement:null,previousScreenX:null,previousScreenY:null,removeEventListenersRegistered:false,removeAllEventListeners:function() {
@@ -8622,10 +8637,6 @@ function copyTempDouble(ptr) {
 
   function _glTexParameteri(x0, x1, x2) { GLctx['texParameteri'](x0, x1, x2) }
 
-  function _glUniform2f(location, v0, v1) {
-      GLctx.uniform2f(GL.uniforms[location], v0, v1);
-    }
-
   function _glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding) {
       program = GL.programs[program];
   
@@ -8796,13 +8807,14 @@ var asmLibraryArg = {
   "_alcCreateContext": _alcCreateContext,
   "_alcMakeContextCurrent": _alcMakeContextCurrent,
   "_alcOpenDevice": _alcOpenDevice,
-  "_emscripten_asm_const_i": _emscripten_asm_const_i,
   "_emscripten_asm_const_ii": _emscripten_asm_const_ii,
   "_emscripten_asm_const_iii": _emscripten_asm_const_iii,
   "_emscripten_get_heap_size": _emscripten_get_heap_size,
   "_emscripten_get_now": _emscripten_get_now,
   "_emscripten_memcpy_big": _emscripten_memcpy_big,
+  "_emscripten_performance_now": _emscripten_performance_now,
   "_emscripten_resize_heap": _emscripten_resize_heap,
+  "_emscripten_run_script": _emscripten_run_script,
   "_emscripten_set_click_callback_on_thread": _emscripten_set_click_callback_on_thread,
   "_emscripten_set_keydown_callback_on_thread": _emscripten_set_keydown_callback_on_thread,
   "_emscripten_set_keyup_callback_on_thread": _emscripten_set_keyup_callback_on_thread,
@@ -8845,7 +8857,6 @@ var asmLibraryArg = {
   "_glShaderSource": _glShaderSource,
   "_glTexImage2D": _glTexImage2D,
   "_glTexParameteri": _glTexParameteri,
-  "_glUniform2f": _glUniform2f,
   "_glUniformBlockBinding": _glUniformBlockBinding,
   "_glUseProgram": _glUseProgram,
   "_glVertexAttribPointer": _glVertexAttribPointer,
@@ -8866,6 +8877,12 @@ var asm =Module["asm"]// EMSCRIPTEN_END_ASM
 (asmGlobalArg, asmLibraryArg, buffer);
 
 Module["asm"] = asm;
+var __GLOBAL__sub_I_wasm_main_cpp = Module["__GLOBAL__sub_I_wasm_main_cpp"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["__GLOBAL__sub_I_wasm_main_cpp"].apply(null, arguments)
+};
+
 var __ZSt18uncaught_exceptionv = Module["__ZSt18uncaught_exceptionv"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
