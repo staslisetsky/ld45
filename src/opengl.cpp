@@ -139,9 +139,13 @@ InitOpengl()
 
     glGenBuffers(1, &Render.ViewUniformBuffer);
 
-    Render.Shaders[Shader_Plain] = LoadShader("plain");
-    Render.Shaders[Shader_Textured] = LoadShader("textured");
-    Render.Shaders[Shader_Glyph] = LoadShader("glyph");
+    Render.Shaders[Shader_Plain].Name = "plain";
+    Render.Shaders[Shader_Textured].Name = "textured";
+    Render.Shaders[Shader_Glyph].Name = "glyph";
+
+    for (u32 i=0; i<Shader_Count; ++i) {
+        Render.Shaders[i].Id = LoadShader(Render.Shaders[i].Name.Data);
+    }
 
     Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * VERTEX_BUFFER_SIZE);
     Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * VERTEX_BUFFER_SIZE);
@@ -153,11 +157,11 @@ InitOpengl()
     glBindBufferBase(GL_UNIFORM_BUFFER, 0, Render.ViewUniformBuffer);
 
     GLuint Index = 0;
-    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Plain], "view");
-    glUniformBlockBinding(Render.Shaders[Shader_Plain], Index, 0);
+    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Plain].Id, "view");
+    glUniformBlockBinding(Render.Shaders[Shader_Plain].Id, Index, 0);
 
-    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Textured], "view");
-    glUniformBlockBinding(Render.Shaders[Shader_Textured], Index, 0);
+    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Textured].Id, "view");
+    glUniformBlockBinding(Render.Shaders[Shader_Textured].Id, Index, 0);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -226,24 +230,17 @@ OpenglRender(render Render)
 
     for (u32 i=0; i<Render.CommandCount; ++i) {
         render_command Command = Render.Commands[i];
-        glUseProgram(Command.Data.Shader);
+        glUseProgram(Render.Shaders[Command.Data.Shader].Id);
 
-        if (Command.Data.Shader == Render.Shaders[Shader_Plain]) {
+        if (Command.Data.Shader == Shader_Plain) {
             glBindVertexArray(Render.VertexArrayPlain);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-        } else if (Command.Data.Shader == Render.Shaders[Shader_Textured]) {
+        } else if (Command.Data.Shader == Shader_Textured) {
             glBindVertexArray(Render.VertexArrayTextured);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
             glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
             // EM_ASM(console.log($0), Command.Data.Texture);
-        } else if (Command.Data.Shader == Render.Shaders[Shader_SDF]) {
-            glUniform2f(Render.QuadDimUniform, (r32)Command.Data.QuadDim.x, (r32)Command.Data.QuadDim.y);
-            glBindVertexArray(Render.VertexArrayTextured);
-            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
-            glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
-
-            // EM_ASM(console.log($0), Command.Data.Texture);
-        } else if (Command.Data.Shader == Render.Shaders[Shader_Glyph]) {
+        } else if (Command.Data.Shader == Shader_Glyph) {
             glBindVertexArray(Render.VertexArrayTextured);
             glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
             glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);

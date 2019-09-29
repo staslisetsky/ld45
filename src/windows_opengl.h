@@ -151,6 +151,7 @@ typedef void gl_bind_framebuffer(GLenum target, GLuint framebuffer);
 typedef void gl_framebuffer_texture2d(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
 typedef void gl_blit_framebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 typedef void gl_draw_arrays_instaced(GLenum mode, GLint first, GLsizei count, GLsizei primcount);
+typedef void gl_delete_program(GLuint program);
 
 gl_use_program *glUseProgram;
 gl_bind_buffer *glBindBuffer;
@@ -206,6 +207,7 @@ gl_multidraw_elements *glMultiDrawElements;
 gl_multidraw_arrays *glMultiDrawArrays;
 gl_teximage2d_multisample *glTexImage2DMultisample;
 gl_blit_framebuffer *glBlitFramebuffer;
+gl_delete_program *glDeleteProgram;
 
 struct opengl_info {
     char *Vendor;
@@ -292,6 +294,7 @@ InitOpenglContext(HWND Window)
             glRenderbufferStorageMultisample = (gl_renderbuffer_storage_multisample *)wglGetProcAddress("glRenderbufferStorageMultisample");
             glGenFramebuffers = (gl_gen_framebuffers *)wglGetProcAddress("glGenFramebuffers");
             glBindFramebuffer = (gl_bind_framebuffer *)wglGetProcAddress("glBindFramebuffer");
+            glDeleteProgram = (gl_delete_program *)wglGetProcAddress("glDeleteProgram");
 
             glFramebufferTexture = (gl_framebuffer_texture *)wglGetProcAddress("glFramebufferTexture");
             glDrawBuffers = (gl_draw_buffers *)wglGetProcAddress("glDrawBuffers");

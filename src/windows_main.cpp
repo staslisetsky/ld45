@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <WinError.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <vector>
@@ -271,7 +272,61 @@ WinMain(HINSTANCE Instance, HINSTANCE PrevInstance, LPSTR CmdLine, int ShowCmd)
 
         GameInit();
 
+        HANDLE WatchDir = CreateFileA("shaders", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, 0);
+
+        u32 WatchBufferSize = 4096;
+        u32 WatchBytesReceived;
+        char *WatchBuffer = (char *)malloc(WatchBufferSize);
+        OVERLAPPED Overlapped = {};
+
+        BOOL Cunt = ReadDirectoryChangesW(WatchDir, WatchBuffer, WatchBufferSize, 0, FILE_NOTIFY_CHANGE_LAST_WRITE | FILE_NOTIFY_CHANGE_FILE_NAME,
+                              (LPDWORD)&WatchBytesReceived, &Overlapped, 0);
+        DWORD Error = GetLastError();
+        HANDLE WatchIOCP = CreateIoCompletionPort(WatchDir, 0, 0, 0);
+
         while (GlobalRunning) {
+            OVERLAPPED *O;
+            DWORD Bytes;
+            ULONG_PTR Key;
+
+            if (GetQueuedCompletionStatus(WatchIOCP, &Bytes, &Key, &O, 1)) {
+                char *Data = WatchBuffer;
+                u32 Next = 0;
+
+                do {
+                    FILE_NOTIFY_INFORMATION *Info = (FILE_NOTIFY_INFORMATION *)Data;
+                    Next = Info->NextEntryOffset;
+
+                    char AsciiFilename[256];
+                    wcstombs (AsciiFilename, Info->FileName, Info->FileNameLength / 2);
+
+                    u32 CharCount = Info->FileNameLength / 2;
+                    u32 LastDot = CharCount - 1;
+
+                    for (u32 i=0; i<CharCount; ++i) {
+                        if (Info->FileName[CharCount - i - 1] == L'.') {
+                           break;
+                        }
+                        --LastDot;
+                    }
+
+                    ls_stringbuf ShaderName;
+                    ShaderName.AppendCStringN(AsciiFilename, LastDot);
+
+                    for (u32 i=0; i<Shader_Count; ++i) {
+                        if (Render.Shaders[i].Name == ShaderName) {
+                            glDeleteProgram(Render.Shaders[i].Id);
+                            Render.Shaders[i].Id = LoadShader(Render.Shaders[i].Name.Data);
+                        }
+                    }
+
+                    Data += Next;
+                } while (Next);
+
+                ReadDirectoryChangesW(WatchDir, WatchBuffer, WatchBufferSize, 0, FILE_NOTIFY_CHANGE_LAST_WRITE | FILE_NOTIFY_CHANGE_FILE_NAME,
+                                      (LPDWORD)&WatchBytesReceived, &Overlapped, 0);
+            }
+
             Input.dWheel = 0;
 
             for (u32 KeyIndex = 0; KeyIndex < Key_Count; ++KeyIndex) {
