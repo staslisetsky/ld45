@@ -19,7 +19,7 @@ struct loaded_sound {
 
 struct sound {
     ALuint MusicSource;
-    ALuint MonoSFXSource;
+    ALuint SFXSource;
 
     loaded_sound Sounds[Sound_Count];
     static void Play(sound_ Sound);
@@ -32,14 +32,20 @@ void sound::
 Play(sound_ SoundId)
 {
     loaded_sound PlayedSound = Sound.Sounds[SoundId];
-    alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
+    // alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
 
     ALint State;
     alGetSourcei(PlayedSound.Source, AL_SOURCE_STATE, &State);
 
     if (State != AL_PLAYING) {
+        alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
         alSourcePlay(PlayedSound.Source);
+    } else {
+        alSourceStop(PlayedSound.Source);
+        alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
     }
+
+    alSourcePlay(PlayedSound.Source);
 }
 
 void sound::
@@ -111,7 +117,7 @@ InitOpenal()
     }
 
     alGenSources(1, &Sound.MusicSource);
-    alGenSources(1, &Sound.MonoSFXSource);
+    alGenSources(1, &Sound.SFXSource);
 
     // if (alIsExtensionPresent("EAX2.0")) {
 
@@ -119,7 +125,8 @@ InitOpenal()
 
     Sound.Sounds[Music_Intro] = LoadSound(Sound.MusicSource, "audio/intro.ogg");
     Sound.Sounds[Music_Main] = LoadSound(Sound.MusicSource, "audio/music.ogg");
-
+    Sound.Sounds[Sound_AsteroidExplode] = LoadSound(Sound.SFXSource, "audio/boom_1.ogg");
+    Sound.Sounds[Sound_Pew] = LoadSound(Sound.SFXSource, "audio/pew_laser.ogg");
     // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Main].Buffer);
     // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Intro].Buffer);
     // alSourceQueueBuffers(PlayedSound.Source, 1, &PlayedSound.Buffer);

@@ -293,6 +293,9 @@ int main() {
 
       InitOpengl();
       InitOpenal();
+
+      Render.Screen.x = 1000;
+      Render.Screen.y = 500;
       GameInit();
 
       Result = emscripten_set_keydown_callback("#body", 0, false, WasmKeyEventCallback);

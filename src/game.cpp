@@ -29,6 +29,8 @@ struct state {
 
     std::vector<bullet>Bullets;
     std::vector<asteroid>Asteroids;
+
+    b32 Wave;
 };
 
 state State = {};
@@ -97,13 +99,13 @@ GameInit()
 }
 
 void
-SpawnAsteroids(u32 Count, u32 SizeFactor)
+SpawnAsteroids(u32 Count)
 {
-    r32 SizeBase = 50.0f;
+    r32 SizeBase = 15.0f;
     r32 MaxSpeed = 290.0f;
 
     for (u32 i=0; i<Count; ++i) {
-        r32 Rand = (r32)(rand() % 100);
+        r32 Rand = (r32)(rand() % 100) / 100.0f;
         r32 RandX = (r32)(rand() % 200) - 100.0f;
         r32 RandY = (r32)(rand() % 200) - 100.0f;
         r32 RandSpeed = (r32)(rand() % 100) / 100.0f;
@@ -120,7 +122,7 @@ SpawnAsteroids(u32 Count, u32 SizeFactor)
         }
 
         asteroid New = {};
-        New.Size = SizeBase + SizeFactor * Rand;
+        New.Size = SizeBase + 50.0f * Rand;
         New.P = v2{RandX, RandY};
 
         v2 Center = v2{Render.Screen.x / 2.0f, Render.Screen.y / 2.0f};
@@ -175,8 +177,11 @@ Game(r32 dT)
 
         if (Input.Keys[Key_Space].WentDown) {
             State.GameMode = GameMode_Play;
+            State.Time = 0.0f;
         }
-    } else {
+    }
+
+    if (State.GameMode == GameMode_Play) {
         sound::Loop(Music_Main);
 
         r32 Acceleration = 5.0f;
@@ -202,7 +207,7 @@ Game(r32 dT)
 
             State.Bullets.push_back(Bullet);
 
-            // sound::Play(Sound_Pew);
+            sound::Play(Sound_Pew);
         }
 
         State.PlayerFacing = Normalize(Input.MouseP - State.PlayerP);
@@ -215,8 +220,36 @@ Game(r32 dT)
         State.PlayerV += dV;
         State.PlayerP += dP;
 
-        if (State.Time == 0) {
-            SpawnAsteroids(3, 1);
+        if (State.Wave == 0 && State.Time > 1) {
+            SpawnAsteroids(3);
+            State.Wave = 1;
+        } else if (State.Wave == 1 && State.Time > 5) {
+            SpawnAsteroids(4);
+            State.Wave = 2;
+        } else if (State.Wave == 2 && State.Time > 10) {
+            SpawnAsteroids(5);
+            State.Wave = 3;
+        } else if (State.Wave == 3 && State.Time > 12) {
+            SpawnAsteroids(6);
+            State.Wave = 4;
+        } else if (State.Wave == 4 && State.Time > 15) {
+            SpawnAsteroids(7);
+            State.Wave = 5;
+        } else if (State.Wave == 5 && State.Time > 18) {
+            SpawnAsteroids(8);
+            State.Wave = 6;
+        } else if (State.Wave == 6 && State.Time > 22) {
+            SpawnAsteroids(8);
+            State.Wave = 7;
+        } else if (State.Wave == 7 && State.Time > 28) {
+            SpawnAsteroids(8);
+            State.Wave = 8;
+        } else if (State.Wave == 8 && State.Time > 30) {
+            SpawnAsteroids(8);
+            State.Wave = 9;
+        } else if (State.Wave == 9 && State.Time > 35) {
+            SpawnAsteroids(8);
+            State.Wave = 10;
         }
 
         //
