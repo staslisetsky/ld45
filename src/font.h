@@ -1,5 +1,6 @@
 enum font_ {
     Font_PTSans,
+    Font_PTSansCaption,
     Font_Count,
 };
 
@@ -172,6 +173,10 @@ GetTextDim(font_ FontId, r32 SizePt, char *Text)
 
         Dim.x += Width;
         Dim.y = Max_r32(Dim.y, Glyph->Height * Scale);
+
+        if (Layout.FontSpacing > 0.0f) {
+            Dim.x += Width * Layout.FontSpacing;
+        }
 
         PreviousCodePoint = Glyph->CodePoint;
     }

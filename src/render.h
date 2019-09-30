@@ -275,6 +275,9 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         Render->TexturedVertexCount += 6;
 
         CurrentP.x += Width;
+        if (Layout.FontSpacing > 0.0f) {
+            CurrentP.x += Width * Layout.FontSpacing;
+        }
         PreviousCodePoint = Glyph->CodePoint;
     }
 }

@@ -195,7 +195,7 @@ OpenglRender(render Render)
 {
     m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y);
 
-    glClearColor(0.73, 0.73, 0.73, 1.0f);
+    glClearColor(0.0, 0.0, 0.0, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);

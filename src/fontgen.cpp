@@ -24,6 +24,7 @@ typedef float r32;
 typedef double r64;
 
 #include "ls_math.h"
+#include "layout.h"
 #include "font.h"
 
 #define SYSTEM_PPI 96.0
@@ -243,6 +244,8 @@ void main()
     Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 200.0f, 1, 4096, 2048);
 
     Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 400.0f, 1, 8192, 4096);
+
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans_Caption_Bold.ttf", Font_PTSansCaption, 200.0f, 1, 4096, 2048);
 
     FILE *File = fopen("fonts.data", "wb");
 

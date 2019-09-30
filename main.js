@@ -199,7 +199,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15298147, "filename": "/data/audio/boom_1.ogg"}, {"start": 15298147, "audio": 1, "end": 15370757, "filename": "/data/audio/intro.ogg"}, {"start": 15370757, "audio": 1, "end": 18240408, "filename": "/data/audio/music.ogg"}, {"start": 18240408, "audio": 1, "end": 18256551, "filename": "/data/audio/mwak.ogg"}, {"start": 18256551, "audio": 1, "end": 18262756, "filename": "/data/audio/pew_laser.ogg"}, {"start": 18262756, "audio": 1, "end": 18288584, "filename": "/data/audio/powerup.ogg"}, {"start": 18288584, "audio": 0, "end": 18717756, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 18717756, "audio": 0, "end": 19175204, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 19175204, "audio": 0, "end": 19588008, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 19588008, "audio": 0, "end": 20001472, "filename": "/data/images/karloff.png"}, {"start": 20001472, "audio": 0, "end": 20003114, "filename": "/data/sdf/A.png"}, {"start": 20003114, "audio": 0, "end": 20994346, "filename": "/data/sdf/msdfgen.exe"}, {"start": 20994346, "audio": 0, "end": 21423518, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 21423518, "audio": 0, "end": 21424184, "filename": "/data/shaders/glyph.f"}, {"start": 21424184, "audio": 0, "end": 21424497, "filename": "/data/shaders/glyph.v"}, {"start": 21424497, "audio": 0, "end": 21424644, "filename": "/data/shaders/plain.f"}, {"start": 21424644, "audio": 0, "end": 21424886, "filename": "/data/shaders/plain.v"}, {"start": 21424886, "audio": 0, "end": 21425154, "filename": "/data/shaders/textured.f"}, {"start": 21425154, "audio": 0, "end": 21425467, "filename": "/data/shaders/textured.v"}], "remote_package_size": 21425467, "package_uuid": "b92d8ad5-19e8-4119-b56f-e951401e9501"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15298147, "filename": "/data/audio/boom_1.ogg"}, {"start": 15298147, "audio": 1, "end": 15370757, "filename": "/data/audio/intro.ogg"}, {"start": 15370757, "audio": 1, "end": 18240408, "filename": "/data/audio/music.ogg"}, {"start": 18240408, "audio": 1, "end": 18246613, "filename": "/data/audio/pew_laser.ogg"}, {"start": 18246613, "audio": 1, "end": 18272441, "filename": "/data/audio/powerup.ogg"}, {"start": 18272441, "audio": 0, "end": 18701613, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 18701613, "audio": 0, "end": 19159061, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 19159061, "audio": 0, "end": 19571865, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 19571865, "audio": 0, "end": 19985329, "filename": "/data/images/karloff.png"}, {"start": 19985329, "audio": 0, "end": 19986971, "filename": "/data/sdf/A.png"}, {"start": 19986971, "audio": 0, "end": 20978203, "filename": "/data/sdf/msdfgen.exe"}, {"start": 20978203, "audio": 0, "end": 21407375, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 21407375, "audio": 0, "end": 21408027, "filename": "/data/shaders/glyph.f"}, {"start": 21408027, "audio": 0, "end": 21408340, "filename": "/data/shaders/glyph.v"}, {"start": 21408340, "audio": 0, "end": 21408487, "filename": "/data/shaders/plain.f"}, {"start": 21408487, "audio": 0, "end": 21408729, "filename": "/data/shaders/plain.v"}, {"start": 21408729, "audio": 0, "end": 21408997, "filename": "/data/shaders/textured.f"}, {"start": 21408997, "audio": 0, "end": 21409310, "filename": "/data/shaders/textured.v"}], "remote_package_size": 21409310, "package_uuid": "6b98c9d2-1fee-4c78-8154-8e798112443f"});
 
 })();
 
@@ -1414,11 +1414,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 27616,
+    STACK_BASE = 27744,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5270496,
-    DYNAMIC_BASE = 5270496,
-    DYNAMICTOP_PTR = 27584;
+    STACK_MAX = 5270624,
+    DYNAMIC_BASE = 5270624,
+    DYNAMICTOP_PTR = 27712;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1943,7 +1943,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 26592;
+// STATICTOP = STATIC_BASE + 26720;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_wasm_main_cpp() } });
 
 
@@ -1954,7 +1954,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 27600
+var tempDoublePtr = 27728
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -7581,6 +7581,44 @@ function copyTempDouble(ptr) {
       }
     }
 
+  function _alGetSourcei(sourceId, param, pValue) {
+      var val = AL.getSourceParam('alGetSourcei', sourceId, param);
+      if (val === null) {
+        return;
+      }
+      if (!pValue) {
+        AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
+        return;
+      }
+  
+      switch (param) {
+      case 0x202 /* AL_SOURCE_RELATIVE */:
+      case 0x1001 /* AL_CONE_INNER_ANGLE */:
+      case 0x1002 /* AL_CONE_OUTER_ANGLE */:
+      case 0x1007 /* AL_LOOPING */:
+      case 0x1009 /* AL_BUFFER */:
+      case 0x1010 /* AL_SOURCE_STATE */:
+      case 0x1015 /* AL_BUFFERS_QUEUED */:
+      case 0x1016 /* AL_BUFFERS_PROCESSED */:
+      case 0x1020 /* AL_REFERENCE_DISTANCE */:
+      case 0x1021 /* AL_ROLLOFF_FACTOR */:
+      case 0x1023 /* AL_MAX_DISTANCE */:
+      case 0x1024 /* AL_SEC_OFFSET */:
+      case 0x1025 /* AL_SAMPLE_OFFSET */:
+      case 0x1026 /* AL_BYTE_OFFSET */:
+      case 0x1027 /* AL_SOURCE_TYPE */:
+      case 0x1214 /* AL_SOURCE_SPATIALIZE_SOFT */:
+      case 0x2009 /* AL_BYTE_LENGTH_SOFT */: 
+      case 0x200A /* AL_SAMPLE_LENGTH_SOFT */:
+      case 0xD000 /* AL_DISTANCE_MODEL */:
+        HEAP32[((pValue)>>2)]=val;
+        break;
+      default:
+        AL.currentCtx.err = 0xA002 /* AL_INVALID_ENUM */;
+        return;
+      }
+    }
+
   function _alSourcePlay(sourceId) {
       if (!AL.currentCtx) {
         return;
@@ -8653,6 +8691,8 @@ function copyTempDouble(ptr) {
 
   var _llvm_cos_f64=Math_cos;
 
+  var _llvm_sin_f32=Math_sin;
+
   var _llvm_sin_f64=Math_sin;
 
   function _llvm_trap() {
@@ -8802,6 +8842,7 @@ var asmLibraryArg = {
   "_alBufferData": _alBufferData,
   "_alGenBuffers": _alGenBuffers,
   "_alGenSources": _alGenSources,
+  "_alGetSourcei": _alGetSourcei,
   "_alSourcePlay": _alSourcePlay,
   "_alSourcei": _alSourcei,
   "_alcCreateContext": _alcCreateContext,
@@ -8861,6 +8902,7 @@ var asmLibraryArg = {
   "_glUseProgram": _glUseProgram,
   "_glVertexAttribPointer": _glVertexAttribPointer,
   "_llvm_cos_f64": _llvm_cos_f64,
+  "_llvm_sin_f32": _llvm_sin_f32,
   "_llvm_sin_f64": _llvm_sin_f64,
   "_llvm_trap": _llvm_trap,
   "abortOnCannotGrowMemory": abortOnCannotGrowMemory,

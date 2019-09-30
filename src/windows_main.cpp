@@ -37,6 +37,7 @@ ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
 #include "windows_opengl.h"
 
 #include "ls_math.h"
+#include "layout.h"
 #include "font.h"
 
 #include "render.h"

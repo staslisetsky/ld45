@@ -154,12 +154,24 @@ Game(r32 dT)
             State.GameStarted = true;
         }
 
-        r32 Size = (sin(State.Time) + 1.0f / 2.0f) * 10.0f + 30.0f;
-        r32 Color = (sin(State.Time) + 1.0f / 2.0f) * 200.0f;
+        r32 Size = ((sin(State.Time) + 1.0f) / 2.0f) * 10.0f + 30.0f;
+        r32 Color = ((sin(State.Time) + 1.0f) / 2.0f) * 200.0f + 55;
 
-        v2 TextDim = GetTextDim(Font_PTSans, Size, "MEGA SPACE FUCK");
+        Layout.FontSpacing = 0.3f;
+
+        v2 TextDim = GetTextDim(Font_PTSansCaption, Size, "MEGA SPACE FUCK");
         v2 TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, 100.0f};
-        DrawText(&Render, TextP, RGBA(Color,0,0,255), Font_PTSans, Size, "MEGA SPACE FUCK");
+        DrawText(&Render, TextP, RGBA(Color,0,0,255), Font_PTSansCaption, Size, "MEGA SPACE FUCK");
+
+        Layout.FontSpacing = 0.0f;
+
+        TextDim = GetTextDim(Font_PTSansCaption, Size * 2.5, "3");
+        TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, 180.0f};
+        DrawText(&Render, TextP, RGBA(Color,0,0,255), Font_PTSansCaption, Size * 2.5, "3");
+
+        TextDim = GetTextDim(Font_PTSans, 18.0f, "Insert Coin");
+        TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, Render.Screen.y - TextDim.y - 50.0f};
+        DrawText(&Render, TextP, RGBA(186,186,186,255), Font_PTSans, 18.0, "Insert Coin");
 
         if (Input.Keys[Key_Enter].WentDown) {
             State.GameMode = GameMode_Play;

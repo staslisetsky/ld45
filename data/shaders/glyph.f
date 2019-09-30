@@ -22,7 +22,7 @@ float LinearToSRGB(float Component)
 void main(void)
 {
     vec4 ColorSample = texture(TextureSample, TexelUV);
-    FragmentColor = vec4(VertexColor.rgb, LinearToSRGB(ColorSample.r));
+    FragmentColor = vec4(VertexColor.rgb, ColorSample.r);
     // vec3 Mixed = mix(vec3(1.0, 0.0, 1.0), VertexColor.rgb, ColorSample.r);
     // FragmentColor = vec4(Mixed, 1.0);
 }
