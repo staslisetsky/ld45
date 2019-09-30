@@ -171,9 +171,13 @@ Game(r32 dT)
         TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, 180.0f};
         DrawText(&Render, TextP, RGBA(Color,0,0,255), Font_PTSansCaption, Size * 2.5, "3");
 
-        TextDim = GetTextDim(Font_PTSans, 18.0f, "Insert Coin");
-        TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, Render.Screen.y - TextDim.y - 50.0f};
-        DrawText(&Render, TextP, RGBA(186,186,186,255), Font_PTSans, 18.0, "Insert Coin");
+        TextDim = GetTextDim(Font_PTSans, 16.0f, "Insert Coin");
+        TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, Render.Screen.y - TextDim.y - 65.0f};
+        DrawText(&Render, TextP, RGBA(186,186,186,255), Font_PTSans, 16.0f, "Insert Coin");
+
+        TextDim = GetTextDim(Font_PTSans, 8.0f, "or press SPACE, I dont't care");
+        TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, Render.Screen.y - TextDim.y - 35.0f};
+        DrawText(&Render, TextP, RGBA(186,186,186,255), Font_PTSans, 8.0f, "or press SPACE, I dont't care");
 
         if (Input.Keys[Key_Space].WentDown) {
             State.GameMode = GameMode_Play;
