@@ -80,6 +80,10 @@ struct file_header {
     u32 Count;
 };
 
+
+static cached_font FontCache[20];
+static u32 CachedFontCount = 0;
+
 u32
 LocateCodepointIndex(cached_font *Font, u16 CodePoint)
 {
@@ -115,5 +119,62 @@ GetKerningForPair(cached_font *Font, u16 CodePointA, u16 CodePointB)
     return Result;
 }
 
-static cached_font FontCache[20];
-static u32 CachedFontCount = 0;
+cached_font *
+FindMatchingFont(font_ FontId, r32 SizePt,r32 *Scale)
+{
+    cached_font *Font = 0;
+
+    static cached_font *LastFont = 0;
+
+    s32 Index = -1;
+    r32 MinSizeDiff = 999999.0f;
+    for (u32 i=0; i<CachedFontCount; ++i) {
+        cached_font *Font = FontCache + i;
+        if (Font->Id == FontId) {
+            r32 Diff = Abs_r32(SizePt - Font->SizePt);
+            if (Diff < MinSizeDiff) {
+                Index = i;
+                MinSizeDiff = Diff;
+            }
+        }
+    }
+
+    if (Index >=0 ) {
+        Font = FontCache + Index;
+    }
+
+    *Scale = SizePt / Font->SizePt;
+
+    Assert(Font);
+
+    return Font;
+}
+
+
+v2
+GetTextDim(font_ FontId, r32 SizePt, char *Text)
+{
+    v2 Dim = {};
+
+    r32 Scale;
+    cached_font *Font = FindMatchingFont(FontId, SizePt, &Scale);
+
+    u32 Len = strlen(Text);
+    u32 PreviousCodePoint = 0;
+
+    for (u32 i=0; i<Len; ++i) {
+        cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
+
+        r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
+        r32 Left = XKern + Glyph->LeftBearing;
+        r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
+        r32 Width = (Glyph->Width + Left + Right) * Scale;
+
+        Dim.x += Width;
+        Dim.y = Max_r32(Dim.y, Glyph->Height * Scale);
+
+        PreviousCodePoint = Glyph->CodePoint;
+    }
+
+    return Dim;
+}

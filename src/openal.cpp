@@ -1,6 +1,7 @@
 enum sound_ {
     Sound_Null,
-    Sound_BGMusic,
+    Music_Intro,
+    Music_Main,
     Sound_Mwak,
     Sound_Test,
     Sound_Pew,
@@ -11,14 +12,18 @@ enum sound_ {
 struct loaded_sound {
     sound_ Id;
     ALuint Buffer;
+    ALuint Source;
     u8 *Data;
     u8 *Size;
 };
 
 struct sound {
-    ALuint MainSource;
+    ALuint MusicSource;
+    ALuint MonoSFXSource;
+
     loaded_sound Sounds[Sound_Count];
     static void Play(sound_ Sound);
+    static void Loop(sound_ Sound);
 };
 
 sound Sound = {};
@@ -27,19 +32,39 @@ void sound::
 Play(sound_ SoundId)
 {
     loaded_sound PlayedSound = Sound.Sounds[SoundId];
-    // alSourceQueueBuffers(Sound.MainSource, 1, &PlayedSound.Buffer);
-    alSourcei(Sound.MainSource, AL_BUFFER, PlayedSound.Buffer);
-    alSourcePlay(Sound.MainSource);
+    alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
+
+    ALint State;
+    alGetSourcei(PlayedSound.Source, AL_SOURCE_STATE, &State);
+
+    if (State != AL_PLAYING) {
+        alSourcePlay(PlayedSound.Source);
+    }
+}
+
+void sound::
+Loop(sound_ SoundId)
+{
+    loaded_sound PlayedSound = Sound.Sounds[SoundId];
+    ALint State;
+    alGetSourcei(PlayedSound.Source, AL_SOURCE_STATE, &State);
+
+    if (State != AL_PLAYING) {
+        alSourcei(PlayedSound.Source, AL_BUFFER, PlayedSound.Buffer);
+        alSourcei(PlayedSound.Source, AL_LOOPING, AL_TRUE);
+        alSourcePlay(PlayedSound.Source);
+    }
 }
 
 loaded_sound
-LoadSound(char *Filename)
+LoadSound(ALuint Source, char *Filename)
 {
     loaded_sound Sound = {};
+    Sound.Source = Source;
 
     alGenBuffers(1, &Sound.Buffer);
 
-    short *Buffer = (short *)malloc(1024 * 1024 * 10);
+    short *Buffer = (short *)malloc(1024 * 1024 * 100);
     int Err;
     stb_vorbis *Vorbis = stb_vorbis_open_filename(Filename, &Err, 0);
 
@@ -52,7 +77,14 @@ LoadSound(char *Filename)
     int Read = 0;
     do {
         short *To = Buffer + Samples;
-        Read = stb_vorbis_get_samples_short(Vorbis, 1, &To, Vorbis->sample_rate);
+
+        if (Vorbis->channels == 2) {
+            Read = stb_vorbis_get_samples_short_interleaved(Vorbis, Vorbis->channels, To, Vorbis->sample_rate);
+            Read *= Vorbis->channels;
+        } else {
+            Read = stb_vorbis_get_samples_short(Vorbis, Vorbis->channels, &To, Vorbis->sample_rate);
+        }
+
         Samples += Read;
     } while (Read);
 
@@ -78,14 +110,33 @@ InitOpenal()
         alcMakeContextCurrent(Context);
     }
 
-    alGenSources(1, &Sound.MainSource);
+    alGenSources(1, &Sound.MusicSource);
+    alGenSources(1, &Sound.MonoSFXSource);
 
     // if (alIsExtensionPresent("EAX2.0")) {
 
     // }
 
-    Sound.Sounds[Sound_Pew] = LoadSound("audio/pew_laser.ogg");
-    Sound.Sounds[Sound_AsteroidExplode] = LoadSound("audio/boom_1.ogg");
+    Sound.Sounds[Music_Intro] = LoadSound(Sound.MusicSource, "audio/intro.ogg");
+    Sound.Sounds[Music_Main] = LoadSound(Sound.MusicSource, "audio/music.ogg");
+
+    // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Main].Buffer);
+    // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Intro].Buffer);
+    // alSourceQueueBuffers(PlayedSound.Source, 1, &PlayedSound.Buffer);
+
+    // ALint State;
+    // alGetSourcei(PlayedSound.Source, AL_SOURCE_STATE, &State);
+
+    // if (State != AL_PLAYING) {
+        // alSourcePlay(Sound.MusicSource);
+    // }
+
+    // Sound.Sounds[Sound_Pew] = LoadSound("audio/pew_laser.ogg");
+    // Sound.Sounds[Sound_Pew].SOur
+    // Sound.Sounds[Sound_AsteroidExplode] = LoadSound("audio/boom_1.ogg");
+    // Sound.Sounds[Sound_Pew] = LoadSound("audio/pew_laser.ogg");
+    // Sound.Sounds[Sound_Pew].SOur
+    // Sound.Sounds[Sound_AsteroidExplode] = LoadSound("audio/boom_1.ogg");
 
 }
 

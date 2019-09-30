@@ -10,7 +10,15 @@ struct asteroid {
     v2 V;
 };
 
+enum game_mode_ {
+    GameMode_Menu,
+    GameMode_Play,
+    GameMode_Lost,
+};
+
 struct state {
+    game_mode_ GameMode;
+    b32 GameStarted;
     u32 FrameCounter;
 
     v2 PlayerP;
@@ -83,6 +91,8 @@ GameInit()
         ++CachedFontCount;
     }
 
+
+
     // WasmConsoleLog("Font files loaded");
 }
 
@@ -138,125 +148,144 @@ SpawnAsteroids(u32 Count, u32 SizeFactor)
 void
 Game(r32 dT)
 {
-    r32 Acceleration = 5.0f;
-    v2 Direction = {};
-
-    if (Input.Keys[Key_D].Down) {
-        Direction += v2{1.0f, 0.0f};
-    }
-    if (Input.Keys[Key_A].Down) {
-        Direction += v2{-1.0f, 0.0f};
-    }
-    if (Input.Keys[Key_W].Down) {
-        Direction += v2{0.0f, -1.0f};
-    }
-    if (Input.Keys[Key_S].Down) {
-        Direction += v2{0.0f, 1.0f};
-    }
-
-    if (Input.Mouse[0].WentDown) {
-        bullet Bullet;
-        Bullet.P = State.PlayerP;
-        Bullet.V = State.PlayerFacing * 1000.0f;
-
-        State.Bullets.push_back(Bullet);
-
-        // sound::Play(Sound_Pew);
-    }
-
-    State.PlayerFacing = Normalize(Input.MouseP - State.PlayerP);
-
-    Direction = NormalizeZero(Direction);
-
-    v2 dV = (Acceleration * Direction) * dT;
-    v2 dP = State.PlayerV + dV * dT;
-
-    State.PlayerV += dV;
-    State.PlayerP += dP;
-
-    if (State.Time == 0) {
-        SpawnAsteroids(3, 1);
-    }
-
-    //
-    //
-    //
-
-    r32 PlayerSize = 40.0f;
-
-    DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP, Input.MouseP, 50.0f, 1);
-
-    if (State.PlayerP.x > PlayerSize + Render.Screen.x) {
-        State.PlayerP.x -= Render.Screen.x;
-    }
-    if (State.PlayerP.x < -PlayerSize) {
-        State.PlayerP.x += Render.Screen.x;
-    }
-    if (State.PlayerP.y > PlayerSize + Render.Screen.y) {
-        State.PlayerP.y -= Render.Screen.y;
-    }
-    if (State.PlayerP.y < -PlayerSize) {
-        State.PlayerP.y += Render.Screen.y;
-    }
-
-    if (State.PlayerP.x < PlayerSize) {
-        v2 Offset = v2{(r32)Render.Screen.x, 0.0f};
-        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
-    }
-    if (State.PlayerP.x > Render.Screen.x - PlayerSize) {
-        v2 Offset = v2{(r32)-Render.Screen.x, 0.0f};
-        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
-    }
-    if (State.PlayerP.y < PlayerSize) {
-        v2 Offset = v2{0.0f, (r32)Render.Screen.y};
-        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
-    }
-    if (State.PlayerP.y > Render.Screen.y - PlayerSize) {
-        v2 Offset = v2{0.0f, (r32)-Render.Screen.y};
-        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
-    }
-
-    for (u32 i=0; i<State.Bullets.size(); ++i) {
-        if (State.Bullets[i].P.x < -100 || State.Bullets[i].P.x > Render.Screen.x + 100.0f ||
-            State.Bullets[i].P.y < -100 || State.Bullets[i].P.y > Render.Screen.y + 100.0f)
-        {
-            State.Bullets.erase(State.Bullets.begin() + i);
-            --i;
+    if (State.GameMode == GameMode_Menu) {
+        if (!State.GameStarted) {
+            sound::Play(Music_Intro);
+            State.GameStarted = true;
         }
-    }
 
-    for (u32 i=0; i<State.Bullets.size(); ++i) {
-        v2 dP = State.Bullets[i].V * dT;
-        State.Bullets[i].P += dP;
-        DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{7.0, 7.0f}, 1);
+        r32 Size = (sin(State.Time) + 1.0f / 2.0f) * 10.0f + 30.0f;
+        r32 Color = (sin(State.Time) + 1.0f / 2.0f) * 200.0f;
 
-        for (u32 j=0; j<State.Asteroids.size(); ++j) {
-            rect Rect = RectPDim(State.Asteroids[j].P, v2{State.Asteroids[j].Size, State.Asteroids[j].Size});
+        v2 TextDim = GetTextDim(Font_PTSans, Size, "MEGA SPACE FUCK");
+        v2 TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, 100.0f};
+        DrawText(&Render, TextP, RGBA(Color,0,0,255), Font_PTSans, Size, "MEGA SPACE FUCK");
 
-            if (InRect(Rect, State.Bullets[i].P)) {
+        if (Input.Keys[Key_Enter].WentDown) {
+            State.GameMode = GameMode_Play;
+        }
+    } else {
+        sound::Loop(Music_Main);
+
+        r32 Acceleration = 5.0f;
+        v2 Direction = {};
+
+        if (Input.Keys[Key_D].Down) {
+            Direction += v2{1.0f, 0.0f};
+        }
+        if (Input.Keys[Key_A].Down) {
+            Direction += v2{-1.0f, 0.0f};
+        }
+        if (Input.Keys[Key_W].Down) {
+            Direction += v2{0.0f, -1.0f};
+        }
+        if (Input.Keys[Key_S].Down) {
+            Direction += v2{0.0f, 1.0f};
+        }
+
+        if (Input.Mouse[0].WentDown) {
+            bullet Bullet;
+            Bullet.P = State.PlayerP;
+            Bullet.V = State.PlayerFacing * 1000.0f;
+
+            State.Bullets.push_back(Bullet);
+
+            // sound::Play(Sound_Pew);
+        }
+
+        State.PlayerFacing = Normalize(Input.MouseP - State.PlayerP);
+
+        Direction = NormalizeZero(Direction);
+
+        v2 dV = (Acceleration * Direction) * dT;
+        v2 dP = State.PlayerV + dV * dT;
+
+        State.PlayerV += dV;
+        State.PlayerP += dP;
+
+        if (State.Time == 0) {
+            SpawnAsteroids(3, 1);
+        }
+
+        //
+        //
+        //
+
+        r32 PlayerSize = 40.0f;
+
+        DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP, Input.MouseP, 50.0f, 1);
+
+        if (State.PlayerP.x > PlayerSize + Render.Screen.x) {
+            State.PlayerP.x -= Render.Screen.x;
+        }
+        if (State.PlayerP.x < -PlayerSize) {
+            State.PlayerP.x += Render.Screen.x;
+        }
+        if (State.PlayerP.y > PlayerSize + Render.Screen.y) {
+            State.PlayerP.y -= Render.Screen.y;
+        }
+        if (State.PlayerP.y < -PlayerSize) {
+            State.PlayerP.y += Render.Screen.y;
+        }
+
+        if (State.PlayerP.x < PlayerSize) {
+            v2 Offset = v2{(r32)Render.Screen.x, 0.0f};
+            DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+        }
+        if (State.PlayerP.x > Render.Screen.x - PlayerSize) {
+            v2 Offset = v2{(r32)-Render.Screen.x, 0.0f};
+            DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+        }
+        if (State.PlayerP.y < PlayerSize) {
+            v2 Offset = v2{0.0f, (r32)Render.Screen.y};
+            DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+        }
+        if (State.PlayerP.y > Render.Screen.y - PlayerSize) {
+            v2 Offset = v2{0.0f, (r32)-Render.Screen.y};
+            DrawPlayer(&Render, RGBA(255,255,255,255), State.PlayerP + Offset, Input.MouseP + Offset, 50.0f, 1);
+        }
+
+        for (u32 i=0; i<State.Bullets.size(); ++i) {
+            if (State.Bullets[i].P.x < -100 || State.Bullets[i].P.x > Render.Screen.x + 100.0f ||
+                State.Bullets[i].P.y < -100 || State.Bullets[i].P.y > Render.Screen.y + 100.0f)
+            {
                 State.Bullets.erase(State.Bullets.begin() + i);
-                State.Asteroids.erase(State.Asteroids.begin() + j);
-
-                if (i > 0) {
-                    --i;
-                }
-                if (j > 0) {
-                    --j;
-                }
-
-                sound::Play(Sound_AsteroidExplode);
+                --i;
             }
         }
+
+        for (u32 i=0; i<State.Bullets.size(); ++i) {
+            v2 dP = State.Bullets[i].V * dT;
+            State.Bullets[i].P += dP;
+            DrawRect(&Render, RGBA(255,0,0,255), State.Bullets[i].P, v2{7.0, 7.0f}, 1);
+
+            for (u32 j=0; j<State.Asteroids.size(); ++j) {
+                rect Rect = RectPDim(State.Asteroids[j].P, v2{State.Asteroids[j].Size, State.Asteroids[j].Size});
+
+                if (InRect(Rect, State.Bullets[i].P)) {
+                    State.Bullets.erase(State.Bullets.begin() + i);
+                    State.Asteroids.erase(State.Asteroids.begin() + j);
+
+                    if (i > 0) {
+                        --i;
+                    }
+                    if (j > 0) {
+                        --j;
+                    }
+
+                    sound::Play(Sound_AsteroidExplode);
+                }
+            }
+        }
+
+        for (u32 i=0; i<State.Asteroids.size(); ++i) {
+            v2 dP = State.Asteroids[i].V * dT;
+            State.Asteroids[i].P += dP;
+            r32 Size = State.Asteroids[i].Size;
+            DrawRect(&Render, RGBA(255,0,0,255), State.Asteroids[i].P, v2{Size, Size}, 1);
+        }
     }
 
-    for (u32 i=0; i<State.Asteroids.size(); ++i) {
-        v2 dP = State.Asteroids[i].V * dT;
-        State.Asteroids[i].P += dP;
-        r32 Size = State.Asteroids[i].Size;
-        DrawRect(&Render, RGBA(255,0,0,255), State.Asteroids[i].P, v2{Size, Size}, 1);
-    }
 
     State.Time += dT;
-
-    // DrawText(&Render, v2{ 100.0f, 100.0f }, RGBA(0,0,0,255), Font_PTSans, 16.0f, "Insert Coin");
 }

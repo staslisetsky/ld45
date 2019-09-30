@@ -145,12 +145,12 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
     Vertices[4].P = v3{P.x, P.y + Dim.y, Z};
     Vertices[5].P = v3{P.x + Dim.x, P.y + Dim.y, Z};
 
-    Vertices[0].Color = Color;
-    Vertices[1].Color = Color;
-    Vertices[2].Color = Color;
-    Vertices[3].Color = Color;
-    Vertices[4].Color = Color;
-    Vertices[5].Color = Color;
+    Vertices[0].Color = Color / 255.0f;
+    Vertices[1].Color = Color / 255.0f;
+    Vertices[2].Color = Color / 255.0f;
+    Vertices[3].Color = Color / 255.0f;
+    Vertices[4].Color = Color / 255.0f;
+    Vertices[5].Color = Color / 255.0f;
 
     command_data Data = {};
     Data.Shader = Shader_Plain;
@@ -178,9 +178,9 @@ DrawPlayer(render *Render, v4 Color, v2 P, v2 MouseP, r32 NoseRadius, r32 Z)
     Vertices[1].P = V3(P + SideVector1 * NoseRadius, Z);
     Vertices[2].P = V3(P + SideVector2 * NoseRadius, Z);
 
-    Vertices[0].Color = Color;
-    Vertices[1].Color = Color;
-    Vertices[2].Color = Color;
+    Vertices[0].Color = Color / 255.0f;
+    Vertices[1].Color = Color / 255.0f;
+    Vertices[2].Color = Color / 255.0f;
 
     command_data Data = {};
     Data.Shader =Shader_Plain;
@@ -201,10 +201,10 @@ DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
     Vertices[2].P = v3{P.x, P.y + Dim.y, (r32)Z};
     Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, (r32)Z};
 
-    Vertices[0].Color = Color;
-    Vertices[1].Color = Color;
-    Vertices[2].Color = Color;
-    Vertices[3].Color = Color;
+    Vertices[0].Color = Color / 255.0f;
+    Vertices[1].Color = Color / 255.0f;
+    Vertices[2].Color = Color / 255.0f;
+    Vertices[3].Color = Color / 255.0f;
 
     Vertices[0].UV = v2{0.0f, 0.0f};
     Vertices[1].UV = v2{1.0f, 0.0f};
@@ -253,12 +253,12 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         Vertices[4].P = v3{GlyphP.x, GlyphP.y + QuadDim.y, (r32)Z};
         Vertices[5].P = v3{GlyphP.x + QuadDim.x, GlyphP.y + QuadDim.y, (r32)Z};
 
-        Vertices[0].Color = Color;
-        Vertices[1].Color = Color;
-        Vertices[2].Color = Color;
-        Vertices[3].Color = Color;
-        Vertices[4].Color = Color;
-        Vertices[5].Color = Color;
+        Vertices[0].Color = Color / 255.0f;
+        Vertices[1].Color = Color / 255.0f;
+        Vertices[2].Color = Color / 255.0f;
+        Vertices[3].Color = Color / 255.0f;
+        Vertices[4].Color = Color / 255.0f;
+        Vertices[5].Color = Color / 255.0f;
 
         Vertices[0].UV = Glyph->UV.TopLeft;
         Vertices[1].UV = Glyph->UV.TopRight;
@@ -282,36 +282,7 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
 void
 DrawText(render *Render, v2 P, v4 Color, font_ FontId, r32 SizePt, char *Text)
 {
-    cached_font *Font = 0;
-
-    static cached_font *LastFont = 0;
-
-    s32 Index = -1;
-    r32 MinSizeDiff = 999999.0f;
-    for (u32 i=0; i<CachedFontCount; ++i) {
-        cached_font *Font = FontCache + i;
-        if (Font->Id == FontId) {
-            r32 Diff = Abs_r32(SizePt - Font->SizePt);
-            if (Diff < MinSizeDiff) {
-                Index = i;
-                MinSizeDiff = Diff;
-            }
-        }
-    }
-
-    if (Index >=0) {
-        Font = FontCache + Index;
-    }
-
-    // if (Font != LastFont) {
-    //     LastFont = Font;
-    //     char Buf[50];
-    //     sprintf(Buf, "Switch to font: %.2f\n", Font->SizePt);
-    //     OutputDebugString(Buf);
-    // }
-
-    Assert(Font);
-
-    r32 Scale = SizePt / Font->SizePt;
+    r32 Scale;
+    cached_font *Font = FindMatchingFont(FontId, SizePt, &Scale);
     DrawText(Render, P, 1.0f, Scale, Color, Font, Text);
 }
