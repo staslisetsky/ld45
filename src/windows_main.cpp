@@ -282,6 +282,7 @@ main()
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
+        Render.Screen = GetWindowSize(Window);
         GameInit();
 
         HANDLE WatchDir = CreateFileA("shaders", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, 0);

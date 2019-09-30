@@ -91,7 +91,7 @@ GameInit()
         ++CachedFontCount;
     }
 
-
+    State.PlayerP = v2 {Render.Screen.x / 2.0f, Render.Screen.y / 2.0f };
 
     // WasmConsoleLog("Font files loaded");
 }
@@ -173,7 +173,7 @@ Game(r32 dT)
         TextP = v2{Render.Screen.x / 2.0f - TextDim.x / 2.0f, Render.Screen.y - TextDim.y - 50.0f};
         DrawText(&Render, TextP, RGBA(186,186,186,255), Font_PTSans, 18.0, "Insert Coin");
 
-        if (Input.Keys[Key_Enter].WentDown) {
+        if (Input.Keys[Key_Space].WentDown) {
             State.GameMode = GameMode_Play;
         }
     } else {

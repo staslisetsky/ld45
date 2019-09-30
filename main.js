@@ -199,7 +199,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 14012948, "filename": "/data/fonts.data"}, {"start": 14012948, "audio": 0, "end": 14021502, "filename": "/data/PT Sans_10.png"}, {"start": 14021502, "audio": 0, "end": 14144396, "filename": "/data/PT Sans_100.png"}, {"start": 14144396, "audio": 0, "end": 14165146, "filename": "/data/PT Sans_20.png"}, {"start": 14165146, "audio": 0, "end": 14450254, "filename": "/data/PT Sans_200.png"}, {"start": 14450254, "audio": 0, "end": 14483080, "filename": "/data/PT Sans_30.png"}, {"start": 14483080, "audio": 0, "end": 15208994, "filename": "/data/PT Sans_400.png"}, {"start": 15208994, "audio": 0, "end": 15280265, "filename": "/data/PT Sans_60.png"}, {"start": 15280265, "audio": 1, "end": 15298147, "filename": "/data/audio/boom_1.ogg"}, {"start": 15298147, "audio": 1, "end": 15370757, "filename": "/data/audio/intro.ogg"}, {"start": 15370757, "audio": 1, "end": 18240408, "filename": "/data/audio/music.ogg"}, {"start": 18240408, "audio": 1, "end": 18246613, "filename": "/data/audio/pew_laser.ogg"}, {"start": 18246613, "audio": 1, "end": 18272441, "filename": "/data/audio/powerup.ogg"}, {"start": 18272441, "audio": 0, "end": 18701613, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 18701613, "audio": 0, "end": 19159061, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 19159061, "audio": 0, "end": 19571865, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 19571865, "audio": 0, "end": 19985329, "filename": "/data/images/karloff.png"}, {"start": 19985329, "audio": 0, "end": 19986971, "filename": "/data/sdf/A.png"}, {"start": 19986971, "audio": 0, "end": 20978203, "filename": "/data/sdf/msdfgen.exe"}, {"start": 20978203, "audio": 0, "end": 21407375, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 21407375, "audio": 0, "end": 21408027, "filename": "/data/shaders/glyph.f"}, {"start": 21408027, "audio": 0, "end": 21408340, "filename": "/data/shaders/glyph.v"}, {"start": 21408340, "audio": 0, "end": 21408487, "filename": "/data/shaders/plain.f"}, {"start": 21408487, "audio": 0, "end": 21408729, "filename": "/data/shaders/plain.v"}, {"start": 21408729, "audio": 0, "end": 21408997, "filename": "/data/shaders/textured.f"}, {"start": 21408997, "audio": 0, "end": 21409310, "filename": "/data/shaders/textured.v"}], "remote_package_size": 21409310, "package_uuid": "6b98c9d2-1fee-4c78-8154-8e798112443f"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 16014796, "filename": "/data/fonts.data"}, {"start": 16014796, "audio": 0, "end": 16306951, "filename": "/data/PT Sans Caption_200.png"}, {"start": 16306951, "audio": 0, "end": 16315506, "filename": "/data/PT Sans_10.png"}, {"start": 16315506, "audio": 0, "end": 16438400, "filename": "/data/PT Sans_100.png"}, {"start": 16438400, "audio": 0, "end": 16459143, "filename": "/data/PT Sans_20.png"}, {"start": 16459143, "audio": 0, "end": 16744251, "filename": "/data/PT Sans_200.png"}, {"start": 16744251, "audio": 0, "end": 16777071, "filename": "/data/PT Sans_30.png"}, {"start": 16777071, "audio": 0, "end": 17502985, "filename": "/data/PT Sans_400.png"}, {"start": 17502985, "audio": 0, "end": 17574256, "filename": "/data/PT Sans_60.png"}, {"start": 17574256, "audio": 1, "end": 17592138, "filename": "/data/audio/boom_1.ogg"}, {"start": 17592138, "audio": 1, "end": 17664748, "filename": "/data/audio/intro.ogg"}, {"start": 17664748, "audio": 1, "end": 20534399, "filename": "/data/audio/music.ogg"}, {"start": 20534399, "audio": 1, "end": 20540604, "filename": "/data/audio/pew_laser.ogg"}, {"start": 20540604, "audio": 1, "end": 20566432, "filename": "/data/audio/powerup.ogg"}, {"start": 20566432, "audio": 0, "end": 20995604, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 20995604, "audio": 0, "end": 21453052, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 21453052, "audio": 0, "end": 21808520, "filename": "/data/fonts/PT_Sans_Caption.ttf"}, {"start": 21808520, "audio": 0, "end": 22186028, "filename": "/data/fonts/PT_Sans_Caption_Bold.ttf"}, {"start": 22186028, "audio": 0, "end": 22598832, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 22598832, "audio": 0, "end": 23012296, "filename": "/data/images/karloff.png"}, {"start": 23012296, "audio": 0, "end": 23013938, "filename": "/data/sdf/A.png"}, {"start": 23013938, "audio": 0, "end": 24005170, "filename": "/data/sdf/msdfgen.exe"}, {"start": 24005170, "audio": 0, "end": 24434342, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 24434342, "audio": 0, "end": 24434994, "filename": "/data/shaders/glyph.f"}, {"start": 24434994, "audio": 0, "end": 24435307, "filename": "/data/shaders/glyph.v"}, {"start": 24435307, "audio": 0, "end": 24435454, "filename": "/data/shaders/plain.f"}, {"start": 24435454, "audio": 0, "end": 24435696, "filename": "/data/shaders/plain.v"}, {"start": 24435696, "audio": 0, "end": 24435964, "filename": "/data/shaders/textured.f"}, {"start": 24435964, "audio": 0, "end": 24436277, "filename": "/data/shaders/textured.v"}], "remote_package_size": 24436277, "package_uuid": "c4c1c39d-56ff-48d0-8589-71c7307a3d72"});
 
 })();
 
@@ -1414,11 +1414,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 27744,
+    STACK_BASE = 27760,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5270624,
-    DYNAMIC_BASE = 5270624,
-    DYNAMICTOP_PTR = 27712;
+    STACK_MAX = 5270640,
+    DYNAMIC_BASE = 5270640,
+    DYNAMICTOP_PTR = 27728;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1943,7 +1943,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 26720;
+// STATICTOP = STATIC_BASE + 26736;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_wasm_main_cpp() } });
 
 
@@ -1954,7 +1954,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 27728
+var tempDoublePtr = 27744
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much

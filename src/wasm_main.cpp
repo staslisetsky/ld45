@@ -38,6 +38,7 @@ ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
 
 #include "wasm_keymap.h"
 #include "ls_math.h"
+#include "layout.h"
 #include "font.h"
 
 struct wasm_state {
