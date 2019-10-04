@@ -8,4 +8,7 @@ The latest working vewrsion is always available here:
 This game uses stb_image, and stb_vorbis libraries from the stb collection.
 https://github.com/nothings/stb
 
+Font rasterizer uses Freetype library
+https://www.freetype.org/
+
 Sound - OpenAL
