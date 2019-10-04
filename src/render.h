@@ -235,15 +235,19 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
 
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
 
+        v2 TextureOffsetPx = {1.0, 1.0f};
+
         r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
         r32 Left = XKern + Glyph->LeftBearing;
         r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
         r32 Width = (Glyph->Width + Left + Right) * Scale;
-        v2 QuadDim = v2{ (r32)Glyph->BitmapWidth, (r32)Glyph->BitmapHeight } * Scale;
+        v2 QuadDim = v2{(r32)Glyph->BitmapWidth, (r32)Glyph->BitmapHeight} * Scale;
+        QuadDim.x += TextureOffsetPx.x;
+        QuadDim.y += TextureOffsetPx.y;
 
         v2 GlyphP = CurrentP;
-        GlyphP.x += Left * Scale;
-        GlyphP.y += (Font->Baseline - Glyph->BitmapTop) * Scale;
+        GlyphP.x += Left * Scale - TextureOffsetPx.x;
+        GlyphP.y += (Font->Baseline - Glyph->BitmapTop) * Scale - TextureOffsetPx.y;
 
         Vertices[0].P = v3{GlyphP.x, GlyphP.y, (r32)Z};
         Vertices[1].P = v3{GlyphP.x + QuadDim.x, GlyphP.y, (r32)Z};
@@ -260,12 +264,14 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         Vertices[4].Color = Color / 255.0f;
         Vertices[5].Color = Color / 255.0f;
 
-        Vertices[0].UV = Glyph->UV.TopLeft;
-        Vertices[1].UV = Glyph->UV.TopRight;
-        Vertices[2].UV = Glyph->UV.BottomLeft;
-        Vertices[3].UV = Glyph->UV.TopRight;
-        Vertices[4].UV = Glyph->UV.BottomLeft;
-        Vertices[5].UV = Glyph->UV.BottomRight;
+        v2 TexelOffset = { TextureOffsetPx.x / (Font->Atlas.Width * Scale), TextureOffsetPx.y / (Font->Atlas.Height * Scale) };
+
+        Vertices[0].UV = Glyph->UV.TopLeft - TexelOffset;
+        Vertices[1].UV = Glyph->UV.TopRight + v2{TexelOffset.x, -TexelOffset.y};
+        Vertices[2].UV = Glyph->UV.BottomLeft + v2{-TexelOffset.x, TexelOffset.y};
+        Vertices[3].UV = Glyph->UV.TopRight + v2{TexelOffset.x, -TexelOffset.y};
+        Vertices[4].UV = Glyph->UV.BottomLeft + v2{-TexelOffset.x, TexelOffset.y};
+        Vertices[5].UV = Glyph->UV.BottomRight + TexelOffset;
 
         command_data Data = {};
         Data.Shader = Shader_Glyph;

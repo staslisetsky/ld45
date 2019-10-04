@@ -55,11 +55,10 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
 
     r32 FontFullHeight = Face->height * Font.PxPerFontUnit;
 
-    u32 XOffset = 1;
-    u32 YOffset = 1;
+    u32 XOffset = 3;
+    u32 YOffset = 3;
 
     for (u32 i = 0; i < Font.GlyphCount; ++i) {
-
         uincode_character_map *CharMapEntry = Font.Map + i;
         if (CharMapEntry->CodePoint > 0xb0) {
             break;
@@ -79,7 +78,6 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
         Glyph->LeftBearing = (r32)Metrics.horiBearingX / 64.0;
         Glyph->TopBearing = (r32)Metrics.horiBearingY / 64.0;
 
-
         //
         //
         //
@@ -90,10 +88,10 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
         Glyph->BitmapWidth = Face->glyph->bitmap.width;
         Glyph->BitmapHeight = Face->glyph->bitmap.rows;
 
-        if (XOffset + Glyph->BitmapWidth >= Atlas.Width - 1) {
-            XOffset = 1;
-            YOffset += FontFullHeight + 1;
-            Assert(YOffset + FontFullHeight + 1 < Atlas.Height);
+        if (XOffset + Glyph->BitmapWidth >= Atlas.Width - 3) {
+            XOffset = 3;
+            YOffset += FontFullHeight + 3;
+            Assert(YOffset + FontFullHeight + 3 < Atlas.Height);
         }
 
         r32 NormalizedXOffset = (r32)(XOffset) / Atlas.Width;
@@ -128,7 +126,7 @@ BakeFont(cached_font Font, FT_Face Face, u32 PPI, r32 SizePx, u32 W, u32 H)
             }
         }
 
-        XOffset += Glyph->BitmapWidth + 1;
+        XOffset += Glyph->BitmapWidth + 3;
     }
 
     return Atlas;
@@ -189,10 +187,6 @@ FreetypeLoadFont(char *Filename, font_ FontId, r32 SizePt, u8 RetinaScale, u32 A
         for (u32 j=0; j<CodePointCount; ++j) {
             FT_Vector Kerning;
             FT_Get_Kerning(Face, i, j, FT_KERNING_UNSCALED, &Kerning);
-
-            if (i==55 && j==82) {
-                u32 a =4;
-            }
             Font.Advances[i * Font.GlyphCount + j] = Kerning.x * Font.PxPerFontUnit;
         }
     }
@@ -231,7 +225,7 @@ WriteFont(FILE *File, cached_font Font)
 
 void main()
 {
-    cached_font Fonts[20];
+    cached_font Fonts[50];
     u32 FontCount = 0;
 
     Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 10.0f, 1, 256, 128);
@@ -246,6 +240,8 @@ void main()
     Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans.ttf", Font_PTSans, 400.0f, 1, 8192, 4096);
 
     Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans_Caption_Bold.ttf", Font_PTSansCaption, 200.0f, 1, 4096, 2048);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans_Caption_Bold.ttf", Font_PTSansCaption, 100.0f, 1, 2048, 1024);
+    Fonts[FontCount++] = FreetypeLoadFont("fonts/PT_Sans_Caption_Bold.ttf", Font_PTSansCaption, 50.0f, 1, 1024, 1024);
 
     FILE *File = fopen("fonts.data", "wb");
 

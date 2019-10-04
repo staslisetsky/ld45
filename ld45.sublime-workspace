@@ -20,7 +20,7 @@
 			"file": "src/game.cpp",
 			"settings":
 			{
-				"buffer_size": 8706,
+				"buffer_size": 10808,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -34,13 +34,11 @@
 			}
 		},
 		{
-			"contents": "",
 			"file": "src/game.h",
-			"file_size": 0,
-			"file_write_time": 132141692033374616,
 			"settings":
 			{
 				"buffer_size": 0,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
@@ -56,7 +54,7 @@
 			"file": "src/windows_main.cpp",
 			"settings":
 			{
-				"buffer_size": 10378,
+				"buffer_size": 10445,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -118,7 +116,7 @@
 			"file": "src/render.h",
 			"settings":
 			{
-				"buffer_size": 8066,
+				"buffer_size": 8171,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -127,7 +125,7 @@
 			"file": "src/openal.cpp",
 			"settings":
 			{
-				"buffer_size": 3523,
+				"buffer_size": 3922,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -144,7 +142,7 @@
 			"file": "src/font.h",
 			"settings":
 			{
-				"buffer_size": 3407,
+				"buffer_size": 3508,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -153,7 +151,7 @@
 			"file": "src/wasm_main.cpp",
 			"settings":
 			{
-				"buffer_size": 9370,
+				"buffer_size": 9450,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -162,7 +160,7 @@
 			"file": "src/opengl.cpp",
 			"settings":
 			{
-				"buffer_size": 8508,
+				"buffer_size": 8505,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -195,7 +193,7 @@
 			"file": "src/fontgen.cpp",
 			"settings":
 			{
-				"buffer_size": 8448,
+				"buffer_size": 8468,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -292,7 +290,16 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 822,
+				"buffer_size": 1120,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/layout.h",
+			"settings":
+			{
+				"buffer_size": 61,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -302,6 +309,15 @@
 			"settings":
 			{
 				"buffer_size": 228,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/wasm_keymap.h",
+			"settings":
+			{
+				"buffer_size": 1013,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -454,8 +470,6 @@
 	"expanded_folders":
 	[
 		"/P/Ls/ld45",
-		"/P/Ls/ld45/src",
-		"/P/Ls/ld45/src/include",
 		"/C/Program Files (x86)/OpenAL 1.1 SDK/include"
 	],
 	"file_history":
@@ -591,7 +605,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -606,6 +620,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"FUCK",
+			"5.0",
+			"9.0",
+			"10",
+			"18",
+			"14",
+			"18.0f",
+			"18",
+			"Insert Coin",
+			"20",
+			"SpawnAsteroids",
+			"Wave",
+			"gameini",
+			"0.86",
+			"0.73",
+			"Font_PTSansCaption",
 			"interl",
 			"music",
 			"Sound.MainSource",
@@ -717,23 +747,7 @@
 			"vor",
 			"implementa",
 			"\\",
-			"Sound_Null",
-			"error",
-			"opengl",
-			"Font.",
-			"8192",
-			"sprint",
-			"72.0f",
-			"Atlas->",
-			"Font->",
-			"PxPerFontUnit",
-			"Face.",
-			"Face->",
-			"Height",
-			"Font->BaseFont->FreetypeFace",
-			"AtlasHeight",
-			"TextureXDim",
-			"Font->FreetypeFace"
+			"Sound_Null"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -751,7 +765,7 @@
 	"groups":
 	[
 		{
-			"selected": 28,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -782,7 +796,7 @@
 						"translation.y": 367.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
@@ -791,15 +805,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8706,
+						"buffer_size": 10808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4206,
-								4206
+								7061,
+								7061
 							]
 						],
 						"settings":
@@ -811,10 +825,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2510.0,
+						"translation.y": 5387.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -842,7 +856,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 54,
+					"stack_index": 60,
 					"type": "text"
 				},
 				{
@@ -871,7 +885,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 58,
+					"stack_index": 63,
 					"type": "text"
 				},
 				{
@@ -899,7 +913,7 @@
 						"translation.y": 16336.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 63,
+					"stack_index": 67,
 					"type": "text"
 				},
 				{
@@ -908,15 +922,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10378,
+						"buffer_size": 10445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10378,
-								10378
+								10445,
+								10445
 							]
 						],
 						"settings":
@@ -931,7 +945,7 @@
 						"translation.y": 6877.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 37,
 					"type": "text"
 				},
 				{
@@ -961,7 +975,7 @@
 						"translation.y": 7000.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
@@ -991,7 +1005,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 70,
+					"stack_index": 74,
 					"type": "text"
 				},
 				{
@@ -1020,7 +1034,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 77,
+					"stack_index": 81,
 					"type": "text"
 				},
 				{
@@ -1049,7 +1063,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 34,
+					"stack_index": 42,
 					"type": "text"
 				},
 				{
@@ -1078,7 +1092,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 39,
 					"type": "text"
 				},
 				{
@@ -1109,7 +1123,7 @@
 						"translation.y": 738.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 71,
+					"stack_index": 75,
 					"type": "text"
 				},
 				{
@@ -1118,7 +1132,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8066,
+						"buffer_size": 8171,
 						"regions":
 						{
 						},
@@ -1139,7 +1153,7 @@
 						"translation.y": 391.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
@@ -1148,15 +1162,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3523,
+						"buffer_size": 3922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2156,
-								2156
+								277,
+								277
 							]
 						],
 						"settings":
@@ -1170,7 +1184,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 62,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1198,7 +1212,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 74,
+					"stack_index": 78,
 					"type": "text"
 				},
 				{
@@ -1207,15 +1221,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3407,
+						"buffer_size": 3508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2755,
-								2755
+								3326,
+								3326
 							]
 						],
 						"settings":
@@ -1226,10 +1240,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2151.0,
+						"translation.y": 2767.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -1238,15 +1252,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9370,
+						"buffer_size": 9450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4220,
-								4220
+								5182,
+								5182
 							]
 						],
 						"settings":
@@ -1258,10 +1272,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3936.0,
+						"translation.y": 2732.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -1270,15 +1284,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8508,
+						"buffer_size": 8505,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2285,
-								2285
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1289,10 +1303,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1362.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 36,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
@@ -1319,7 +1333,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 79,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1347,7 +1361,7 @@
 						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 82,
+					"stack_index": 85,
 					"type": "text"
 				},
 				{
@@ -1356,7 +1370,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9370,
+						"buffer_size": 9450,
 						"regions":
 						{
 						},
@@ -1378,7 +1392,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
@@ -1406,7 +1420,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 84,
+					"stack_index": 87,
 					"type": "text"
 				},
 				{
@@ -1415,7 +1429,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8508,
+						"buffer_size": 8505,
 						"regions":
 						{
 						},
@@ -1436,7 +1450,7 @@
 						"translation.y": 3727.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 50,
+					"stack_index": 56,
 					"type": "text"
 				},
 				{
@@ -1464,7 +1478,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 81,
+					"stack_index": 84,
 					"type": "text"
 				},
 				{
@@ -1495,7 +1509,7 @@
 						"translation.y": 6740.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 59,
+					"stack_index": 64,
 					"type": "text"
 				},
 				{
@@ -1504,7 +1518,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8066,
+						"buffer_size": 8171,
 						"regions":
 						{
 						},
@@ -1525,7 +1539,7 @@
 						"translation.y": 4093.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 80,
+					"stack_index": 83,
 					"type": "text"
 				},
 				{
@@ -1534,15 +1548,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8706,
+						"buffer_size": 10808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								433,
-								433
+								448,
+								448
 							]
 						],
 						"settings":
@@ -1554,7 +1568,7 @@
 						"translation.y": 261.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 72,
+					"stack_index": 76,
 					"type": "text"
 				},
 				{
@@ -1563,15 +1577,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3407,
+						"buffer_size": 3508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3407,
-								3407
+								3508,
+								3508
 							]
 						],
 						"settings":
@@ -1583,7 +1597,7 @@
 						"translation.y": 13.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 78,
+					"stack_index": 82,
 					"type": "text"
 				},
 				{
@@ -1592,15 +1606,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8448,
+						"buffer_size": 8468,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7826,
-								7826
+								610,
+								610
 							]
 						],
 						"settings":
@@ -1612,10 +1626,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4038.0,
+						"translation.y": 216.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
@@ -1645,7 +1659,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 83,
+					"stack_index": 86,
 					"type": "text"
 				},
 				{
@@ -1654,15 +1668,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8448,
+						"buffer_size": 8468,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5567,
-								5567
+								5587,
+								5587
 							]
 						],
 						"settings":
@@ -1677,7 +1691,7 @@
 						"translation.y": 2704.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 61,
+					"stack_index": 66,
 					"type": "text"
 				},
 				{
@@ -1705,7 +1719,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 65,
+					"stack_index": 69,
 					"type": "text"
 				},
 				{
@@ -1735,7 +1749,7 @@
 						"translation.y": 2990.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 76,
+					"stack_index": 80,
 					"type": "text"
 				},
 				{
@@ -1744,15 +1758,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3407,
+						"buffer_size": 3508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3407,
-								3407
+								3508,
+								3508
 							]
 						],
 						"settings":
@@ -1764,7 +1778,7 @@
 						"translation.y": 1173.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 73,
+					"stack_index": 77,
 					"type": "text"
 				},
 				{
@@ -1794,7 +1808,7 @@
 						"translation.y": 794.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 64,
+					"stack_index": 68,
 					"type": "text"
 				},
 				{
@@ -1822,7 +1836,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 67,
+					"stack_index": 71,
 					"type": "text"
 				},
 				{
@@ -1831,15 +1845,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3523,
+						"buffer_size": 3922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3494,
-								3494
+								3893,
+								3893
 							]
 						],
 						"settings":
@@ -1851,7 +1865,7 @@
 						"translation.y": 798.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 51,
+					"stack_index": 57,
 					"type": "text"
 				},
 				{
@@ -1882,7 +1896,7 @@
 						"translation.y": 472.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 43,
+					"stack_index": 49,
 					"type": "text"
 				},
 				{
@@ -1912,7 +1926,7 @@
 						"translation.y": 13751.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 68,
+					"stack_index": 72,
 					"type": "text"
 				},
 				{
@@ -1942,7 +1956,7 @@
 						"translation.y": 13751.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 69,
+					"stack_index": 73,
 					"type": "text"
 				},
 				{
@@ -1951,15 +1965,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9370,
+						"buffer_size": 9450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7173,
-								7173
+								7193,
+								7193
 							]
 						],
 						"settings":
@@ -1973,7 +1987,7 @@
 						"translation.y": 5236.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 42,
+					"stack_index": 48,
 					"type": "text"
 				},
 				{
@@ -2002,7 +2016,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
@@ -2032,7 +2046,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 46,
+					"stack_index": 52,
 					"type": "text"
 				},
 				{
@@ -2062,7 +2076,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 41,
+					"stack_index": 47,
 					"type": "text"
 				},
 				{
@@ -2092,7 +2106,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 45,
+					"stack_index": 51,
 					"type": "text"
 				},
 				{
@@ -2123,7 +2137,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
@@ -2154,7 +2168,7 @@
 						"translation.y": 5347.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 44,
+					"stack_index": 50,
 					"type": "text"
 				},
 				{
@@ -2184,7 +2198,7 @@
 						"translation.y": 840.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 75,
+					"stack_index": 79,
 					"type": "text"
 				},
 				{
@@ -2193,15 +2207,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8448,
+						"buffer_size": 8468,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8166,
-								8166
+								8186,
+								8186
 							]
 						],
 						"settings":
@@ -2216,7 +2230,7 @@
 						"translation.y": 4358.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 60,
+					"stack_index": 65,
 					"type": "text"
 				},
 				{
@@ -2225,15 +2239,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3407,
+						"buffer_size": 3508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3403,
-								3403
+								3504,
+								3504
 							]
 						],
 						"settings":
@@ -2247,7 +2261,7 @@
 						"translation.y": 2673.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
@@ -2306,7 +2320,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 66,
+					"stack_index": 70,
 					"type": "text"
 				},
 				{
@@ -2336,7 +2350,7 @@
 						"translation.y": 19953.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
@@ -2345,7 +2359,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8066,
+						"buffer_size": 8171,
 						"regions":
 						{
 						},
@@ -2366,7 +2380,7 @@
 						"translation.y": 1461.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 49,
+					"stack_index": 55,
 					"type": "text"
 				},
 				{
@@ -2394,7 +2408,7 @@
 						"translation.y": 987.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 53,
+					"stack_index": 59,
 					"type": "text"
 				},
 				{
@@ -2403,7 +2417,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 822,
+						"buffer_size": 1120,
 						"regions":
 						{
 						},
@@ -2425,7 +2439,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 57,
+					"stack_index": 62,
 					"type": "text"
 				},
 				{
@@ -2434,15 +2448,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10378,
+						"buffer_size": 10445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8077,
-								8077
+								810,
+								810
 							]
 						],
 						"settings":
@@ -2453,10 +2467,38 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6877.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 33,
+					"file": "src/layout.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 61,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								61,
+								61
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -2484,7 +2526,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 52,
+					"stack_index": 58,
 					"type": "text"
 				},
 				{
@@ -2493,7 +2535,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8508,
+						"buffer_size": 8505,
 						"regions":
 						{
 						},
@@ -2514,11 +2556,11 @@
 						"translation.y": 2582.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 47,
+					"stack_index": 53,
 					"type": "text"
 				},
 				{
-					"buffer": 33,
+					"buffer": 34,
 					"file": "data/shaders/plain.v",
 					"semi_transient": false,
 					"settings":
@@ -2542,7 +2584,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 29,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
@@ -2570,7 +2612,7 @@
 						"translation.y": 14795.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 55,
+					"stack_index": 61,
 					"type": "text"
 				},
 				{
@@ -2579,15 +2621,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8706,
+						"buffer_size": 10808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								517,
-								455
+								532,
+								470
 							]
 						],
 						"settings":
@@ -2600,7 +2642,7 @@
 						"translation.y": 36.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 48,
+					"stack_index": 54,
 					"type": "text"
 				},
 				{
@@ -2628,7 +2670,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 56,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -2637,15 +2679,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8508,
+						"buffer_size": 8505,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6429,
-								6429
+								6426,
+								6426
 							]
 						],
 						"settings":
@@ -2656,10 +2698,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4393.0,
+						"translation.y": 3270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 33,
+					"stack_index": 41,
 					"type": "text"
 				},
 				{
@@ -2668,15 +2710,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 822,
+						"buffer_size": 1120,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								488,
-								488
+								1120,
+								1120
 							]
 						],
 						"settings":
@@ -2690,7 +2732,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 31,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -2719,7 +2761,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
@@ -2748,7 +2790,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 32,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
@@ -2757,15 +2799,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9370,
+						"buffer_size": 9450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8530,
-								8530
+								384,
+								384
 							]
 						],
 						"settings":
@@ -2777,10 +2819,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5599.0,
+						"translation.y": 108.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -2789,15 +2831,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8706,
+						"buffer_size": 10808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4779,
-								4779
+								5797,
+								5797
 							]
 						],
 						"settings":
@@ -2812,7 +2854,7 @@
 						"translation.y": 3705.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
@@ -2843,7 +2885,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
@@ -2874,7 +2916,7 @@
 						"translation.y": 2274.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 39,
+					"stack_index": 45,
 					"type": "text"
 				},
 				{
@@ -2883,15 +2925,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3523,
+						"buffer_size": 3922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2550,
-								2550
+								1187,
+								1187
 							]
 						],
 						"settings":
@@ -2900,10 +2942,10 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 281.0,
+						"translation.y": 437.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 38,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -2912,15 +2954,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10378,
+						"buffer_size": 10445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3106,
-								3106
+								3126,
+								3126
 							]
 						],
 						"settings":
@@ -2935,7 +2977,7 @@
 						"translation.y": 2218.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 37,
+					"stack_index": 44,
 					"type": "text"
 				},
 				{
@@ -2944,7 +2986,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8066,
+						"buffer_size": 8171,
 						"regions":
 						{
 						},
@@ -2965,7 +3007,7 @@
 						"translation.y": 4168.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 35,
+					"stack_index": 43,
 					"type": "text"
 				},
 				{
@@ -2996,13 +3038,13 @@
 						"translation.y": 533.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 40,
+					"stack_index": 46,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 5,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -3011,15 +3053,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9370,
+						"buffer_size": 9450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2885,
-								2885
+								2905,
+								2905
 							]
 						],
 						"settings":
@@ -3031,10 +3073,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2653.0,
+						"translation.y": 2671.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
@@ -3043,15 +3085,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3523,
+						"buffer_size": 3922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1221,
-								1221
+								1454,
+								1454
 							]
 						],
 						"settings":
@@ -3065,7 +3107,7 @@
 						"translation.y": 702.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
@@ -3095,7 +3137,7 @@
 						"translation.y": 31991.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
@@ -3104,15 +3146,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10378,
+						"buffer_size": 10445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7418,
-								7418
+								586,
+								586
 							]
 						],
 						"settings":
@@ -3124,10 +3166,72 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6877.0,
+						"translation.y": 143.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "src/fontgen.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8468,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								388,
+								388
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"spell_check": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 35,
+					"file": "src/wasm_keymap.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -3136,15 +3240,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8706,
+						"buffer_size": 10808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4189,
-								4189
+								5103,
+								5103
 							]
 						],
 						"settings":
@@ -3156,10 +3260,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2290.0,
+						"translation.y": 2443.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -3168,15 +3272,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3407,
+						"buffer_size": 3508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								52,
-								52
+								3336,
+								3336
 							]
 						],
 						"settings":
@@ -3187,10 +3291,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2767.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -3199,15 +3303,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8066,
+						"buffer_size": 8171,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3981,
-								3981
+								709,
+								709
 							]
 						],
 						"settings":
@@ -3217,14 +3321,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2643.0,
+						"translation.y": 875.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 34,
+					"buffer": 36,
 					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
@@ -3248,11 +3352,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
-					"buffer": 35,
+					"buffer": 37,
 					"file": "/C/Users/stas/Documents/.graphene/developer.conf",
 					"semi_transient": false,
 					"settings":
@@ -3276,7 +3380,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
@@ -3307,11 +3411,11 @@
 						"translation.y": 672.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
-					"buffer": 36,
+					"buffer": 38,
 					"semi_transient": false,
 					"settings":
 					{
@@ -3335,7 +3439,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 32,
 					"type": "text"
 				}
 			]
@@ -3369,7 +3473,7 @@
 		"cols":
 		[
 			0.0,
-			0.559895833333,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -3401,8 +3505,40 @@
 		"selected_items":
 		[
 			[
+				"game",
+				"ld45\\src\\game.cpp"
+			],
+			[
+				"opena",
+				"ld45\\src\\openal.cpp"
+			],
+			[
+				"was",
+				"ld45\\src\\wasm_main.cpp"
+			],
+			[
+				"ht",
+				"ld45\\index.html"
+			],
+			[
+				"wind",
+				"ld45\\src\\windows_main.cpp"
+			],
+			[
+				"wasm_",
+				"ld45\\src\\wasm_keymap.h"
+			],
+			[
+				"wasm",
+				"ld45\\src\\wasm_main.cpp"
+			],
+			[
 				"fontg",
 				"ld45\\src\\fontgen.cpp"
+			],
+			[
+				"render",
+				"ld45\\src\\render.h"
 			],
 			[
 				"bui",
@@ -3413,16 +3549,8 @@
 				"ld45\\data\\shaders\\glyph.f"
 			],
 			[
-				"game",
-				"ld45\\src\\game.cpp"
-			],
-			[
 				"font",
 				"ld45\\src\\font.h"
-			],
-			[
-				"opena",
-				"ld45\\src\\openal.cpp"
 			],
 			[
 				"vorbis",
@@ -3441,20 +3569,8 @@
 				"P:\\ls\\ld45\\src\\ls_math.h"
 			],
 			[
-				"wind",
-				"ld45\\src\\windows_main.cpp"
-			],
-			[
 				"openal",
 				"ld45\\src\\openal.cpp"
-			],
-			[
-				"was",
-				"ld45\\src\\wasm_main.cpp"
-			],
-			[
-				"wasm",
-				"ld45\\src\\wasm_main.cpp"
 			],
 			[
 				"plain",
@@ -3499,10 +3615,6 @@
 			[
 				"platf",
 				"ld45\\src\\platform.h"
-			],
-			[
-				"render",
-				"ld45\\src\\render.h"
 			],
 			[
 				"opengl",
@@ -3903,14 +4015,6 @@
 			[
 				"ls_time",
 				"ls_lib\\ls_time.h"
-			],
-			[
-				"tdo",
-				"todo.txt"
-			],
-			[
-				"fcgi",
-				"ls_lib\\ls_fcgi_win.h"
 			]
 		],
 		"width": 0.0
@@ -3927,16 +4031,44 @@
 	"select_symbol":
 	{
 		"height": 392.0,
-		"last_filter": "font",
+		"last_filter": "state",
 		"selected_items":
 		[
 			[
-				"font",
-				"font_"
+				"state",
+				"state"
+			],
+			[
+				"Play",
+				"Play"
+			],
+			[
+				"callb",
+				"WasmKeyEventCallback"
+			],
+			[
+				"layout",
+				"layout"
+			],
+			[
+				"gette",
+				"GetTextDim"
+			],
+			[
+				"drawt",
+				"DrawText"
 			],
 			[
 				"draw",
 				"DrawText"
+			],
+			[
+				"openglre",
+				"OpenglRender"
+			],
+			[
+				"font",
+				"font_"
 			],
 			[
 				"render",
@@ -3945,10 +4077,6 @@
 			[
 				"drawte",
 				"DrawText"
-			],
-			[
-				"state",
-				"state"
 			],
 			[
 				"gameini",
@@ -4009,10 +4137,6 @@
 			[
 				"game",
 				"Game"
-			],
-			[
-				"drawt",
-				"DrawText"
 			],
 			[
 				"printl",
@@ -4161,10 +4285,6 @@
 			[
 				"image",
 				"image"
-			],
-			[
-				"openglre",
-				"OpenglRender"
 			],
 			[
 				"GetCachedGlyph",
@@ -4425,27 +4545,11 @@
 			[
 				"graphen",
 				"GrapheneInit"
-			],
-			[
-				"add",
-				"Add_u32"
-			],
-			[
-				"LocateElementWithId",
-				"LocateElementWithId"
-			],
-			[
-				"ls_s",
-				"ls_static_string"
-			],
-			[
-				"parsesele",
-				"PooksParseElementSelectors"
 			]
 		],
 		"width": 592.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
