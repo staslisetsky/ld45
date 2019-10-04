@@ -45,7 +45,7 @@ struct cached_font {
     font_ Id;
     bitmap Atlas;
 
-    r32 SizePt;
+    r32 SizePx;
     r32 PxPerFontUnit;
 
     r32 Height;
@@ -67,7 +67,7 @@ struct packed_font {
 
     u32 AtlasWidth;
     u32 AtlasHeight;
-    r32 SizePt;
+    r32 SizePx;
     r32 PxPerFontUnit;
     r32 Height;
     r32 Baseline;
@@ -121,7 +121,7 @@ GetKerningForPair(cached_font *Font, u16 CodePointA, u16 CodePointB)
 }
 
 cached_font *
-FindMatchingFont(font_ FontId, r32 SizePt,r32 *Scale)
+FindMatchingFont(font_ FontId, r32 SizePx,r32 *Scale)
 {
     cached_font *Font = 0;
 
@@ -132,7 +132,7 @@ FindMatchingFont(font_ FontId, r32 SizePt,r32 *Scale)
     for (u32 i=0; i<CachedFontCount; ++i) {
         cached_font *Font = FontCache + i;
         if (Font->Id == FontId) {
-            r32 Diff = Abs_r32(SizePt - Font->SizePt);
+            r32 Diff = Abs_r32(SizePx - Font->SizePx);
             if (Diff < MinSizeDiff) {
                 Index = i;
                 MinSizeDiff = Diff;
@@ -144,7 +144,7 @@ FindMatchingFont(font_ FontId, r32 SizePt,r32 *Scale)
         Font = FontCache + Index;
     }
 
-    *Scale = SizePt / Font->SizePt;
+    *Scale = SizePx / Font->SizePx;
 
     Assert(Font);
 
@@ -153,12 +153,12 @@ FindMatchingFont(font_ FontId, r32 SizePt,r32 *Scale)
 
 
 v2
-GetTextDim(font_ FontId, r32 SizePt, char *Text)
+GetTextDim(font_ FontId, r32 SizePx, char *Text)
 {
     v2 Dim = {};
 
     r32 Scale;
-    cached_font *Font = FindMatchingFont(FontId, SizePt, &Scale);
+    cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
 
     u32 Len = strlen(Text);
     u32 PreviousCodePoint = 0;

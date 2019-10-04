@@ -24,7 +24,7 @@ GameInit()
         Font->GlyphCount = Packed->GlyphCount;
         Font->Atlas.Width = Packed->AtlasWidth;
         Font->Atlas.Height = Packed->AtlasHeight;
-        Font->SizePt = Packed->SizePt;
+        Font->SizePx = Packed->SizePx;
         Font->PxPerFontUnit = Packed->PxPerFontUnit;
         Font->Height = Packed->Height;
         Font->Baseline = Packed->Baseline;
@@ -45,7 +45,7 @@ GameInit()
         At += sizeof(r32) * Font->GlyphCount * Font->GlyphCount;
 
         char Name[30];
-        sprintf(Name, "%s_%d.png", Font->Name, (u32)Font->SizePt);
+        sprintf(Name, "%s_%d.png", Font->Name, (u32)Font->SizePx);
 
         image Image = {};
         Image.Data = stbi_load(Name, (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
@@ -55,8 +55,8 @@ GameInit()
     }
 }
 
-
 void
 Game(r32 dT)
 {
+    DrawText(&Render, v2{200.0f, 100.0f}, RGBA(255,255,255,255), Font_PTSans, 20.0f, "Hello world");
 }
