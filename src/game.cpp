@@ -55,16 +55,21 @@ GameInit()
 
     State.SecondsPerGlyph = 1.0 / 42.0f;
 
-    auto *Command = TimedCommand(2.5f, 0.7f, 1.5f, 0.7f);
-    CommandSimpleText(v2{200.0f, 100.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Hey.");
+    // auto *Command = TimedCommand(2.5f, 0.7f, 1.5f, 0.7f);
+    // CommandSimpleText(v2{200.0f, 100.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Hey.");
 
-    TimedCommand(Command->T.FadeOutStart, 0.7f, 1.5f, 0.7f);
-    CommandSimpleText(v2{200.0f, 150.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Wanna play a little game?");
+    // TimedCommand(Command->T.FadeOutStart, 0.7f, 1.5f, 0.7f);
+    // CommandSimpleText(v2{200.0f, 150.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Wanna play a little game?");
 
     // Stop();
 
-    // CommandBeginLayout(20.0f, 20.0f, Render.Screen.x - 40, Render.Screen.y - 40);
-    // CommandTextLayout(Text_Normal, "So you walk into the room, right?[p:0.5] And, like[p:0.09], there's this [s:0.4]giant Monster[s:1.0, p:0.3] just kinda standing right there.");
+    CommandBeginLayout(20.0f, 20.0f, Render.Screen.x - 40, Render.Screen.y - 40);
+    CommandTextLayout(Text_Normal,
+"So you walk into the room, right?[p:0.5]"
+" And, like[p:0.09], there's this [s:0.4]giant Monster[s:1.0, p:0.3] just kinda standing right there.\n\n"
+"[p:0.7,s:0.7] And he totally[p:0.7] fucking[p:0.5,s:0.8] sees you."
+);
+
 }
 
 void
@@ -124,7 +129,7 @@ Game(r32 dT)
                 }
 
                 if (CharCount) {
-                    TextLayout(Command->TextType, Command->Text, CharCount);
+                    TextLayout(Command->TextType, Command->Text, Command->TextLength, CharCount);
                 }
             }
         }

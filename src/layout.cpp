@@ -31,7 +31,7 @@ WordSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
 }
 
 void
-TextLayout(text_ TextType, char *Text, u32 Len)
+TextLayout(text_ TextType, char *Text, u32 FullLen, u32 PrintLen)
 {
     r32 Scale;
     cached_font *Font = FindMatchingFont(Font_PTSans, 25.0f, &Scale);
@@ -44,10 +44,18 @@ TextLayout(text_ TextType, char *Text, u32 Len)
 
     v4 Color = RGBA(255,255,255,255);
 
-    for (u32 i=0; i<Len; ++i) {
+    for (u32 i=0; i<PrintLen; ++i) {
+        if (Text[i] == '\n') {
+            State.P.x = State.Layout.Min.x;
+            State.P.y += Font->BaselineSpacing * Scale * 1.3f;
+
+            PreviousCodePoint = 10;
+            continue;
+        }
+
         if (PreviousCodePoint == 10 || PreviousCodePoint == 32) {
             r32 SpaceLeft = State.Layout.Max.x - State.P.x;
-            r32 WS = WordSize(Font, Scale, Text + i, Len - i);
+            r32 WS = WordSize(Font, Scale, Text + i, FullLen - i);
             if (WS > SpaceLeft) {
                 // wrap
                 State.P.x = State.Layout.Min.x;

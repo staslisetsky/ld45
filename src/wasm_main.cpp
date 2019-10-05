@@ -51,7 +51,6 @@ struct wasm_state {
 #include "platform.h"
 
 wasm_state WasmState = {};
-render Render = {};
 input Input = {};
 
 //

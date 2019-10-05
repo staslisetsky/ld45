@@ -119,10 +119,7 @@ Module.expectedDataFileDownloads++;
       if (!check) throw msg + new Error().stack;
     }
 Module['FS_createPath']('/', 'data', true, true);
-Module['FS_createPath']('/data', 'audio', true, true);
 Module['FS_createPath']('/data', 'fonts', true, true);
-Module['FS_createPath']('/data', 'images', true, true);
-Module['FS_createPath']('/data', 'sdf', true, true);
 Module['FS_createPath']('/data', 'shaders', true, true);
 
     function DataRequest(start, end, audio) {
@@ -199,7 +196,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 20018492, "filename": "/data/fonts.data"}, {"start": 20018492, "audio": 0, "end": 20144656, "filename": "/data/PT Sans Caption_100.png"}, {"start": 20144656, "audio": 0, "end": 20435171, "filename": "/data/PT Sans Caption_200.png"}, {"start": 20435171, "audio": 0, "end": 20497744, "filename": "/data/PT Sans Caption_50.png"}, {"start": 20497744, "audio": 0, "end": 20506469, "filename": "/data/PT Sans_10.png"}, {"start": 20506469, "audio": 0, "end": 20630045, "filename": "/data/PT Sans_100.png"}, {"start": 20630045, "audio": 0, "end": 20651145, "filename": "/data/PT Sans_20.png"}, {"start": 20651145, "audio": 0, "end": 20936504, "filename": "/data/PT Sans_200.png"}, {"start": 20936504, "audio": 0, "end": 20969347, "filename": "/data/PT Sans_30.png"}, {"start": 20969347, "audio": 0, "end": 21696192, "filename": "/data/PT Sans_400.png"}, {"start": 21696192, "audio": 0, "end": 21767288, "filename": "/data/PT Sans_60.png"}, {"start": 21767288, "audio": 1, "end": 21785170, "filename": "/data/audio/boom_1.ogg"}, {"start": 21785170, "audio": 1, "end": 21857780, "filename": "/data/audio/intro.ogg"}, {"start": 21857780, "audio": 1, "end": 24727431, "filename": "/data/audio/music.ogg"}, {"start": 24727431, "audio": 1, "end": 24733636, "filename": "/data/audio/pew_laser.ogg"}, {"start": 24733636, "audio": 1, "end": 24759464, "filename": "/data/audio/powerup.ogg"}, {"start": 24759464, "audio": 0, "end": 25188636, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 25188636, "audio": 0, "end": 25646084, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 25646084, "audio": 0, "end": 26001552, "filename": "/data/fonts/PT_Sans_Caption.ttf"}, {"start": 26001552, "audio": 0, "end": 26379060, "filename": "/data/fonts/PT_Sans_Caption_Bold.ttf"}, {"start": 26379060, "audio": 0, "end": 26791864, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 26791864, "audio": 0, "end": 27205328, "filename": "/data/images/karloff.png"}, {"start": 27205328, "audio": 0, "end": 27206970, "filename": "/data/sdf/A.png"}, {"start": 27206970, "audio": 0, "end": 28198202, "filename": "/data/sdf/msdfgen.exe"}, {"start": 28198202, "audio": 0, "end": 28627374, "filename": "/data/sdf/PT_Sans.ttf"}, {"start": 28627374, "audio": 0, "end": 28627967, "filename": "/data/shaders/glyph.f"}, {"start": 28627967, "audio": 0, "end": 28628280, "filename": "/data/shaders/glyph.v"}, {"start": 28628280, "audio": 0, "end": 28628427, "filename": "/data/shaders/plain.f"}, {"start": 28628427, "audio": 0, "end": 28628669, "filename": "/data/shaders/plain.v"}, {"start": 28628669, "audio": 0, "end": 28628937, "filename": "/data/shaders/textured.f"}, {"start": 28628937, "audio": 0, "end": 28629250, "filename": "/data/shaders/textured.v"}], "remote_package_size": 28629250, "package_uuid": "cb6ffccf-6995-4454-9fa5-f05fe9c96664"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 10009252, "filename": "/data/fonts.data"}, {"start": 10009252, "audio": 0, "end": 10986148, "filename": "/data/game.exe"}, {"start": 10986148, "audio": 0, "end": 11011699, "filename": "/data/PT Sans_12.png"}, {"start": 11011699, "audio": 0, "end": 11046675, "filename": "/data/PT Sans_20.png"}, {"start": 11046675, "audio": 0, "end": 11071705, "filename": "/data/PT Sans_30.png"}, {"start": 11071705, "audio": 0, "end": 11104623, "filename": "/data/PT Sans_40.png"}, {"start": 11104623, "audio": 0, "end": 11155081, "filename": "/data/PT Sans_60.png"}, {"start": 11155081, "audio": 0, "end": 11175314, "filename": "/data/PT Sans_8.png"}, {"start": 11175314, "audio": 0, "end": 11604486, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 11604486, "audio": 0, "end": 12061934, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 12061934, "audio": 0, "end": 12417402, "filename": "/data/fonts/PT_Sans_Caption.ttf"}, {"start": 12417402, "audio": 0, "end": 12794910, "filename": "/data/fonts/PT_Sans_Caption_Bold.ttf"}, {"start": 12794910, "audio": 0, "end": 13207714, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 13207714, "audio": 0, "end": 13208338, "filename": "/data/shaders/glyph.f"}, {"start": 13208338, "audio": 0, "end": 13208651, "filename": "/data/shaders/glyph.v"}, {"start": 13208651, "audio": 0, "end": 13208798, "filename": "/data/shaders/plain.f"}, {"start": 13208798, "audio": 0, "end": 13209040, "filename": "/data/shaders/plain.v"}, {"start": 13209040, "audio": 0, "end": 13209308, "filename": "/data/shaders/textured.f"}, {"start": 13209308, "audio": 0, "end": 13209621, "filename": "/data/shaders/textured.v"}], "remote_package_size": 13209621, "package_uuid": "4c833aec-2221-4001-b70d-596a4d59f6d3"});
 
 })();
 
@@ -1414,11 +1411,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 27840,
+    STACK_BASE = 58240,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5270720,
-    DYNAMIC_BASE = 5270720,
-    DYNAMICTOP_PTR = 27808;
+    STACK_MAX = 5301120,
+    DYNAMIC_BASE = 5301120,
+    DYNAMICTOP_PTR = 58208;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1903,8 +1900,8 @@ Module['asm'] = function(global, env, providedBuffer) {
   ;
   // import table
   env['table'] = wasmTable = new WebAssembly.Table({
-    'initial': 3088,
-    'maximum': 3088,
+    'initial': 577,
+    'maximum': 577,
     'element': 'anyfunc'
   });
   // With the wasm backend __memory_base and __table_base and only needed for
@@ -1943,7 +1940,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 26816;
+// STATICTOP = STATIC_BASE + 57216;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_wasm_main_cpp() } });
 
 
@@ -1954,7 +1951,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 27824
+var tempDoublePtr = 58224
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -2018,76 +2015,6 @@ function copyTempDouble(ptr) {
 
   function ___assert_fail(condition, filename, line, func) {
       abort('Assertion failed: ' + UTF8ToString(condition) + ', at: ' + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
-    }
-
-  function ___cxa_allocate_exception(size) {
-      return _malloc(size);
-    }
-
-  
-  var ___exception_infos={};
-  
-  var ___exception_caught= [];
-  
-  function ___exception_addRef(ptr) {
-      if (!ptr) return;
-      var info = ___exception_infos[ptr];
-      info.refcount++;
-    }
-  
-  function ___exception_deAdjust(adjusted) {
-      if (!adjusted || ___exception_infos[adjusted]) return adjusted;
-      for (var key in ___exception_infos) {
-        var ptr = +key; // the iteration key is a string, and if we throw this, it must be an integer as that is what we look for
-        var adj = ___exception_infos[ptr].adjusted;
-        var len = adj.length;
-        for (var i = 0; i < len; i++) {
-          if (adj[i] === adjusted) {
-            return ptr;
-          }
-        }
-      }
-      return adjusted;
-    }function ___cxa_begin_catch(ptr) {
-      var info = ___exception_infos[ptr];
-      if (info && !info.caught) {
-        info.caught = true;
-        __ZSt18uncaught_exceptionv.uncaught_exceptions--;
-      }
-      if (info) info.rethrown = false;
-      ___exception_caught.push(ptr);
-      ___exception_addRef(___exception_deAdjust(ptr));
-      return ptr;
-    }
-
-  function ___cxa_pure_virtual() {
-      ABORT = true;
-  
-      throw 'Pure virtual function called!';
-    }
-
-  
-  var ___exception_last=0;function ___cxa_throw(ptr, type, destructor) {
-      ___exception_infos[ptr] = {
-        ptr: ptr,
-        adjusted: [ptr],
-        type: type,
-        destructor: destructor,
-        refcount: 0,
-        caught: false,
-        rethrown: false
-      };
-      ___exception_last = ptr;
-      if (!("uncaught_exception" in __ZSt18uncaught_exceptionv)) {
-        __ZSt18uncaught_exceptionv.uncaught_exceptions = 1;
-      } else {
-        __ZSt18uncaught_exceptionv.uncaught_exceptions++;
-      }
-      throw ptr + " - Exception catching is disabled, this exception cannot be caught. Compile with -s DISABLE_EXCEPTION_CATCHING=0 or DISABLE_EXCEPTION_CATCHING=2 to catch.";
-    }
-
-  function ___cxa_uncaught_exceptions() {
-      return __ZSt18uncaught_exceptionv.uncaught_exceptions;
     }
 
   function ___gxx_personality_v0() {
@@ -5397,10 +5324,6 @@ function copyTempDouble(ptr) {
   return _fd_write.apply(null, arguments)
   }
 
-  function _abort() {
-      Module['abort']();
-    }
-
   
   
   
@@ -7402,140 +7325,7 @@ function copyTempDouble(ptr) {
           return null;
         }
         return c;
-      }};function _alBufferData(bufferId, format, pData, size, freq) {
-      if (!AL.currentCtx) {
-        return;
-      }
-      var buf = AL.buffers[bufferId];
-      if (!buf) {
-        AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
-        return;
-      }
-      if (freq <= 0) {
-        AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
-        return;
-      }
-  
-      var audioBuf = null;
-      try {
-        switch (format) {
-        case 0x1100 /* AL_FORMAT_MONO8 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(1, size, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            for (var i = 0; i < size; ++i) {
-              channel0[i] = HEAPU8[pData++] * 0.0078125 /* 1/128 */ - 1.0;
-            }
-          }
-          buf.bytesPerSample = 1;
-          buf.channels = 1;
-          buf.length = size;
-          break;
-        case 0x1101 /* AL_FORMAT_MONO16 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(1, size >> 1, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            pData >>= 1;
-            for (var i = 0; i < size >> 1; ++i) {
-              channel0[i] = HEAP16[pData++] * 0.000030517578125 /* 1/32768 */;
-            }
-          }
-          buf.bytesPerSample = 2;
-          buf.channels = 1;
-          buf.length = size >> 1;
-          break;
-        case 0x1102 /* AL_FORMAT_STEREO8 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(2, size >> 1, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            var channel1 = audioBuf.getChannelData(1);
-            for (var i = 0; i < size >> 1; ++i) {
-              channel0[i] = HEAPU8[pData++] * 0.0078125 /* 1/128 */ - 1.0;
-              channel1[i] = HEAPU8[pData++] * 0.0078125 /* 1/128 */ - 1.0;
-            }
-          }
-          buf.bytesPerSample = 1;
-          buf.channels = 2;
-          buf.length = size >> 1;
-          break;
-        case 0x1103 /* AL_FORMAT_STEREO16 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(2, size >> 2, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            var channel1 = audioBuf.getChannelData(1);
-            pData >>= 1;
-            for (var i = 0; i < size >> 2; ++i) {
-              channel0[i] = HEAP16[pData++] * 0.000030517578125 /* 1/32768 */;
-              channel1[i] = HEAP16[pData++] * 0.000030517578125 /* 1/32768 */;
-            }
-          }
-          buf.bytesPerSample = 2;
-          buf.channels = 2;
-          buf.length = size >> 2;
-          break;
-        case 0x10010 /* AL_FORMAT_MONO_FLOAT32 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(1, size >> 2, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            pData >>= 2;
-            for (var i = 0; i < size >> 2; ++i) {
-              channel0[i] = HEAPF32[pData++];
-            }
-          }
-          buf.bytesPerSample = 4;
-          buf.channels = 1;
-          buf.length = size >> 2;
-          break;
-        case 0x10011 /* AL_FORMAT_STEREO_FLOAT32 */:
-          if (size > 0) {
-            audioBuf = AL.currentCtx.audioCtx.createBuffer(2, size >> 3, freq);
-            var channel0 = audioBuf.getChannelData(0);
-            var channel1 = audioBuf.getChannelData(1);
-            pData >>= 2;
-            for (var i = 0; i < size >> 3; ++i) {
-              channel0[i] = HEAPF32[pData++];
-              channel1[i] = HEAPF32[pData++];
-            }
-          }
-          buf.bytesPerSample = 4;
-          buf.channels = 2;
-          buf.length = size >> 3;
-          break;
-        default:
-          AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
-          return;
-        }
-        buf.frequency = freq;
-        buf.audioBuf = audioBuf;
-      } catch (e) {
-        AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
-        return;
-      }
-    }
-
-  function _alGenBuffers(count, pBufferIds) {
-      if (!AL.currentCtx) {
-        return;
-      }
-  
-      for (var i = 0; i < count; ++i) {
-        var buf = {
-          deviceId: AL.currentCtx.deviceId,
-          id: AL.newId(),
-          refCount: 0,
-          audioBuf: null,
-          frequency: 0,
-          bytesPerSample: 2,
-          channels: 1,
-          length: 0,
-        };
-        AL.deviceRefCounts[buf.deviceId]++;
-        AL.buffers[buf.id] = buf;
-        HEAP32[(((pBufferIds)+(i*4))>>2)]=buf.id;
-      }
-    }
-
-  function _alGenSources(count, pSourceIds) {
+      }};function _alGenSources(count, pSourceIds) {
       if (!AL.currentCtx) {
         return;
       }
@@ -7578,93 +7368,6 @@ function copyTempDouble(ptr) {
         };
         AL.currentCtx.sources[src.id] = src;
         HEAP32[(((pSourceIds)+(i*4))>>2)]=src.id;
-      }
-    }
-
-  function _alGetSourcei(sourceId, param, pValue) {
-      var val = AL.getSourceParam('alGetSourcei', sourceId, param);
-      if (val === null) {
-        return;
-      }
-      if (!pValue) {
-        AL.currentCtx.err = 0xA003 /* AL_INVALID_VALUE */;
-        return;
-      }
-  
-      switch (param) {
-      case 0x202 /* AL_SOURCE_RELATIVE */:
-      case 0x1001 /* AL_CONE_INNER_ANGLE */:
-      case 0x1002 /* AL_CONE_OUTER_ANGLE */:
-      case 0x1007 /* AL_LOOPING */:
-      case 0x1009 /* AL_BUFFER */:
-      case 0x1010 /* AL_SOURCE_STATE */:
-      case 0x1015 /* AL_BUFFERS_QUEUED */:
-      case 0x1016 /* AL_BUFFERS_PROCESSED */:
-      case 0x1020 /* AL_REFERENCE_DISTANCE */:
-      case 0x1021 /* AL_ROLLOFF_FACTOR */:
-      case 0x1023 /* AL_MAX_DISTANCE */:
-      case 0x1024 /* AL_SEC_OFFSET */:
-      case 0x1025 /* AL_SAMPLE_OFFSET */:
-      case 0x1026 /* AL_BYTE_OFFSET */:
-      case 0x1027 /* AL_SOURCE_TYPE */:
-      case 0x1214 /* AL_SOURCE_SPATIALIZE_SOFT */:
-      case 0x2009 /* AL_BYTE_LENGTH_SOFT */: 
-      case 0x200A /* AL_SAMPLE_LENGTH_SOFT */:
-      case 0xD000 /* AL_DISTANCE_MODEL */:
-        HEAP32[((pValue)>>2)]=val;
-        break;
-      default:
-        AL.currentCtx.err = 0xA002 /* AL_INVALID_ENUM */;
-        return;
-      }
-    }
-
-  function _alSourcePlay(sourceId) {
-      if (!AL.currentCtx) {
-        return;
-      }
-      var src = AL.currentCtx.sources[sourceId];
-      if (!src) {
-        AL.currentCtx.err = 0xA001 /* AL_INVALID_NAME */;
-        return;
-      }
-      AL.setSourceState(src, 0x1012 /* AL_PLAYING */);
-    }
-
-  function _alSourceStop(sourceId) {
-      if (!AL.currentCtx) {
-        return;
-      }
-      var src = AL.currentCtx.sources[sourceId];
-      if (!src) {
-        AL.currentCtx.err = 0xA001 /* AL_INVALID_NAME */;
-        return;
-      }
-      AL.setSourceState(src, 0x1014 /* AL_STOPPED */);
-    }
-
-  function _alSourcei(sourceId, param, value) {
-      switch (param) {
-      case 0x202 /* AL_SOURCE_RELATIVE */:
-      case 0x1001 /* AL_CONE_INNER_ANGLE */:
-      case 0x1002 /* AL_CONE_OUTER_ANGLE */:
-      case 0x1007 /* AL_LOOPING */:
-      case 0x1009 /* AL_BUFFER */:
-      case 0x1020 /* AL_REFERENCE_DISTANCE */:
-      case 0x1021 /* AL_ROLLOFF_FACTOR */:
-      case 0x1023 /* AL_MAX_DISTANCE */:
-      case 0x1024 /* AL_SEC_OFFSET */:
-      case 0x1025 /* AL_SAMPLE_OFFSET */:
-      case 0x1026 /* AL_BYTE_OFFSET */:
-      case 0x1214 /* AL_SOURCE_SPATIALIZE_SOFT */:
-      case 0x2009 /* AL_BYTE_LENGTH_SOFT */: 
-      case 0x200A /* AL_SAMPLE_LENGTH_SOFT */:
-      case 0xD000 /* AL_DISTANCE_MODEL */:
-        AL.setSourceParam('alSourcei', sourceId, param, value);
-        break;
-      default:
-        AL.setSourceParam('alSourcei', sourceId, param, null);
-        break;
       }
     }
 
@@ -8701,12 +8404,6 @@ function copyTempDouble(ptr) {
       GLctx.vertexAttribPointer(index, size, type, !!normalized, stride, ptr);
     }
 
-  var _llvm_cos_f64=Math_cos;
-
-  var _llvm_sin_f32=Math_sin;
-
-  var _llvm_sin_f64=Math_sin;
-
   function _llvm_trap() {
       abort('trap!');
     }
@@ -8716,8 +8413,6 @@ function copyTempDouble(ptr) {
       HEAPU8.set(HEAPU8.subarray(src, src+num), dest);
     }
   
-   
-
    
 
    
@@ -8822,13 +8517,6 @@ var asmLibraryArg = {
   "nullFunc_viiiii": nullFunc_viiiii,
   "nullFunc_viiiiii": nullFunc_viiiiii,
   "___assert_fail": ___assert_fail,
-  "___cxa_allocate_exception": ___cxa_allocate_exception,
-  "___cxa_begin_catch": ___cxa_begin_catch,
-  "___cxa_pure_virtual": ___cxa_pure_virtual,
-  "___cxa_throw": ___cxa_throw,
-  "___cxa_uncaught_exceptions": ___cxa_uncaught_exceptions,
-  "___exception_addRef": ___exception_addRef,
-  "___exception_deAdjust": ___exception_deAdjust,
   "___gxx_personality_v0": ___gxx_personality_v0,
   "___lock": ___lock,
   "___setErrNo": ___setErrNo,
@@ -8850,14 +8538,7 @@ var asmLibraryArg = {
   "__maybeCStringToJsString": __maybeCStringToJsString,
   "__registerKeyEventCallback": __registerKeyEventCallback,
   "__registerMouseEventCallback": __registerMouseEventCallback,
-  "_abort": _abort,
-  "_alBufferData": _alBufferData,
-  "_alGenBuffers": _alGenBuffers,
   "_alGenSources": _alGenSources,
-  "_alGetSourcei": _alGetSourcei,
-  "_alSourcePlay": _alSourcePlay,
-  "_alSourceStop": _alSourceStop,
-  "_alSourcei": _alSourcei,
   "_alcCreateContext": _alcCreateContext,
   "_alcMakeContextCurrent": _alcMakeContextCurrent,
   "_alcOpenDevice": _alcOpenDevice,
@@ -8914,9 +8595,6 @@ var asmLibraryArg = {
   "_glUniformBlockBinding": _glUniformBlockBinding,
   "_glUseProgram": _glUseProgram,
   "_glVertexAttribPointer": _glVertexAttribPointer,
-  "_llvm_cos_f64": _llvm_cos_f64,
-  "_llvm_sin_f32": _llvm_sin_f32,
-  "_llvm_sin_f64": _llvm_sin_f64,
   "_llvm_trap": _llvm_trap,
   "abortOnCannotGrowMemory": abortOnCannotGrowMemory,
   "demangle": demangle,
@@ -8936,24 +8614,6 @@ var __GLOBAL__sub_I_wasm_main_cpp = Module["__GLOBAL__sub_I_wasm_main_cpp"] = fu
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["__GLOBAL__sub_I_wasm_main_cpp"].apply(null, arguments)
-};
-
-var __ZSt18uncaught_exceptionv = Module["__ZSt18uncaught_exceptionv"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["__ZSt18uncaught_exceptionv"].apply(null, arguments)
-};
-
-var ___cxa_can_catch = Module["___cxa_can_catch"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["___cxa_can_catch"].apply(null, arguments)
-};
-
-var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["___cxa_is_pointer_type"].apply(null, arguments)
 };
 
 var ___errno_location = Module["___errno_location"] = function() {
@@ -8990,12 +8650,6 @@ var _memcpy = Module["_memcpy"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["_memcpy"].apply(null, arguments)
-};
-
-var _memmove = Module["_memmove"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["_memmove"].apply(null, arguments)
 };
 
 var _memset = Module["_memset"] = function() {
