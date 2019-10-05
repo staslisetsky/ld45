@@ -1,59 +1,44 @@
-timed_command *
-TimedCommand(r32 Start, r32 FadeIn, r32 ScreenTime, r32 FadeOut)
+void
+CommandSimpleText(text_ TextType, r32 SpeedFactor, r32 ScreenTime, r32 FadeOut, char *Text)
 {
     timed_command *Command = State.Commands + State.CommandCount++;
 
-    Command->Start = Start;
+    Command->Start = State.CommandTime;
 
-    Command->D.FadeIn = FadeIn;
+    Command->Text = Text;
+    Command->Color = RGBA(255,255,255,255);
+    Command->Font = Font_PTSans;
+    Command->SizePx = 30.0f;
+    Command->TextLength = strlen(Text);
+
+    Command->D.FadeIn = Command->TextLength * State.SecondsPerGlyph * ( 1.0f / SpeedFactor);
     Command->D.ScreenTime = ScreenTime;
     Command->D.FadeOut = FadeOut;
-
-    Command->T.FadeInStart = Start;
-    Command->T.FadeInEnd = Command->T.FadeInStart + FadeIn;
-
-    Command->T.FadeOutStart = Start + FadeIn + ScreenTime;
+    Command->T.FadeInStart = State.CommandTime;
+    Command->T.FadeInEnd = Command->T.FadeInStart + Command->D.FadeIn;
+    Command->T.FadeOutStart = Command->Start + Command->D.FadeIn + ScreenTime;
     Command->T.FadeOutEnd = Command->T.FadeOutStart + FadeOut;
-
     Command->End = Command->T.FadeOutEnd;
+    Command->Duration = Command->End - Command->Start;
 
-    return Command;
-}
-
-void
-CommandSimpleText(v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text)
-{
-    Assert(State.CommandCount);
-    auto *Command = State.Commands + State.CommandCount - 1;
-
-    command_entry *Entry = Command->Entries + Command->EntryCount++;
-    Entry->Text = Text;
-    Entry->Color = Color;
-    Entry->P = P;
-    Entry->Font = FontId;
-    Entry->SizePx = SizePx;
-}
-
-void
-CommandBeginLayout(r32 PX, r32 PY, r32 DimX, r32 DimY)
-{
-    State.Layout.Min = v2{PX, PY};
-    State.Layout.Max = v2{PX + DimX, PY + DimY};
-    State.P = v2{PX, PY};
+    State.CommandTime += Command->Duration;
 }
 
 timed_command *
 CreateTextLayoutCommand(text_ TextType, char *Text, u32 TextLength)
 {
     timed_command *Command = State.Commands + State.CommandCount++;
-
     Command->Type = Command_TextLayout;
     Command->Start = State.CommandTime;
-
     Command->TextType = TextType;
     Command->Text = Text;
     Command->TextLength = TextLength;
-    Command->Duration = TextLength * State.SecondsPerGlyph;
+    Command->D.FadeIn = TextLength * State.SecondsPerGlyph;
+    Command->T.FadeInStart = State.CommandTime;
+    Command->T.FadeInEnd = Command->T.FadeInStart + Command->D.FadeIn;
+
+    Command->Duration = Command->T.FadeInEnd -Command->T.FadeInStart;
+
     Command->End = Command->Start + Command->Duration;
 
     return Command;
@@ -81,11 +66,8 @@ CommandTextLayout(text_ TextType, char *Text)
     while (String.RemainingBytes()) {
         token Token = String.GetToken();
 
-
-
         if (Token.Type == Token_OpenBracket) {
             b32 ParsingInlineCommands = true;
-
 
             if (String.At - PhraseStart > 1) {
                 // note: " [0.1]" <--- this will work. We'll just create the command with one space character.
@@ -131,7 +113,15 @@ CommandTextLayout(text_ TextType, char *Text)
 
     // note: restore the default speed. We only alter this value in the current String
     State.SecondsPerGlyph = 1.0 / 42.0f;
-
     State.CommandTime += Command->Duration;
 }
+
+
+// void
+// CommandBeginLayout(r32 PX, r32 PY, r32 DimX, r32 DimY)
+// {
+//     State.Layout.Min = v2{PX, PY};
+//     State.Layout.Max = v2{PX + DimX, PY + DimY};
+//     State.P = v2{PX, PY};
+// }
 

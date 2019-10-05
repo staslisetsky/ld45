@@ -192,14 +192,20 @@ DrawRect(v4 Color, v2 P, v2 Dim, r32 Z)
 // }
 
 void
-DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text)
+DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text, r32 Len)
 {
-    u32 Len = strlen(Text);
-
     v2 CurrentP = P;
     u32 PreviousCodePoint = 0;
 
+    u32 IntegerLen = (u32)(Len);
+
     for (u32 i=0; i<Len; ++i) {
+        v4 GlyphColor = Color;
+
+        if (i == IntegerLen) {
+            GlyphColor.a *= Len - IntegerLen;
+        }
+
         vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
 
         Assert(Render.TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
@@ -228,12 +234,12 @@ DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text)
         Vertices[4].P = v3{GlyphP.x, GlyphP.y + QuadDim.y, (r32)Z};
         Vertices[5].P = v3{GlyphP.x + QuadDim.x, GlyphP.y + QuadDim.y, (r32)Z};
 
-        Vertices[0].Color = Color / 255.0f;
-        Vertices[1].Color = Color / 255.0f;
-        Vertices[2].Color = Color / 255.0f;
-        Vertices[3].Color = Color / 255.0f;
-        Vertices[4].Color = Color / 255.0f;
-        Vertices[5].Color = Color / 255.0f;
+        Vertices[0].Color = GlyphColor / 255.0f;
+        Vertices[1].Color = GlyphColor / 255.0f;
+        Vertices[2].Color = GlyphColor / 255.0f;
+        Vertices[3].Color = GlyphColor / 255.0f;
+        Vertices[4].Color = GlyphColor / 255.0f;
+        Vertices[5].Color = GlyphColor / 255.0f;
 
         v2 TexelOffset = { TextureOffsetPx.x / (Font->Atlas.Width * Scale), TextureOffsetPx.y / (Font->Atlas.Height * Scale) };
 

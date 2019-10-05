@@ -1,9 +1,21 @@
-void
-DrawText(v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text)
+r32
+TextSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
 {
-    r32 Scale;
-    cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
-    DrawText(P, 1.0f, Scale, Color, Font, Text);
+    r32 Size = 0.0f;
+    u32 PreviousCodePoint = 0;
+
+    for (u32 i=0; i<Len; ++i) {
+        cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
+
+        r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
+        r32 Left = XKern + Glyph->LeftBearing;
+        r32 Right = Glyph->XAdvance - (Glyph->Width + Glyph->LeftBearing);
+        r32 Width = (Glyph->Width + Left + Right) * Scale;
+
+        Size += Width;
+    }
+
+    return Size;
 }
 
 r32
@@ -16,7 +28,6 @@ WordSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
         if (Text[i] == ' ') {
             break;
         }
-
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
 
         r32 XKern = GetKerningForPair(Font, PreviousCodePoint, Glyph->CodePoint);
@@ -28,6 +39,23 @@ WordSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
     }
 
     return Size;
+}
+
+void
+DrawText(pos_ Pos, v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text, r32 Len)
+{
+    r32 Scale;
+    cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
+
+    if (Pos == Pos_Center) {
+        r32 Size = TextSize(Font, Scale, Text, strlen(Text));
+        v2 ScreenCenter = v2{ (r32)Render.Screen.x / 2.0f, (r32)Render.Screen.y / 2.0f };
+
+        P = ScreenCenter;
+        P.x -= Size / 2.0f;
+    }
+
+    DrawText(P, 1.0f, Scale, Color, Font, Text, Len);
 }
 
 void

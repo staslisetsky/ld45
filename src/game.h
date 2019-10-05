@@ -21,12 +21,9 @@ enum text_ {
     Text_Count,
 };
 
-struct command_entry {
-    char *Text;
-    v4 Color;
-    v2 P;
-    font_ Font;
-    r32 SizePx;
+enum pos_ {
+    Pos_Normal,
+    Pos_Center,
 };
 
 enum command_ {
@@ -41,19 +38,24 @@ struct timed_command {
     command_ Type;
     r32 Start;
     r32 End;
+    r32 Duration;
 
-    // simple text
+    text_ TextType;
+
     durations D;
     timings T;
 
     // layout
-    text_ TextType;
+
     char *Text;
     u32 TextLength;
-    r32 Duration;
 
-    command_entry Entries[10];
-    u32 EntryCount;
+    v4 Color;
+    v2 P;
+    font_ Font;
+    pos_ Pos;
+    r32 SizePx;
+    r32 SpeedFactor;
 
     r32 FadeInValue(r32 Time) { return (Time - this->T.FadeInStart) / (this->T.FadeInEnd - this->T.FadeInStart); }
     r32 FadeOutValue(r32 Time) { return (Time - this->T.FadeOutStart) / (this->T.FadeOutEnd - this->T.FadeOutStart); }
