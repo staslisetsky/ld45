@@ -123,10 +123,10 @@ InitOpenal()
 
     // }
 
-    Sound.Sounds[Music_Intro] = LoadSound(Sound.MusicSource, "audio/intro.ogg");
-    Sound.Sounds[Music_Main] = LoadSound(Sound.MusicSource, "audio/music.ogg");
-    Sound.Sounds[Sound_AsteroidExplode] = LoadSound(Sound.SFXSource, "audio/boom_1.ogg");
-    Sound.Sounds[Sound_Pew] = LoadSound(Sound.SFXSource, "audio/pew_laser.ogg");
+    // Sound.Sounds[Music_Intro] = LoadSound(Sound.MusicSource, "audio/intro.ogg");
+    // Sound.Sounds[Music_Main] = LoadSound(Sound.MusicSource, "audio/music.ogg");
+    // Sound.Sounds[Sound_AsteroidExplode] = LoadSound(Sound.SFXSource, "audio/boom_1.ogg");
+    // Sound.Sounds[Sound_Pew] = LoadSound(Sound.SFXSource, "audio/pew_laser.ogg");
     // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Main].Buffer);
     // alSourcei(Sound.MusicSource, AL_BUFFER, Sound.Sounds[Music_Intro].Buffer);
     // alSourceQueueBuffers(PlayedSound.Source, 1, &PlayedSound.Buffer);

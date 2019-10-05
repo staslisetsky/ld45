@@ -22,6 +22,5 @@ float GammaUp(float Component)
 void main(void)
 {
     vec4 ColorSample = texture(TextureSample, TexelUV);
-    // FragmentColor = vec4(VertexColor.rgb, GammaUp(ColorSample.r));
-    FragmentColor = vec4(VertexColor.rgb, GammaUp(ColorSample.r));
+    FragmentColor = vec4(VertexColor.rgb, GammaUp(ColorSample.r) * VertexColor.a);
 }

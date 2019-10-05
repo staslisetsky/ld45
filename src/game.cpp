@@ -1,7 +1,6 @@
-struct state {
-};
-
-state State = {};
+#include "game.h"
+#include "layout.cpp"
+#include "commands.cpp"
 
 void
 GameInit()
@@ -53,10 +52,92 @@ GameInit()
 
         ++CachedFontCount;
     }
+
+    State.SecondsPerGlyph = 1.0 / 42.0f;
+
+    // auto *Command = TimedCommand(2.5f, 0.7f, 1.5f, 0.7f);
+    // CommandSimpleText(v2{200.0f, 100.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Hey.");
+
+    // TimedCommand(Command->T.FadeOut, 0.7f, 1.5f, 0.7f);
+    // CommandSimpleText(v2{200.0f, 150.0f}, RGBA(255,255,255,255), Font_PTSans, 30.0f, "Wanna play a little game?");
+
+    // Stop();
+
+    CommandBeginLayout(20.0f, 20.0f, Render.Screen.x - 40, Render.Screen.y - 40);
+    CommandTextLayout(Text_Normal, "So you walk into the room[p:0.1], right?[p:0.5] And, like[p:0.15], there's this [s:0.4]giant Monster[s:1.0, p:0.3] just kinda standing right there.");
+    // CommandTextLayout(Text_Monster, "Monster");
+    // CommandTextLayout(Text_Normal, "[0.3] just kinda standing right there.");
 }
 
 void
 Game(r32 dT)
 {
-    DrawText(&Render, v2{200.0f, 100.0f}, RGBA(255,255,255,255), Font_PTSans, 20.0f, "Hello world");
+    State.Layout.Min = v2{50.0f, 40.0f};
+    State.Layout.Max = v2{(r32)Render.Screen.x - 100.0f, (r32)Render.Screen.y - 80.0f};
+    State.P = State.Layout.Min;
+
+    for (u32 i=0; i<State.CommandCount; ++i) {
+        auto *Command = State.Commands + i;
+
+        if (!Command->Retired) {
+            if (Command->Active && State.Time >= Command->End)  {
+                // todo: remove from the array
+                if (Command->Type != Command_TextLayout) {
+                    Command->Retired = true;
+                    Command->Active = false;
+                }
+            } else if (State.Time >= Command->Start) {
+                Command->Active = true;
+            }
+        }
+
+        if (Command->Active) {
+            if (Command->Type == Command_SimpleText) {
+            } else if (Command->Type == Command_TextLayout) {
+                r32 Value = (State.Time - Command->Start) / Command->Duration;
+
+                u32 CharCount = Command->TextLength;
+                if (Value < 1.0f) {
+                    CharCount *= Value;
+                }
+
+                if (CharCount) {
+                    TextLayout(Command->TextType, Command->Text, CharCount);
+                }
+            }
+        }
+
+        // if (State.Time >= Command->Start) {
+        //     r32 FadeInEnd = Command->Start + Command->D.FadeIn;
+        //     r32 FadeOutStart = Command->T.FadeOut;
+        //     r32 CommandEnd = Command->T.FadeOut + Command->D.FadeOut;
+        //     if (State.Time <= FadeInEnd) {
+        //         // fade in
+        //         r32 Value = (State.Time - Command->Start) / Command->D.FadeIn;
+        //         for (u32 j=0; j<Command->EntryCount; ++j) {
+        //             auto *Entry = Command->Entries + j;
+
+        //             v4 Color = Entry->Color;
+        //             Color.a *= Value;
+        //             DrawText(Entry->P, Color, Entry->Font, Entry->SizePx, Entry->Text);
+        //         }
+        //     } else if (State.Time > FadeInEnd && State.Time <= FadeOutStart) {
+        //         for (u32 j=0; j<Command->EntryCount; ++j) {
+        //             auto *Entry = Command->Entries + j;
+        //             DrawText(Entry->P, Entry->Color, Entry->Font, Entry->SizePx, Entry->Text);
+        //         }
+        //     } else if (State.Time > FadeOutStart && State.Time <= CommandEnd) {
+        //         // fade out
+        //         r32 Value = 1.0f - ((State.Time - FadeOutStart) / Command->D.FadeOut);
+        //         for (u32 j=0; j<Command->EntryCount; ++j) {
+        //             auto *Entry = Command->Entries + j;
+        //             v4 Color = Entry->Color;
+        //             Color.a *= Value;
+        //             DrawText(Entry->P, Color, Entry->Font, Entry->SizePx, Entry->Text);
+        //         }
+        //     }
+        // }
+    }
+
+    State.Time += dT;
 }

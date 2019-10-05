@@ -45,7 +45,7 @@ ls_string_allocator *ls_stringbuf::AllocatorTable = 0;
 
 static BOOL GlobalRunning = true;
 
-static render Render = {};
+
 static input Input = {};
 
 //

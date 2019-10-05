@@ -76,6 +76,8 @@ struct render {
     u32 CommandCount;
 };
 
+static render Render = {};
+
 #define VERTEX_BUFFER_SIZE 1000
 #define COMMAND_BUFFER_SIZE 100
 
@@ -100,31 +102,31 @@ GetOrthoProjectionMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight)
 }
 
 void
-AddRenderCommand(render *Render, draw_mode_ Mode, u32 Offset, u32 PrimitiveCount, command_data Data)
+AddRenderCommand(draw_mode_ Mode, u32 Offset, u32 PrimitiveCount, command_data Data)
 {
-    Assert(Render->CommandCount + 1 <= COMMAND_BUFFER_SIZE);
+    Assert(Render.CommandCount + 1 <= COMMAND_BUFFER_SIZE);
 
     render_command *Command = 0;
-    if (!Render->CommandCount) {
-        Command = Render->Commands + 0;
+    if (!Render.CommandCount) {
+        Command = Render.Commands + 0;
         Command->PrimitiveCount = PrimitiveCount;
         Command->Offset = Offset;
         Command->DrawMode = Mode;
         Command->Data = Data;
-        ++Render->CommandCount;
+        ++Render.CommandCount;
     } else {
-        render_command *LastCommand = Render->Commands + Render->CommandCount - 1;
+        render_command *LastCommand = Render.Commands + Render.CommandCount - 1;
 
         if (LastCommand->Data.Shader != Data.Shader ||
             LastCommand->Data.Texture != Data.Texture ||
             (LastCommand->Data.QuadDim.x != Data.QuadDim.x || LastCommand->Data.QuadDim.y != Data.QuadDim.y))
         {
-            Command = Render->Commands + Render->CommandCount;
+            Command = Render.Commands + Render.CommandCount;
             Command->PrimitiveCount = PrimitiveCount;
             Command->Offset = Offset;
             Command->DrawMode = Mode;
             Command->Data = Data;
-            ++Render->CommandCount;
+            ++Render.CommandCount;
         } else {
             LastCommand->PrimitiveCount += PrimitiveCount;
         }
@@ -132,11 +134,11 @@ AddRenderCommand(render *Render, draw_mode_ Mode, u32 Offset, u32 PrimitiveCount
 }
 
 void
-DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
+DrawRect(v4 Color, v2 P, v2 Dim, r32 Z)
 {
-    vertex_xyzrgba *Vertices = Render->PlainVertices + Render->PlainVertexCount;
+    vertex_xyzrgba *Vertices = Render.PlainVertices + Render.PlainVertexCount;
 
-    Assert(Render->PlainVertexCount + 6 <= VERTEX_BUFFER_SIZE);
+    Assert(Render.PlainVertexCount + 6 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, Z};
@@ -154,74 +156,43 @@ DrawRect(render *Render, v4 Color, v2 P, v2 Dim, r32 Z)
 
     command_data Data = {};
     Data.Shader = Shader_Plain;
-    AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 2, Data);
-    Render->PlainVertexCount += 6;
+    AddRenderCommand(DrawMode_Triangle, Render.PlainVertexCount, 2, Data);
+    Render.PlainVertexCount += 6;
 }
 
-void
-DrawPlayer(render *Render, v4 Color, v2 P, v2 MouseP, r32 NoseRadius, r32 Z)
-{
-    vertex_xyzrgba *Vertices = Render->PlainVertices + Render->PlainVertexCount;
+// void
+// DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
+// {
+//     vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
 
-    Assert(Render->PlainVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+//     Assert(Render.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
 
-    v2 NoseVector = Normalize(MouseP - P);
-    v2 WidthVector = Perp(NoseVector);
+//     Vertices[0].P = v3{P.x, P.y, (r32)Z};
+//     Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
+//     Vertices[2].P = v3{P.x, P.y + Dim.y, (r32)Z};
+//     Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, (r32)Z};
 
-    r32 Tail = 0.3f;
-    r32 Width = 0.3f;
+//     Vertices[0].Color = Color / 255.0f;
+//     Vertices[1].Color = Color / 255.0f;
+//     Vertices[2].Color = Color / 255.0f;
+//     Vertices[3].Color = Color / 255.0f;
 
-    v2 SideVector1 = WidthVector * Width - NoseVector * Tail;
-    v2 SideVector2 = -1.0f * WidthVector * Width - NoseVector * Tail;
+//     Vertices[0].UV = v2{0.0f, 0.0f};
+//     Vertices[1].UV = v2{1.0f, 0.0f};
+//     Vertices[2].UV = v2{0.0f, 1.0f};
+//     Vertices[3].UV = v2{1.0f, 1.0f};
 
-    Vertices[0].P = V3(P + NoseVector * NoseRadius, Z);
-    Vertices[1].P = V3(P + SideVector1 * NoseRadius, Z);
-    Vertices[2].P = V3(P + SideVector2 * NoseRadius, Z);
+//     command_data Data = {};
+//     Data.Shader = Shader_Textured;
 
-    Vertices[0].Color = Color / 255.0f;
-    Vertices[1].Color = Color / 255.0f;
-    Vertices[2].Color = Color / 255.0f;
-
-    command_data Data = {};
-    Data.Shader =Shader_Plain;
-    AddRenderCommand(Render, DrawMode_Triangle, Render->PlainVertexCount, 1, Data);
-
-    Render->PlainVertexCount += 3;
-}
-
-void
-DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
-{
-    vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
-
-    Assert(Render->TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
-
-    Vertices[0].P = v3{P.x, P.y, (r32)Z};
-    Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
-    Vertices[2].P = v3{P.x, P.y + Dim.y, (r32)Z};
-    Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, (r32)Z};
-
-    Vertices[0].Color = Color / 255.0f;
-    Vertices[1].Color = Color / 255.0f;
-    Vertices[2].Color = Color / 255.0f;
-    Vertices[3].Color = Color / 255.0f;
-
-    Vertices[0].UV = v2{0.0f, 0.0f};
-    Vertices[1].UV = v2{1.0f, 0.0f};
-    Vertices[2].UV = v2{0.0f, 1.0f};
-    Vertices[3].UV = v2{1.0f, 1.0f};
-
-    command_data Data = {};
-    Data.Shader = Shader_Textured;
-
-    assert(!"texture is wrong! fix me!");
-    // Data.Texture = Render->TestTexture;
-    AddRenderCommand(Render, DrawMode_Strip, Render->TexturedVertexCount, 4, Data);
-    Render->TexturedVertexCount += 4;
-}
+//     assert(!"texture is wrong! fix me!");
+//     // Data.Texture = Render.TestTexture;
+//     AddRenderCommand(Render, DrawMode_Strip, Render.TexturedVertexCount, 4, Data);
+//     Render.TexturedVertexCount += 4;
+// }
 
 void
-DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text)
+DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text)
 {
     u32 Len = strlen(Text);
 
@@ -229,9 +200,9 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
     u32 PreviousCodePoint = 0;
 
     for (u32 i=0; i<Len; ++i) {
-        vertex_xyzrgbauv *Vertices = Render->TexturedVertices + Render->TexturedVertexCount;
+        vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
 
-        Assert(Render->TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
+        Assert(Render.TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
 
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
 
@@ -277,8 +248,8 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         Data.Shader = Shader_Glyph;
         Data.Texture = Font->Atlas.Texture;
 
-        AddRenderCommand(Render, DrawMode_Quad, Render->TexturedVertexCount, 1, Data);
-        Render->TexturedVertexCount += 6;
+        AddRenderCommand(DrawMode_Quad, Render.TexturedVertexCount, 1, Data);
+        Render.TexturedVertexCount += 6;
 
         CurrentP.x += Width;
         if (Layout.FontSpacing > 0.0f) {
@@ -286,12 +257,4 @@ DrawText(render *Render, v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, ch
         }
         PreviousCodePoint = Glyph->CodePoint;
     }
-}
-
-void
-DrawText(render *Render, v2 P, v4 Color, font_ FontId, r32 SizePt, char *Text)
-{
-    r32 Scale;
-    cached_font *Font = FindMatchingFont(FontId, SizePt, &Scale);
-    DrawText(Render, P, 1.0f, Scale, Color, Font, Text);
 }
