@@ -1,3 +1,4 @@
+
 struct durations {
     r32 FadeIn;
     r32 ScreenTime;
@@ -13,6 +14,8 @@ struct timings {
 
 enum text_ {
     Text_Normal,
+    Text_Play,
+    Text_No,
     Text_Monster,
     Text_Panick,
     Text_Run,
@@ -21,9 +24,11 @@ enum text_ {
     Text_Count,
 };
 
-enum pos_ {
-    Pos_Normal,
-    Pos_Center,
+enum scene_ {
+    Scene_Intro,
+    Scene_Start,
+    Scene_Quit,
+    Scene_Count,
 };
 
 enum command_ {
@@ -34,6 +39,8 @@ enum command_ {
 struct timed_command {
     b32 Active;
     b32 Retired;
+
+    scene_ Scene;
 
     command_ Type;
     r32 Start;
@@ -53,7 +60,6 @@ struct timed_command {
     v4 Color;
     v2 P;
     font_ Font;
-    pos_ Pos;
     r32 SizePx;
     r32 SpeedFactor;
 
@@ -61,16 +67,31 @@ struct timed_command {
     r32 FadeOutValue(r32 Time) { return (Time - this->T.FadeOutStart) / (this->T.FadeOutEnd - this->T.FadeOutStart); }
 };
 
+struct ui_id {
+    timed_command *Command;
+    rect Rect;
+};
+
+struct scene {
+    timed_command Commands[50];
+    u32 CommandCount;
+};
+
 struct state {
     r32 Time;
     r32 CommandTime;
     r32 SecondsPerGlyph;
-
     rect Layout;
     v2 P;
 
-    timed_command Commands[100];
-    u32 CommandCount;
+    scene_ CurrentScene;
+    scene Scenes[Scene_Count];
+
+    ui_id Hovered;
+    ui_id Clicked;
+
+    ui_id Interactive[10];
+    u32 InteractiveCount;
 };
 
 state State = {};

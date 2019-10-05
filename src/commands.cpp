@@ -1,7 +1,16 @@
 void
+SetScene(scene_ Scene)
+{
+    State.CommandTime = 0.0f;
+    State.Time = 0.0f;
+    State.CurrentScene = Scene;
+}
+
+void
 CommandSimpleText(text_ TextType, r32 SpeedFactor, r32 ScreenTime, r32 FadeOut, char *Text)
 {
-    timed_command *Command = State.Commands + State.CommandCount++;
+    scene *Scene = State.Scenes + State.CurrentScene;
+    timed_command *Command = Scene->Commands + Scene->CommandCount++;
 
     Command->Start = State.CommandTime;
 
@@ -27,7 +36,9 @@ CommandSimpleText(text_ TextType, r32 SpeedFactor, r32 ScreenTime, r32 FadeOut, 
 timed_command *
 CreateTextLayoutCommand(text_ TextType, char *Text, u32 TextLength)
 {
-    timed_command *Command = State.Commands + State.CommandCount++;
+    scene *Scene = State.Scenes + State.CurrentScene;
+    timed_command *Command = Scene->Commands + Scene->CommandCount++;
+
     Command->Type = Command_TextLayout;
     Command->Start = State.CommandTime;
     Command->TextType = TextType;
@@ -56,7 +67,7 @@ CommandSpeed(r32 Factor)
     State.SecondsPerGlyph = 1.0 / 42.0f * (1.0f / Factor);
 }
 
-void
+timed_command *
 CommandTextLayout(text_ TextType, char *Text)
 {
     ls_parser String = Text;
@@ -114,6 +125,8 @@ CommandTextLayout(text_ TextType, char *Text)
     // note: restore the default speed. We only alter this value in the current String
     State.SecondsPerGlyph = 1.0 / 42.0f;
     State.CommandTime += Command->Duration;
+
+    return Command;
 }
 
 

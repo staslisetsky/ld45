@@ -42,23 +42,14 @@ WordSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
 }
 
 void
-DrawText(pos_ Pos, v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text, r32 Len)
+DrawText(v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text, r32 Len)
 {
     r32 Scale;
     cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
-
-    if (Pos == Pos_Center) {
-        r32 Size = TextSize(Font, Scale, Text, strlen(Text));
-        v2 ScreenCenter = v2{ (r32)Render.Screen.x / 2.0f, (r32)Render.Screen.y / 2.0f };
-
-        P = ScreenCenter;
-        P.x -= Size / 2.0f;
-    }
-
     DrawText(P, 1.0f, Scale, Color, Font, Text, Len);
 }
 
-void
+rect
 TextLayout(text_ TextType, char *Text, u32 FullLen, u32 PrintLen)
 {
     r32 Scale;
@@ -71,6 +62,15 @@ TextLayout(text_ TextType, char *Text, u32 FullLen, u32 PrintLen)
     r32 Z = 1.0;
 
     v4 Color = RGBA(255,255,255,255);
+
+    if (TextType == Text_Play) {
+        Color = RGBA(100,255,95,255);
+    } else if (TextType == Text_No) {
+        Color = RGBA(255,111,95,255);
+    }
+
+    rect AABB = {};
+    AABB.Min = State.P;
 
     for (u32 i=0; i<PrintLen; ++i) {
         if (Text[i] == '\n') {
@@ -146,4 +146,9 @@ TextLayout(text_ TextType, char *Text, u32 FullLen, u32 PrintLen)
         State.P.x += Width;
         PreviousCodePoint = Glyph->CodePoint;
     }
+
+    AABB.Max = State.P;
+    AABB.Max.y += Font->BaselineSpacing * Scale * 1.3f;
+
+    return AABB;
 }
