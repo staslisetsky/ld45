@@ -4,13 +4,18 @@ TimedCommand(r32 Start, r32 FadeIn, r32 ScreenTime, r32 FadeOut)
     timed_command *Command = State.Commands + State.CommandCount++;
 
     Command->Start = Start;
+
     Command->D.FadeIn = FadeIn;
     Command->D.ScreenTime = ScreenTime;
     Command->D.FadeOut = FadeOut;
-    Command->T.FadeIn = Start;
-    Command->T.FadeOut = Start + FadeIn + ScreenTime;
 
-    // State.T += Start + FadeIn + ScreenTime + FadeOut;
+    Command->T.FadeInStart = Start;
+    Command->T.FadeInEnd = Command->T.FadeInStart + FadeIn;
+
+    Command->T.FadeOutStart = Start + FadeIn + ScreenTime;
+    Command->T.FadeOutEnd = Command->T.FadeOutStart + FadeOut;
+
+    Command->End = Command->T.FadeOutEnd;
 
     return Command;
 }

@@ -5,8 +5,10 @@ struct durations {
 };
 
 struct timings {
-    r32 FadeIn;
-    r32 FadeOut;
+    r32 FadeInStart;
+    r32 FadeInEnd;
+    r32 FadeOutStart;
+    r32 FadeOutEnd;
 };
 
 enum text_ {
@@ -52,6 +54,9 @@ struct timed_command {
 
     command_entry Entries[10];
     u32 EntryCount;
+
+    r32 FadeInValue(r32 Time) { return (Time - this->T.FadeInStart) / (this->T.FadeInEnd - this->T.FadeInStart); }
+    r32 FadeOutValue(r32 Time) { return (Time - this->T.FadeOutStart) / (this->T.FadeOutEnd - this->T.FadeOutStart); }
 };
 
 struct state {
