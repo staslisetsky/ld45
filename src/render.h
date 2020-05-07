@@ -1,3 +1,15 @@
+/*   Graphene renderer
+
+Vertices for quads are specified in STRIP order:
+
+  0      1
+  ┌──────┐
+  │      │
+  └──────┘
+  2      3
+
+*/
+
 struct image {
     u32 Texture;
 
@@ -30,7 +42,7 @@ struct command_data {
 struct render_command {
     draw_mode_ DrawMode;
     u32 Offset;
-    u32 PrimitiveCount;
+    u32 ElementCount;
     command_data Data;
 };
 
@@ -50,13 +62,9 @@ struct shader {
     GLuint Id;
 };
 
-struct render {
+struct renderer {
     char *ShaderError;
-    v2i Screen;
-
-    v2 CameraP;
-    r32 CameraScale = 1.0f;
-    // v2 CamVelocity = {};
+    v2 Screen;
 
     GLuint VertexArrayPlain;
     GLuint VertexArrayTextured;
@@ -68,6 +76,7 @@ struct render {
     GLuint QuadDimUniform;
 
     m4x4 ProjectionMatrix;
+    shader_ Shader;
 
     vertex_xyzrgba *PlainVertices;
     u32 PlainVertexCount;
@@ -75,49 +84,79 @@ struct render {
     vertex_xyzrgbauv *TexturedVertices;
     u32 TexturedVertexCount;
 
-    render_command *Commands;
+    render_command Commands[100];
     u32 CommandCount;
+
+    void SetMatrix(v2 CamP, b32 YIsUp, b32 Centered, r32 Scale);
+    void Flush();
 };
 
-static render Render = {};
+static renderer Renderer = {};
 
 #define VERTEX_BUFFER_SIZE 1000
 #define COMMAND_BUFFER_SIZE 100
 
-m4x4
-GetOrthoProjectionMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight)
+void renderer::
+Flush()
 {
-    m4x4 Result = {};
+    u32 ScreenWidth = this->Screen.x;
+    u32 ScreenHeight = this->Screen.y;
 
-    r32 a = SafeDivide1(2.0f, ScreenWidth);
-    r32 b = SafeDivide1(2.0f, ScreenHeight);
-    r32 c = SafeDivide1(1.0f, Far - Near);
+    glBindBuffer(GL_UNIFORM_BUFFER, Renderer.ViewUniformBuffer);
+    glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(m4x4), (u8 *)&Renderer.ProjectionMatrix);
 
-    Result = {
-        {a,  0,  0,  0,
-         0, -b,  0,  0,
-         0,  0, -c,  0,
-        -1,  1,  0,  1
+    if (Renderer.Shader == Shader_Plain) {
+        glBindVertexArray(Renderer.VertexArrayPlain);
+        glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferPlain);
+    } else if (Renderer.Shader == Shader_Textured) {
+        // glBindVertexArray(Renderer.VertexArrayTextured);
+        // glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferTextured);
+        // glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
+        // EM_ASM(console.log($0), Command.Data.Texture);
+    } else if (Renderer.Shader == Shader_Glyph) {
+        // glBindVertexArray(Renderer.VertexArrayTextured);
+        // glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferTextured);
+        // glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
+        // EM_ASM(console.log($0), Command.Data.Texture);
+    }
+
+    if (Renderer.PlainVertexCount) {
+        glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferPlain);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, Renderer.PlainVertexCount * sizeof(vertex_xyzrgba), (void *)Renderer.PlainVertices);
+    } else if (Renderer.TexturedVertexCount) {
+        glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferTextured);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, Renderer.TexturedVertexCount * sizeof(vertex_xyzrgbauv), (void *)Renderer.TexturedVertices);
+    }
+
+    glUseProgram(Renderer.Shaders[Renderer.Shader].Id);
+
+    for (u32 i=0; i<Renderer.CommandCount; ++i) {
+        render_command C = Renderer.Commands[i];
+
+        if (C.DrawMode == DrawMode_Quad) {
+            glDrawArrays(GL_TRIANGLES, C.Offset, 6 * C.ElementCount);
+        } else if (C.DrawMode == DrawMode_Triangle) {
+            glDrawArrays(GL_TRIANGLES, C.Offset, 3 * C.ElementCount);
+        } else if (C.DrawMode == DrawMode_Strip) {
+            glDrawArrays(GL_TRIANGLE_STRIP, C.Offset, C.ElementCount);
         }
-    };
+    }
 
-    return Result;
+    this->TexturedVertexCount = 0;
+    this->PlainVertexCount = 0;
 }
 
-m4x4
-GetCameraMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight, v2 CamP, r32 Scale)
+void renderer::
+SetMatrix(v2 CamP, b32 YIsUp, b32 Centered, r32 Scale)
 {
-    b32 YIsUp = true;
-    b32 Centered = true;
-
     m4x4 Result = {};
 
-    r32 a = SafeDivide1(2.0f, ScreenWidth);
-    r32 b = -1.0f * SafeDivide1(2.0f, ScreenHeight);
-    r32 c = SafeDivide1(1.0f, Far - Near);
+    r32 a = SafeDivide1(2.0f, this->Screen.x);
+    r32 b = -1.0f * SafeDivide1(2.0f, this->Screen.y);
+    r32 c = SafeDivide1(1.0f, 1000.0f - 0.0f);
     r32 d = 1.0f;
 
-    v2 T = v2{ (2.0f * CamP.x) / ScreenWidth, (CamP.y * 2.0f) / ScreenHeight };
+    v2 T = v2{ (2.0f * CamP.x) / this->Screen.x, (CamP.y * 2.0f) / this->Screen.y };
 
     // centering offset
     v2 C = {};
@@ -139,80 +178,52 @@ GetCameraMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight, v2 CamP, r
     T.x += C.x;
     T.y += C.y;
 
-    return m4x4{
-        {   a,  0,  0, 0,
-            0,  b,  0, 0,
-            0,  0, -c, 0,
-            -1 - T.x, d - T.y, 0, 1
-        }
+    this->ProjectionMatrix = m4x4{
+        a,  0,  0, 0,
+        0,  b,  0, 0,
+        0,  0, -c, 0,
+        -1 - T.x, d - T.y, 0, 1
     };
-}
-
-void
-AddRenderCommand(draw_mode_ Mode, u32 Offset, u32 PrimitiveCount, command_data Data)
-{
-    Assert(Render.CommandCount + 1 <= COMMAND_BUFFER_SIZE);
-
-    render_command *Command = 0;
-    if (!Render.CommandCount) {
-        Command = Render.Commands + 0;
-        Command->PrimitiveCount = PrimitiveCount;
-        Command->Offset = Offset;
-        Command->DrawMode = Mode;
-        Command->Data = Data;
-        ++Render.CommandCount;
-    } else {
-        render_command *LastCommand = Render.Commands + Render.CommandCount - 1;
-
-        if (LastCommand->Data.Shader != Data.Shader ||
-            LastCommand->Data.Texture != Data.Texture ||
-            (LastCommand->Data.QuadDim.x != Data.QuadDim.x || LastCommand->Data.QuadDim.y != Data.QuadDim.y))
-        {
-            Command = Render.Commands + Render.CommandCount;
-            Command->PrimitiveCount = PrimitiveCount;
-            Command->Offset = Offset;
-            Command->DrawMode = Mode;
-            Command->Data = Data;
-            ++Render.CommandCount;
-        } else {
-            LastCommand->PrimitiveCount += PrimitiveCount;
-        }
-    }
 }
 
 void
 DrawRect(v4 Color, v2 P, v2 Dim, r32 Z)
 {
-    vertex_xyzrgba *Vertices = Render.PlainVertices + Render.PlainVertexCount;
+    if (Renderer.CommandCount && Renderer.Shader != Shader_Plain) {
+        Renderer.Flush();
+        Renderer.Shader = Shader_Plain;
+    }
 
-    Assert(Render.PlainVertexCount + 6 <= VERTEX_BUFFER_SIZE);
+    vertex_xyzrgba *Vertices = Renderer.PlainVertices + Renderer.PlainVertexCount;
+
+    Assert(Renderer.PlainVertexCount + 6 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, Z};
     Vertices[1].P = v3{P.x + Dim.x, P.y, Z};
     Vertices[2].P = v3{P.x, P.y + Dim.y, Z};
-    Vertices[3].P = v3{P.x + Dim.x, P.y, Z};
-    Vertices[4].P = v3{P.x, P.y + Dim.y, Z};
-    Vertices[5].P = v3{P.x + Dim.x, P.y + Dim.y, Z};
+    Vertices[3].P = v3{P.x + Dim.x, P.y + Dim.y, Z};
 
     Vertices[0].Color = Color / 255.0f;
     Vertices[1].Color = Color / 255.0f;
     Vertices[2].Color = Color / 255.0f;
     Vertices[3].Color = Color / 255.0f;
-    Vertices[4].Color = Color / 255.0f;
-    Vertices[5].Color = Color / 255.0f;
 
-    command_data Data = {};
-    Data.Shader = Shader_Plain;
-    AddRenderCommand(DrawMode_Triangle, Render.PlainVertexCount, 2, Data);
-    Render.PlainVertexCount += 6;
+    render_command *C = Renderer.Commands + Renderer.CommandCount;
+    C->DrawMode = DrawMode_Strip;
+    C->Offset = Renderer.PlainVertexCount;
+    C->ElementCount = 4;
+
+    Renderer.PlainVertexCount += 4;
+    ++Renderer.CommandCount;
 }
 
+#if 0
 void
 DrawImage(v2 P, image Image, r32 Scale, u32 Z=0)
 {
-    vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
+    vertex_xyzrgbauv *Vertices = Renderer.TexturedVertices + Renderer.TexturedVertexCount;
 
-    Assert(Render.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+    Assert(Renderer.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
 
     Vertices[0].P = v3{P.x, P.y, (r32)Z};
     Vertices[1].P = v3{P.x + Image.Width, P.y, (r32)Z};
@@ -234,16 +245,16 @@ DrawImage(v2 P, image Image, r32 Scale, u32 Z=0)
     Data.Shader = Shader_Textured;
     Data.Texture = Image.Texture;
 
-    AddRenderCommand(DrawMode_Strip, Render.TexturedVertexCount, 4, Data);
-    Render.TexturedVertexCount += 4;
+    // AddRendesrCommand(DrawMode_Strip, Renderer.TexturedVertexCount, 4, Data);
+    Renderer.TexturedVertexCount += 4;
 }
 
 // void
 // DrawTexturedRect(render *Render, v2 P, v2 Dim, v4 Color, u32 Texture, u32 Z=0)
 // {
-//     vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
+//     vertex_xyzrgbauv *Vertices = Renderer.TexturedVertices + Renderer.TexturedVertexCount;
 
-//     Assert(Render.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+//     Assert(Renderer.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
 
 //     Vertices[0].P = v3{P.x, P.y, (r32)Z};
 //     Vertices[1].P = v3{P.x + Dim.x, P.y, (r32)Z};
@@ -264,9 +275,9 @@ DrawImage(v2 P, image Image, r32 Scale, u32 Z=0)
 //     Data.Shader = Shader_Textured;
 
 //     assert(!"texture is wrong! fix me!");
-//     // Data.Texture = Render.TestTexture;
-//     AddRenderCommand(Render, DrawMode_Strip, Render.TexturedVertexCount, 4, Data);
-//     Render.TexturedVertexCount += 4;
+//     // Data.Texture = Renderer.TestTexture;
+//     AddRenderCommand(Render, DrawMode_Strip, Renderer.TexturedVertexCount, 4, Data);
+//     Renderer.TexturedVertexCount += 4;
 // }
 
 void
@@ -284,9 +295,9 @@ DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text, r32 Le
             GlyphColor.a *= Len - IntegerLen;
         }
 
-        vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
+        vertex_xyzrgbauv *Vertices = Renderer.TexturedVertices + Renderer.TexturedVertexCount;
 
-        Assert(Render.TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
+        Assert(Renderer.TexturedVertexCount + 6 <= VERTEX_BUFFER_SIZE);
 
         cached_glyph *Glyph = GetCachedGlyph(Font, Text[i]);
 
@@ -332,8 +343,8 @@ DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text, r32 Le
         Data.Shader = Shader_Glyph;
         Data.Texture = Font->Atlas.Texture;
 
-        AddRenderCommand(DrawMode_Quad, Render.TexturedVertexCount, 1, Data);
-        Render.TexturedVertexCount += 6;
+        // AddRenderCommand(DrawMode_Quad, Renderer.TexturedVertexCount, 1, Data);
+        Renderer.TexturedVertexCount += 6;
 
         CurrentP.x += Width;
         if (Layout.FontSpacing > 0.0f) {
@@ -342,3 +353,4 @@ DrawText(v2 P, r32 Z, r32 Scale, v4 Color, cached_font *Font, char *Text, r32 Le
         PreviousCodePoint = Glyph->CodePoint;
     }
 }
+#endif

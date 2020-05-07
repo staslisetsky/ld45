@@ -57,10 +57,10 @@ static input Input = {};
 #include "opengl.cpp"
 #include "game.cpp"
 
-v2i
+v2
 GetWindowSize(HWND Window)
 {
-    v2i Result;
+    v2 Result;
 
     RECT Rect;
     GetClientRect(Window, &Rect);
@@ -79,7 +79,7 @@ LRESULT CALLBACK MainWindowCallback(
 {
     LRESULT Result = 0;
 
-    v2i WindowSize = GetWindowSize(Window);
+    v2 WindowSize = GetWindowSize(Window);
 
     switch (Message) {
         case WM_DESTROY: {
@@ -194,7 +194,7 @@ ProcessMessages()
                 s16 Delta = (s32)((Data & 0xffff0000) >> 16);
                 b32 CtrlKeyPressed = ((Data & MK_CONTROL) == 1);
 
-                Input.dWheel = Delta;
+                Input.MouseWheel = Delta;
             } break;
 
             case WM_RBUTTONUP:
@@ -259,7 +259,7 @@ main()
         HWND Window = CreateWindowExW(
             0,
             WindowClass.lpszClassName,
-            L"Ludum Dare - 46",
+            L"herbal burble",
             WS_OVERLAPPEDWINDOW,
             100, 100, 1000, 500,
             0, 0, Instance, 0
@@ -282,7 +282,7 @@ main()
         Input.MouseP.x = MousePointer.x;
         Input.MouseP.y = MousePointer.y;
 
-        Render.Screen = GetWindowSize(Window);
+        Renderer.Screen = GetWindowSize(Window);
         GameInit();
 
         HANDLE WatchDir = CreateFileA("shaders", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, 0);
@@ -327,9 +327,9 @@ main()
                     ShaderName.AppendCStringN(AsciiFilename, LastDot);
 
                     for (u32 i=0; i<Shader_Count; ++i) {
-                        if (Render.Shaders[i].Name == ShaderName) {
-                            glDeleteProgram(Render.Shaders[i].Id);
-                            Render.Shaders[i].Id = LoadShader(Render.Shaders[i].Name.Data);
+                        if (Renderer.Shaders[i].Name == ShaderName) {
+                            glDeleteProgram(Renderer.Shaders[i].Id);
+                            Renderer.Shaders[i].Id = LoadShader(Renderer.Shaders[i].Name.Data);
                         }
                     }
 
@@ -340,7 +340,7 @@ main()
                                       (LPDWORD)&WatchBytesReceived, &Overlapped, 0);
             }
 
-            Input.dWheel = 0;
+            Input.MouseWheel = 0;
 
             for (u32 KeyIndex = 0; KeyIndex < Key_Count; ++KeyIndex) {
                 Input.Keys[KeyIndex].WentDown = 0;
@@ -359,18 +359,23 @@ main()
             ScreenToClient(Window, &MousePointer);
 
             v2 NewMouseP = {(r32)MousePointer.x, (r32)MousePointer.y};
-            Input.dPMouse.x = NewMouseP.x - Input.MouseP.x;
-            Input.dPMouse.y = NewMouseP.y - Input.MouseP.y;
+            Input.MouseDP.x = NewMouseP.x - Input.MouseP.x;
+            Input.MouseDP.y = NewMouseP.y - Input.MouseP.y;
             Input.MouseP = NewMouseP;
 
-            Render.PlainVertexCount = 0;
-            Render.TexturedVertexCount = 0;
-            Render.CommandCount = 0;
-
             ProcessMessages();
-            Render.Screen = GetWindowSize(Window);
-            Game(0.016f);
-            OpenglRender(Render);
+
+            glClearColor(0.0, 0.0, 0.0, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            glClear(GL_DEPTH_BUFFER_BIT);
+
+            Renderer.Screen = GetWindowSize(Window);
+            Renderer.PlainVertexCount = 0;
+            Renderer.TexturedVertexCount = 0;
+
+            DoGameFrame(0.016f);
+            // OpenglRender(Render);
             SwapBuffers(DeviceContext);
 
             if (Input.Keys[Key_Alt].Down && Input.Keys[Key_F4].WentDown) {

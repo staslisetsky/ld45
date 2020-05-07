@@ -80,33 +80,13 @@ GameInit()
     // image Image = {};
     // Image.Data = stbi_load("'art'/main_module.png", (s32 *)&Image.Width, (s32 *)&Image.Height, (s32 *)&Image.N, 0);
     // Image.Texture = OpenglUploadTexture(Image);
-    // Station.MainModule.Origin = v2{125.0f, 125.0f};
-    // Station.MainModule.Image = Image;
-    // Station.MainModule.Interfaces[Side_Top].P = v2{0.0f, -120.0f};
-    // Station.MainModule.Interfaces[Side_Right].P = v2{107.0f, 12.0f};
-    // Station.MainModule.Interfaces[Side_Front].P = v2{-45.0f, 25.0f};
-
-    // module *M = ModuleLibrary + Module_CylinderShort;
-    // LoadImage("'art'/modules/cylinder_small/top.png", M->Images + Side_Top);
-    // LoadImage("'art'/modules/cylinder_small/right.png", M->Images + Side_Right);
-    // LoadImage("'art'/modules/cylinder_small/front.png", M->Images + Side_Front);
-
-    // M->Origins[Side_Top] = v2{-25.0f, -82.0f};
-    // M->Origins[Side_Right] = v2{-5.0f, -25.0f};
-    // M->Origins[Side_Front] = v2{-50.0f, -25.0f};
 }
 
 void
-Game(r32 dT)
+DoGameFrame(r32 dT)
 {
     r32 Scale;
     cached_font *Font = FindMatchingFont(Font_PTSans, 20.0f, &Scale);
-
-    // if (Input.Mouse[0].WentDown) {
-    //     State.MoveTo = Input.MouseP;
-    // }
-
-    // Camera controls
 
     r32 CamSpeed = 500.0f;
     static v2 CamV = {};
@@ -125,9 +105,9 @@ Game(r32 dT)
         FrameV.x += 1.0f;
     }
 
-    if (Input.dWheel != 0.0f) {
-        Render.CameraScale += Input.dWheel / 1000.0f;
-        Render.CameraScale = Clamp(0.5f, Render.CameraScale, 3.0f);
+    if (Input.MouseWheel != 0.0f) {
+        Game.CameraScale += Input.MouseWheel / 1000.0f;
+        Game.CameraScale = Clamp(0.5f, Game.CameraScale, 3.0f);
     }
 
     CamV += Normalize(FrameV) * CamSpeed;
@@ -136,67 +116,25 @@ Game(r32 dT)
     CamV.x = Clamp_r32(-CamSpeed, CamV.x, CamSpeed);
     CamV.y = Clamp_r32(-CamSpeed, CamV.y, CamSpeed);
 
-    Render.CameraP += CamV * dT;
+    Game.CameraP += CamV * dT;
 
     //
     //
-    //
 
-    // State.Container = rect{v2{0.0f, 0.0f}, v2{500.0f, 300.0f}};
-    // State.Soil = rect{v2{0.0f, 0.0f}, v2{100.0f, 100.0f}};
+    // DrawText(v2{0.0f, 0.0f}, v4{100.0f, 200.0f, 100.0f, 255.0f}, Font_PTSans, 30.0f, "Success!", 8);
 
-    DrawRect(v4{255.0f, 255.0f, 255.0f, 255.0f}, v2{0.0f, 0.0f}, {100.0f, 100.0f}, 0.0f);
-    // DrawRect(v4{58.0f, 51.0f, 43.0f, 255.0f}, State.Soil.Min, State.Soil.Dim(), 2);
+    Game.Container = rect{v2{0.0f, 0.0f}, v2{500.0f, 300.0f}};
+    Game.Soil = rect{v2{0.0f, 0.0f}, v2{500.0f, 50.0f}};
+
+    Renderer.SetMatrix(Game.CameraP, true, true, 1.0f);
+
+    DrawRect(v4{10.0f,10.0f,10.0f,255.0f}, Game.Container.Min, Game.Container.Dim(), 0.0f);
+    DrawRect(v4{28.0f, 21.0f, 33.0f, 255.0f}, Game.Soil.Min, Game.Soil.Dim(), 2);
+
+    Renderer.Flush();
 
     // v2 WorldMouseP = Input.MouseP - v2{(r32)Render.Screen.x / 2.0f, (r32)Render.Screen.y / 2.0f};
     // WorldMouseP += Render.CameraP / Render.CameraScale;
 
-    // v2 D = State.MoveTo - State.Dude.P;
-    // if (Abs_r32(D.x) > 3.0f || Abs_r32(D.y) > 3.0f) {
-    //     v2 V = Normalize(State.MoveTo - State.Dude.P) * 200.0f;
-    //     State.Dude.P += V * dT;
-    //     State.Dude.P.x = (s32)(State.Dude.P.x + 0.5f);
-    //     State.Dude.P.y = (s32)(State.Dude.P.y + 0.5f);
-    // } else {
-    //     State.Dude.P = State.MoveTo;
-    // }
-
-    // u32 AnimationFrame = ((s32)(State.Time * 200.0f) % 256) / 16;
-
-    // DrawImage(Station.MainModule.P - Station.MainModule.Origin, Station.MainModule.Image, 1.0f, 1);
-
-    // for (u32 i=0; i<Side_Count; ++i) {
-    //     if (i != (s32)Side_Top && i != (s32)Side_Right && i != (s32)Side_Front) {
-    //         continue;
-    //     }
-
-    //     module *M = ModuleLibrary + Module_CylinderShort;
-
-    //     v2 StationP = Station.MainModule.P - Station.MainModule.Origin;
-    //     v2 P = Station.MainModule.P + Station.MainModule.Interfaces[i].P;
-
-    //     rect Rect = RectCenterDim(P, 90.0f, 90.0f);
-    //     v4 Color = RGBA(200,100,100,128);
-
-    //     if (InRect(Rect, WorldMouseP)) {
-    //         Color = RGBA(200,100,100,200);
-    //         DrawImage(P + M->Origins[i], M->Images[i], 1.0f, 3);
-    //     }
-
-    //     // DrawRect(Color, Rect.Min, Rect.Dim(), 2);
-    // }
-
-    // DrawImage(Station.MainModule.P - Station.MainModule.Origin, Station.MainModule.Image, 1.0f, 1);
-    // DrawImage(Station.MainModule.P, Station.Door[AnimationFrame], 1.0f, 2);
-
-    // r32 Alpha = (sin(State.Time) + 1.0f) / 2.0f;
-    // DrawRect(RGBA(255,10,10, Alpha * 255), v2{142.0f, 16.0f}, v2{1.0f,1.0f}, 2);
-    // DrawRect(RGBA(255,200,200,255), State.MoveTo, v2{2.0f,2.0f}, 1);
-    // DrawRect(RGBA(200,200,200,255), State.Dude.P, v2{10.0f,10.0f}, 2);
-
-    // if (Font) {
-    //     // DrawText(v2{50.0f, 50.0f}, 1, Scale, RGBA(200,100,100,255), Font, "Hello world", 11);
-    // }
-
-    State.Time += dT;
+    Game.Time += dT;
 }

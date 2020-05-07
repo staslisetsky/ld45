@@ -26,10 +26,10 @@ struct input_event {
 
 struct input {
     v2 MouseP;
-    v2 MouseDragStartP;
-
-    v2 dPMouse;
-    s16 dWheel;
+    v2 MouseDP;
+    v2 WMouseP;
+    v2 WMouseDP;
+    s16 MouseWheel;
 
     button Mouse[2];
     button Keys[Key_Count];

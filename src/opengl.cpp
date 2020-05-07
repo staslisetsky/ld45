@@ -112,14 +112,14 @@ LoadShader(char *Name)
 void
 InitOpengl()
 {
-    glGenVertexArrays(1, &Render.VertexArrayPlain);
-    glGenVertexArrays(1, &Render.VertexArrayTextured);
-    glGenBuffers(1, &Render.VertexBufferPlain);
-    glGenBuffers(1, &Render.VertexBufferTextured);
+    glGenVertexArrays(1, &Renderer.VertexArrayPlain);
+    glGenVertexArrays(1, &Renderer.VertexArrayTextured);
+    glGenBuffers(1, &Renderer.VertexBufferPlain);
+    glGenBuffers(1, &Renderer.VertexBufferTextured);
 
     // Plain vertex
-    glBindVertexArray(Render.VertexArrayPlain);
-    glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
+    glBindVertexArray(Renderer.VertexArrayPlain);
+    glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferPlain);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_xyzrgba) * 1000, 0, GL_DYNAMIC_DRAW);
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
@@ -127,8 +127,8 @@ InitOpengl()
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgba), (GLvoid *)12);
 
        // Textured
-    glBindVertexArray(Render.VertexArrayTextured);
-    glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
+    glBindVertexArray(Renderer.VertexArrayTextured);
+    glBindBuffer(GL_ARRAY_BUFFER, Renderer.VertexBufferTextured);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_xyzrgbauv) * 1000, NULL, GL_DYNAMIC_DRAW);
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
@@ -137,31 +137,31 @@ InitOpengl()
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)12);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex_xyzrgbauv), (GLvoid *)28);
 
-    glGenBuffers(1, &Render.ViewUniformBuffer);
+    glGenBuffers(1, &Renderer.ViewUniformBuffer);
 
-    Render.Shaders[Shader_Plain].Name = "plain";
-    Render.Shaders[Shader_Textured].Name = "textured";
-    Render.Shaders[Shader_Glyph].Name = "glyph";
+    Renderer.Shaders[Shader_Plain].Name = "plain";
+    Renderer.Shaders[Shader_Textured].Name = "textured";
+    Renderer.Shaders[Shader_Glyph].Name = "glyph";
 
     for (u32 i=0; i<Shader_Count; ++i) {
-        Render.Shaders[i].Id = LoadShader(Render.Shaders[i].Name.Data);
+        Renderer.Shaders[i].Id = LoadShader(Renderer.Shaders[i].Name.Data);
     }
 
-    Render.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * VERTEX_BUFFER_SIZE);
-    Render.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * VERTEX_BUFFER_SIZE);
-    Render.Commands = (render_command *)malloc(sizeof(render_command) * COMMAND_BUFFER_SIZE);
+    Renderer.PlainVertices = (vertex_xyzrgba *)malloc(sizeof(vertex_xyzrgba) * VERTEX_BUFFER_SIZE);
+    Renderer.TexturedVertices = (vertex_xyzrgbauv *)malloc(sizeof(vertex_xyzrgbauv) * VERTEX_BUFFER_SIZE);
+    // Renderer.Commands = (render_command *)malloc(sizeof(render_command) * COMMAND_BUFFER_SIZE);
 
     DumpGlErrors("Bind buffers");
-    glBindBuffer(GL_ARRAY_BUFFER, Render.ViewUniformBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, Renderer.ViewUniformBuffer);
     glBufferData(GL_ARRAY_BUFFER, 64, NULL, GL_DYNAMIC_DRAW);
-    glBindBufferBase(GL_UNIFORM_BUFFER, 0, Render.ViewUniformBuffer);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 0, Renderer.ViewUniformBuffer);
 
     GLuint Index = 0;
-    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Plain].Id, "view");
-    glUniformBlockBinding(Render.Shaders[Shader_Plain].Id, Index, 0);
+    Index = glGetUniformBlockIndex(Renderer.Shaders[Shader_Plain].Id, "view");
+    glUniformBlockBinding(Renderer.Shaders[Shader_Plain].Id, Index, 0);
 
-    Index = glGetUniformBlockIndex(Render.Shaders[Shader_Textured].Id, "view");
-    glUniformBlockBinding(Render.Shaders[Shader_Textured].Id, Index, 0);
+    Index = glGetUniformBlockIndex(Renderer.Shaders[Shader_Textured].Id, "view");
+    glUniformBlockBinding(Renderer.Shaders[Shader_Textured].Id, Index, 0);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -201,59 +201,4 @@ OpenglUploadTexture(image Image)
 
 
   return Texture;
-}
-
-void
-OpenglRender(render Render)
-{
-    // m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y);
-    m4x4 Projection = GetCameraMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y, Render.CameraP, Render.CameraScale);
-
-    glClearColor(0.0, 0.0, 0.0, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-    glBindBuffer(GL_UNIFORM_BUFFER, Render.ViewUniformBuffer);
-    glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(m4x4), (u8 *)&Projection);
-
-    if (Render.PlainVertexCount) {
-        glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, Render.PlainVertexCount * sizeof(vertex_xyzrgba), (void *)Render.PlainVertices);
-        DumpGlErrors("Upload verts");
-    }
-
-    if (Render.TexturedVertexCount) {
-        glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, Render.TexturedVertexCount * sizeof(vertex_xyzrgbauv), (void *)Render.TexturedVertices);
-    }
-
-    for (u32 i=0; i<Render.CommandCount; ++i) {
-        render_command Command = Render.Commands[i];
-        glUseProgram(Render.Shaders[Command.Data.Shader].Id);
-
-        if (Command.Data.Shader == Shader_Plain) {
-            glBindVertexArray(Render.VertexArrayPlain);
-            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferPlain);
-        } else if (Command.Data.Shader == Shader_Textured) {
-            glBindVertexArray(Render.VertexArrayTextured);
-            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
-            glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
-            // EM_ASM(console.log($0), Command.Data.Texture);
-        } else if (Command.Data.Shader == Shader_Glyph) {
-            glBindVertexArray(Render.VertexArrayTextured);
-            glBindBuffer(GL_ARRAY_BUFFER, Render.VertexBufferTextured);
-            glBindTexture(GL_TEXTURE_2D, Command.Data.Texture);
-            // EM_ASM(console.log($0), Command.Data.Texture);
-        }
-
-        if (Command.DrawMode == DrawMode_Quad) {
-            glDrawArrays(GL_TRIANGLES, Command.Offset, 6 * Command.PrimitiveCount);
-        } else if (Command.DrawMode == DrawMode_Triangle) {
-            glDrawArrays(GL_TRIANGLES, Command.Offset, 3 * Command.PrimitiveCount);
-        } else if (Command.DrawMode == DrawMode_Strip) {
-            glDrawArrays(GL_TRIANGLE_STRIP, Command.Offset, Command.PrimitiveCount);
-        }
-    }
 }

@@ -41,13 +41,13 @@ WordSize(cached_font *Font, r32 Scale, char *Text, u32 Len)
     return Size;
 }
 
-void
-DrawText(v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text, r32 Len)
-{
-    r32 Scale;
-    cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
-    DrawText(P, 1.0f, Scale, Color, Font, Text, Len);
-}
+// void
+// DrawText(v2 P, v4 Color, font_ FontId, r32 SizePx, char *Text, r32 Len)
+// {
+//     r32 Scale;
+//     cached_font *Font = FindMatchingFont(FontId, SizePx, &Scale);
+//     DrawText(P, 1.0f, Scale, Color, Font, Text, Len);
+// }
 
 // rect
 // TextLayout(text_ TextType, char *Text, u32 FullLen, u32 PrintLen)
