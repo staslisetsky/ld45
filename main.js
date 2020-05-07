@@ -196,7 +196,7 @@ Module['FS_createPath']('/data', 'shaders', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 10009252, "filename": "/data/fonts.data"}, {"start": 10009252, "audio": 0, "end": 10986148, "filename": "/data/game.exe"}, {"start": 10986148, "audio": 0, "end": 11011699, "filename": "/data/PT Sans_12.png"}, {"start": 11011699, "audio": 0, "end": 11046675, "filename": "/data/PT Sans_20.png"}, {"start": 11046675, "audio": 0, "end": 11071705, "filename": "/data/PT Sans_30.png"}, {"start": 11071705, "audio": 0, "end": 11104623, "filename": "/data/PT Sans_40.png"}, {"start": 11104623, "audio": 0, "end": 11155081, "filename": "/data/PT Sans_60.png"}, {"start": 11155081, "audio": 0, "end": 11175314, "filename": "/data/PT Sans_8.png"}, {"start": 11175314, "audio": 0, "end": 11604486, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 11604486, "audio": 0, "end": 12061934, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 12061934, "audio": 0, "end": 12417402, "filename": "/data/fonts/PT_Sans_Caption.ttf"}, {"start": 12417402, "audio": 0, "end": 12794910, "filename": "/data/fonts/PT_Sans_Caption_Bold.ttf"}, {"start": 12794910, "audio": 0, "end": 13207714, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 13207714, "audio": 0, "end": 13208338, "filename": "/data/shaders/glyph.f"}, {"start": 13208338, "audio": 0, "end": 13208651, "filename": "/data/shaders/glyph.v"}, {"start": 13208651, "audio": 0, "end": 13208798, "filename": "/data/shaders/plain.f"}, {"start": 13208798, "audio": 0, "end": 13209040, "filename": "/data/shaders/plain.v"}, {"start": 13209040, "audio": 0, "end": 13209308, "filename": "/data/shaders/textured.f"}, {"start": 13209308, "audio": 0, "end": 13209621, "filename": "/data/shaders/textured.v"}], "remote_package_size": 13209621, "package_uuid": "4c833aec-2221-4001-b70d-596a4d59f6d3"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 10009252, "filename": "/data/fonts.data"}, {"start": 10009252, "audio": 0, "end": 10986148, "filename": "/data/game.exe"}, {"start": 10986148, "audio": 0, "end": 11011699, "filename": "/data/PT Sans_12.png"}, {"start": 11011699, "audio": 0, "end": 11046675, "filename": "/data/PT Sans_20.png"}, {"start": 11046675, "audio": 0, "end": 11071705, "filename": "/data/PT Sans_30.png"}, {"start": 11071705, "audio": 0, "end": 11104623, "filename": "/data/PT Sans_40.png"}, {"start": 11104623, "audio": 0, "end": 11155081, "filename": "/data/PT Sans_60.png"}, {"start": 11155081, "audio": 0, "end": 11175314, "filename": "/data/PT Sans_8.png"}, {"start": 11175314, "audio": 0, "end": 11604486, "filename": "/data/fonts/PT_Sans.ttf"}, {"start": 11604486, "audio": 0, "end": 12061934, "filename": "/data/fonts/PT_Sans_Bold.ttf"}, {"start": 12061934, "audio": 0, "end": 12417402, "filename": "/data/fonts/PT_Sans_Caption.ttf"}, {"start": 12417402, "audio": 0, "end": 12794910, "filename": "/data/fonts/PT_Sans_Caption_Bold.ttf"}, {"start": 12794910, "audio": 0, "end": 13207714, "filename": "/data/fonts/PT_Sans_Italic.ttf"}, {"start": 13207714, "audio": 0, "end": 13208338, "filename": "/data/shaders/glyph.f"}, {"start": 13208338, "audio": 0, "end": 13208651, "filename": "/data/shaders/glyph.v"}, {"start": 13208651, "audio": 0, "end": 13208798, "filename": "/data/shaders/plain.f"}, {"start": 13208798, "audio": 0, "end": 13209040, "filename": "/data/shaders/plain.v"}, {"start": 13209040, "audio": 0, "end": 13209308, "filename": "/data/shaders/textured.f"}, {"start": 13209308, "audio": 0, "end": 13209621, "filename": "/data/shaders/textured.v"}], "remote_package_size": 13209621, "package_uuid": "9fb1556e-417b-483a-a990-4c3ecdbef30f"});
 
 })();
 
@@ -1411,11 +1411,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 58240,
+    STACK_BASE = 31424,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5301120,
-    DYNAMIC_BASE = 5301120,
-    DYNAMICTOP_PTR = 58208;
+    STACK_MAX = 5274304,
+    DYNAMIC_BASE = 5274304,
+    DYNAMICTOP_PTR = 31392;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1940,7 +1940,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 
-// STATICTOP = STATIC_BASE + 57216;
+// STATICTOP = STATIC_BASE + 30400;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_wasm_main_cpp() } });
 
 
@@ -1951,7 +1951,7 @@ function _emscripten_asm_const_ii(code, a0) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 58224
+var tempDoublePtr = 31408
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much

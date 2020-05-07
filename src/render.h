@@ -52,8 +52,11 @@ struct shader {
 
 struct render {
     char *ShaderError;
-
     v2i Screen;
+
+    v2 CameraP;
+    r32 CameraScale = 1.0f;
+    // v2 CamVelocity = {};
 
     GLuint VertexArrayPlain;
     GLuint VertexArrayTextured;
@@ -99,6 +102,50 @@ GetOrthoProjectionMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight)
     };
 
     return Result;
+}
+
+m4x4
+GetCameraMatrix(r32 Near, r32 Far, r32 ScreenWidth, r32 ScreenHeight, v2 CamP, r32 Scale)
+{
+    b32 YIsUp = true;
+    b32 Centered = true;
+
+    m4x4 Result = {};
+
+    r32 a = SafeDivide1(2.0f, ScreenWidth);
+    r32 b = -1.0f * SafeDivide1(2.0f, ScreenHeight);
+    r32 c = SafeDivide1(1.0f, Far - Near);
+    r32 d = 1.0f;
+
+    v2 T = v2{ (2.0f * CamP.x) / ScreenWidth, (CamP.y * 2.0f) / ScreenHeight };
+
+    // centering offset
+    v2 C = {};
+
+    if (Centered) {
+        C.x = -1;
+        C.y = 1;
+    }
+
+    if (YIsUp) {
+        d = -1.0f;
+        b *= -1.0f;
+
+        if (Centered) {
+            C.y = -1;
+        }
+    }
+
+    T.x += C.x;
+    T.y += C.y;
+
+    return m4x4{
+        {   a,  0,  0, 0,
+            0,  b,  0, 0,
+            0,  0, -c, 0,
+            -1 - T.x, d - T.y, 0, 1
+        }
+    };
 }
 
 void
@@ -158,6 +205,37 @@ DrawRect(v4 Color, v2 P, v2 Dim, r32 Z)
     Data.Shader = Shader_Plain;
     AddRenderCommand(DrawMode_Triangle, Render.PlainVertexCount, 2, Data);
     Render.PlainVertexCount += 6;
+}
+
+void
+DrawImage(v2 P, image Image, r32 Scale, u32 Z=0)
+{
+    vertex_xyzrgbauv *Vertices = Render.TexturedVertices + Render.TexturedVertexCount;
+
+    Assert(Render.TexturedVertexCount + 4 <= VERTEX_BUFFER_SIZE);
+
+    Vertices[0].P = v3{P.x, P.y, (r32)Z};
+    Vertices[1].P = v3{P.x + Image.Width, P.y, (r32)Z};
+    Vertices[2].P = v3{P.x, P.y + Image.Height, (r32)Z};
+    Vertices[3].P = v3{P.x + Image.Width, P.y + Image.Height, (r32)Z};
+
+    v4 Color = RGBA(255,0,255,255);
+    Vertices[0].Color = Color / 255.0f;
+    Vertices[1].Color = Color / 255.0f;
+    Vertices[2].Color = Color / 255.0f;
+    Vertices[3].Color = Color / 255.0f;
+
+    Vertices[0].UV = v2{0.0f, 0.0f};
+    Vertices[1].UV = v2{1.0f, 0.0f};
+    Vertices[2].UV = v2{0.0f, 1.0f};
+    Vertices[3].UV = v2{1.0f, 1.0f};
+
+    command_data Data = {};
+    Data.Shader = Shader_Textured;
+    Data.Texture = Image.Texture;
+
+    AddRenderCommand(DrawMode_Strip, Render.TexturedVertexCount, 4, Data);
+    Render.TexturedVertexCount += 4;
 }
 
 // void

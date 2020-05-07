@@ -719,7 +719,12 @@ InCircle(v2 Center, r32 R, r32 X, r32 Y)
 inline v2
 Normalize(v2 A)
 {
+    if (A.x == 0.0f &&  A.y == 0.0f) {
+        return {0.0, 0.0f};
+    }
+
     v2 Result = A / Length(A);
+
     return (Result);
 }
 

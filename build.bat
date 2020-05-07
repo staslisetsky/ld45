@@ -1,6 +1,6 @@
 @echo off
 
-set ProjectDir="P:\\ls\\ld45"
+set ProjectDir="P:\\ls\\ld46"
 
 IF NOT EXIST %ProjectDir%\_build mkdir %ProjectDir%\_build
 pushd %ProjectDir%\_build

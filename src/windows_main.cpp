@@ -259,7 +259,7 @@ main()
         HWND Window = CreateWindowExW(
             0,
             WindowClass.lpszClassName,
-            L"Ludum Dare - 45",
+            L"Ludum Dare - 46",
             WS_OVERLAPPEDWINDOW,
             100, 100, 1000, 500,
             0, 0, Instance, 0
@@ -372,7 +372,6 @@ main()
             Game(0.016f);
             OpenglRender(Render);
             SwapBuffers(DeviceContext);
-
 
             if (Input.Keys[Key_Alt].Down && Input.Keys[Key_F4].WentDown) {
                 GlobalRunning = false;

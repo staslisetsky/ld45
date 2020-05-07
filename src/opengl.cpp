@@ -1,3 +1,16 @@
+/*
+
+Opengl NDC coordinates
+
+-1,1     1,1
+  ┌──────┐
+  │      │
+  │      │
+  └──────┘
+-1,-1    1,-1
+
+*/
+
 void
 DumpGlErrors(char *Section) {
     char Buf[100];
@@ -171,7 +184,7 @@ OpenglUploadTexture(image Image)
         InternalFormat = GL_RGBA8;
     } else if (Image.N == 1) {
         ImageMode = GL_RED;
-        InternalFormat = GL_R8;
+        InternalFormat = GL_RED;
     }
 
     // note: Not GL_RED not supported in GL ES
@@ -179,7 +192,7 @@ OpenglUploadTexture(image Image)
     glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat,
                  Image.Width, Image.Height,
                  0, ImageMode, GL_UNSIGNED_BYTE, Image.Data);
-   // DumpGlErrors("Upload texture");
+    DumpGlErrors("Upload texture");
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_FILTER, GL_LINEAR);
@@ -193,7 +206,8 @@ OpenglUploadTexture(image Image)
 void
 OpenglRender(render Render)
 {
-    m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y);
+    // m4x4 Projection = GetOrthoProjectionMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y);
+    m4x4 Projection = GetCameraMatrix(0.0f, 1000.0f, Render.Screen.x, Render.Screen.y, Render.CameraP, Render.CameraScale);
 
     glClearColor(0.0, 0.0, 0.0, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);

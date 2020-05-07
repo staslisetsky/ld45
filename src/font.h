@@ -151,7 +151,6 @@ FindMatchingFont(font_ FontId, r32 SizePx,r32 *Scale)
     return Font;
 }
 
-
 v2
 GetTextDim(font_ FontId, r32 SizePx, char *Text)
 {
